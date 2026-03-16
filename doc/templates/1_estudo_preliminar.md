@@ -19,8 +19,7 @@ amigable e de deseño personalizado para o negocio.
 
 O proxecto contará con funcionalidades tanto para o cliente como para o empregado. Para o cliente a funcionalidade
 principal é ofrecer unha ventá onde poder realizar as súas reservas de karts. O recinto conta con dous tipos de karts:
-os azuis (amateur) e os vermellos (experimentados), os cales os clientes poderán elixir, xunto co número de participantes e a franxa
-horaria.
+os azuis (amateur) e os vermellos (experimentados), os cales os clientes poderán elixir, xunto co número de participantes e a franxa horaria. Como o establecimiento conta cun número de karts especifico, ao usuario se lle mostrara a dispoñibilidade de karts que hay a dita hora.
 
 Para os empregados haberá funcións como o envío de emails, a revisión de reservas, e no caso de que o empregado sexa administrador,
 poderá xestionar todos os datos tanto dos empregados como dos clientes.
@@ -28,7 +27,7 @@ poderá xestionar todos os datos tanto dos empregados como dos clientes.
 O envío de correos se utilizara para que os empregados, podan recordarlle aos clientes a sua reserva ou enviarlle algun aviso, e para
 os administradores, para tratar algun tipo de tema con los empleados, xa sexa un aviso ou algunha mensaxe.
 
-[Boceto envio de email](./img/struture_of_mail)
+![Boceto envio de email](/doc/img/struture_of_mail.png)
 
 A aplicación tamén contara cun sistema de filtrado, para poder facer busquedas exactas utilizando distintos campos.
 
@@ -65,11 +64,25 @@ e un IDE que permita traballar sen moita dificultade en Ruby, entre eles están 
 
 Tamén fará falta o framework Ruby on Rails e as Gems para poder desenvolvelo. Ruby on Rails é un framework de desenvolvemento web de código
 aberto que segue o patrón de arquitectura MVC (Modelo-Vista-Controlador), o cal permite organizar o código de forma clara e estruturada.
-Unha das súas maiores vantaxes é a filosofía "Convention over Configuration", que reduce a cantidade de configuración necesaria e axiliza
-o desenvolvemento. As Gems son bibliotecas ou paquetes de código reutilizable que amplían as funcionalidades de Ruby e Rails, permitindo
+
+Unha das súas maiores vantaxes é a filosofía "Convention over Configuration", que reduce a cantidade de configuración necesaria e axiliza o desenvolvemento. As Gems son bibliotecas ou paquetes de código reutilizable que amplían as funcionalidades de Ruby e Rails, permitindo
 incorporar características como autenticación de usuarios, envío de emails, xestión de arquivos ou validación de formularios sen necesidade
 de desenvolvelas desde cero.
 
 Para despregar o proxecto utilizaranse plataformas como Railway ou Fly.io. A vantaxe de Railway é que proporciona a facilidade de empregar
 unha base de datos PostgreSQL.
 
+Tamén farase uso das gem **Devise**, que ofrece autenticación de usuarios, asi como o seu rexistro, inicio de sesión, recuperación de contrasinal, e moitas facilidades mais. E tamén se empregara a gem **CanCanCan** que e utilizada para a autorización, é dicir que pode facer ou non un empregado.
+
+Para o envío de correo se intentara empregar **sendGrid**, que é unha aplicación que permite o envío de correos de forma fiable e escalable.
+
+Rails fai uso de **Active Record** que conecta o modelo de ruby coa base de datos, permitindo o tratar as tablas da base de datos como modelos, sen ter que escribir SQl manualmente para realizar unha operación.
+
+Posibles versions a empregar:
+|Tecnoloxia|Versión|
+|----------|-------|
+|Ruby|3.3.0|
+|Rails|7.0.1|
+|Node.js|20.0|
+|PostgreSQL|15|
+|Yarn|Latest|
