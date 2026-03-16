@@ -25,6 +25,11 @@ horaria.
 Para os empregados haberá funcións como o envío de emails, a revisión de reservas, e no caso de que o empregado sexa administrador,
 poderá xestionar todos os datos tanto dos empregados como dos clientes.
 
+O envío de correos se utilizara para que os empregados, podan recordarlle aos clientes a sua reserva ou enviarlle algun aviso, e para
+os administradores, para tratar algun tipo de tema con los empleados, xa sexa un aviso ou algunha mensaxe.
+
+A aplicación tamén contara cun sistema de filtrado, para poder facer busquedas exactas utilizando distintos campos.
+
 A aplicación contará cun sistema de inicio de sesión e rexistro para os clientes e para os empregados.
 
 Como haberá distintos tipos de usuarios, a aplicación contará coa funcionalidade de bloqueo de vistas segundo o tipo de usuario, para
