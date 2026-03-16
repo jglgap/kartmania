@@ -28,6 +28,8 @@ poderá xestionar todos os datos tanto dos empregados como dos clientes.
 O envío de correos se utilizara para que os empregados, podan recordarlle aos clientes a sua reserva ou enviarlle algun aviso, e para
 os administradores, para tratar algun tipo de tema con los empleados, xa sexa un aviso ou algunha mensaxe.
 
+[Boceto envio de email](./img/struture_of_mail)
+
 A aplicación tamén contara cun sistema de filtrado, para poder facer busquedas exactas utilizando distintos campos.
 
 A aplicación contará cun sistema de inicio de sesión e rexistro para os clientes e para os empregados.
