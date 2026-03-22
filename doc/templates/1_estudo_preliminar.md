@@ -31,10 +31,17 @@ os administradores, para tratar algun tipo de tema con los empleados, xa sexa un
 
 A aplicación tamén contara cun sistema de filtrado, para poder facer busquedas exactas utilizando distintos campos.
 
+Implementarase un sistema de torneos no que os clientes poderán participar sempre que estean logeados na aplicación.
+Os clientes poderán inscribirse e, posteriormente, os empregados poderán elixir a lista final de participantes. 
+Enviaráselles un correo electrónico aos clientes que foran aceptados para dito torneo.
+
 A aplicación contará cun sistema de inicio de sesión e rexistro para os clientes e para os empregados.
 
-Como haberá distintos tipos de usuarios, a aplicación contará coa funcionalidade de bloqueo de vistas segundo o tipo de usuario, para
-evitar que un usuario conectado entre en sitios onde non debería ser capaz de ver o contido.
+Existirán dúas táboas de usuarios debido aos campos requiridos para cada unha. Farase unha táboa de usuarios para os empregados,
+que poden ser empregados normais ou administradores,
+e haberá unha táboa de clientes para rexistrar tamén o seu mellor tempo en pista.
+
+Cabe aclarar que para facer reservas non é necesario estar logeado.
 ### 1.3. Estudo de necesidades
 
 Actualmente en Galicia hai poucos kartings, e a proposta do meu amigo de intentar darlle un maior achegamento ao público do seu
