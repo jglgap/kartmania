@@ -34,6 +34,8 @@ A aplicación tamén contara cun sistema de filtrado, para poder facer busquedas
 Implementarase un sistema de torneos no que os clientes poderán participar sempre que estean logeados na aplicación.
 Os clientes poderán inscribirse e, posteriormente, os empregados poderán elixir a lista final de participantes. 
 Enviaráselles un correo electrónico aos clientes que foran aceptados para dito torneo.
+Para aqueles clientes que sexan aceptados nun torneo se lle engadira un recordatorio no seu google calendar, ca fecha do día de participación.
+
 
 A aplicación contará cun sistema de inicio de sesión e rexistro para os clientes e para os empregados.
 
