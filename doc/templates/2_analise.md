@@ -23,9 +23,9 @@ través dunha interface amigable e personalizada.
 Os administradores poderán ter o control total da xestión do karting, desde a xestión dos empregados ata a dos clientes, 
 así como o envío de correos electrónicos.
 
-|Pasos a seguir durante o desarrollo|
-|----------------------|
-|nº|función|descripción|
+### Pasos a seguir durante o desarrollo
+
+|nº|Titulo|descripción|
 |--|-------|-----------|
 |1|Montaxe do entorno|Montaxe e probas do entorno base da apricación para comporbar o seu funcionamento|
 |2|Creación da web|Neste apartado crearase a web estatica para os visitantes do sitio web|
@@ -39,10 +39,132 @@ así como o envío de correos electrónicos.
 |10|Despliegue de la aplicación|Despliegue de la aplicación a la internet y prueba de la aplicación|
 ## Funcionalidades
 
-|nº|función|descripción|
+|nº|Titulo|descripción|
 |--|-------|-----------|
-||||
+|1|Dada de alta|Dada de alta de usuarios(Empregados e clientes) e karts|
+|2|Dada de baixa|Dada de baixa de usarios(empregados e clientes) e karts|
+|3|Axendado de reserva|Sistema de reservas para todos os clientes(rexistrados ou anónimos)|
+|4|Envío de correos|Funcionalidad de envío de correos de recordatorios para os clientes e empregados|
+|5|Api Google Calendar|Asignación de recordatorio de reservas no google calendar do cliente|
+|6|Sistema de rexistro|Aplicación dun sistema de rexistro para novos cliente|
+|7|Sistema de login|Sistema de login para cliente e empregados|
+|8|Sistema de filtrado|As vistas de administración teran un sistema de filtrado|
+|9|Apuntamento a torneos|
 
 ## Tipos de usuarios
 
+A aplicación dispón de varios usuarios que acceden ás distintas vistas en función dos permisos asignados.
+
+- Administadores (teñen o poder de realizar calquera función)
+- Empregados (poden enviar mails, organizar os torneos, dar de baixa ou alta novos clientes, gardar os resultados dun torneo)
+- Cliente rexistrado (Pode realizar reservas de karts e pode enlistarse nos torneos)
+- Clientes anónimos (Pode realizar reservas de karts sen estar rexistrado na aplicación)
+
 ## Normativa
+
+### Nivel mundial
+
+- **ISO/IEC 27001**
+  - Estándar internacional de seguridad de la información.
+  - Recomendado si se gestionan datos sensibles.
+
+- **ISO/IEC 27701**
+  - Extensión de ISO 27001 para privacidad y protección de datos.
+
+- **OWASP Top 10**
+  - Guía internacional sobre vulnerabilidades de seguridad web.
+  - No es una ley, pero es el estándar de facto en seguridad.
+
+- **Convenio de Budapest sobre ciberdelincuencia**
+  - Marco internacional sobre delitos informáticos.
+
+
+### Unión Europea (obligatorias en España)
+
+- **RGPD (Reglamento General de Protección de Datos)**
+  - Reglamento (UE) 2016/679.
+  - Obligaciones:
+    - Protección de datos personales.
+    - Consentimiento explícito de usuarios.
+    - Derecho de acceso, rectificación y supresión.
+    - Notificación de brechas de seguridad.
+
+- **Directiva ePrivacy (Ley de Cookies)**
+  - Regula el uso de cookies y seguimiento de usuarios.
+  - Consentimiento previo obligatorio.
+
+- **Digital Services Act (DSA)**
+  - Regula responsabilidades de plataformas digitales.
+
+- **NIS2**
+  - Directiva de ciberseguridad para sistemas y servicios digitales.
+
+
+
+### España (obligatorias)
+
+- **LOPDGDD**
+  - Ley Orgánica de Protección de Datos y Garantía de los Derechos Digitales.
+  - Complementa el RGPD.
+
+- **LSSI-CE**
+  - Ley de Servicios de la Sociedad de la Información y Comercio Electrónico.
+  - Regula:
+    - Páginas web y comercio electrónico.
+    - Cookies y publicidad online.
+    - Contratación electrónica y comunicaciones comerciales.
+
+- **Ley General de Defensa de los Consumidores y Usuarios**
+  - Obligatoria para venta de productos o servicios, reservas incluidas.
+
+- **Ley de Propiedad Intelectual**
+  - Regula uso de imágenes, contenidos y software.
+
+- **Código Penal (delitos informáticos)**
+  - Acceso ilegal a sistemas.
+  - Robo de datos y fraude online.
+
+
+
+### Textos legales obligatorios en la web
+
+- Aviso legal
+- Política de privacidad
+- Política de cookies
+- Términos y condiciones
+- Consentimiento de tratamiento de datos
+
+
+### Requisitos técnicos legales habituales
+
+- HTTPS obligatorio en todas las páginas.
+- Consentimiento explícito en formularios de login y registro.
+- Checkbox de aceptación de privacidad y condiciones.
+- Sistema de gestión de cookies.
+- Protección de accesos no autorizados.
+- Registro de actividades (logs) y auditorías.
+- Copias de seguridad periódicas.
+- Control de acceso por roles (administrador, cliente, empleado).
+
+
+### Requisitos específicos según funcionalidades
+
+### 1. Sistema de login
+- RGPD / LOPDGDD: protección de datos personales de usuarios.
+- Contraseñas seguras, hashing, autenticación.
+- Política de privacidad visible.
+
+### 2. Sistema de reservas
+- Ley de Consumidores: derecho a información clara sobre horarios, precios, condiciones.
+- Confirmación por email opcional.
+- Registro de cambios y cancelaciones.
+
+### 3. API de Google Calendar
+- RGPD: tratamiento de datos de calendarios de clientes.
+- Contrato de tratamiento de datos (DPA) con Google.
+- Consentimiento explícito para sincronización de datos.
+
+### 4. Envío de emails
+- LSSI-CE: comunicación comercial solo con consentimiento.
+- RGPD: protección de datos en formularios y listas de envío.
+- Posibilidad de baja de comunicaciones (opt-out).
