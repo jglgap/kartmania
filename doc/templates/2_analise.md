@@ -22,8 +22,9 @@ través dunha interface amigable e personalizada.
 
 Os administradores poderán ter o control total da xestión do karting, desde a xestión dos empregados ata a dos clientes, 
 así como o envío de correos electrónicos.
-## Funcionalidades
 
+|Pasos a seguir durante o desarrollo|
+|----------------------|
 |nº|función|descripción|
 |--|-------|-----------|
 |1|Montaxe do entorno|Montaxe e probas do entorno base da apricación para comporbar o seu funcionamento|
@@ -36,6 +37,11 @@ así como o envío de correos electrónicos.
 |8|Implementación de api Google Calendar|Implementación de la api de google calendar para marcar el día de la visita del cliente|
 |9|Estilización de la aplicación|Aplicación de estilos a las distintas vistas|
 |10|Despliegue de la aplicación|Despliegue de la aplicación a la internet y prueba de la aplicación|
+## Funcionalidades
+
+|nº|función|descripción|
+|--|-------|-----------|
+||||
 
 ## Tipos de usuarios
 
