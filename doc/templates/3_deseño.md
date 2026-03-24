@@ -1,7 +1,7 @@
 # Deseño
 
 ## Diagrama da arquitectura
-![Boceto envio de email](/doc/img/diagrama_arquitectura.png)
+![Diagrama de arquitectura](/doc/img/diagrama_arquitectura.png)
 
 ## Diagrama de Base de Datos
 ```mermaid
@@ -65,3 +65,17 @@ erDiagram
     }
 ```
 ## Deseño de interface de usuarios
+Los siguientes mock ups son para mostrar unha idea de como seria a estrutura base de aplicación
+
+- Mock up das tablas nas vistas do administrador
+![mock up vista administrador](/doc/img/mockup_adminstrador.png)
+
+- Mock up da vista para alistarse nun torneo
+![mock up vista torneo](/doc/img/mockup_Torneos.png)
+
+- mock up vista de formularios
+![Mock up vista formularios](/doc/img/mockup_formulario.png)
+
+A posible paleta de colores que se implementara seguira el siguiente modelo
+
+![paleta de colores](/doc/img/paleta%20de%20colores.png)
