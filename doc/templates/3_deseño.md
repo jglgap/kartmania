@@ -7,16 +7,15 @@
 ```mermaid
 erDiagram
     
-    Clientes }|--o{ Reserva : "realiza"
-    Karts }|--o| Reserva : "Tiene"
-    Clientes }|--o{ Torneo : "Participan"
-
+    Clientes ||--o{ Reserva : realiza
+    Karts ||--o{ Reserva : tiene
+    Clientes ||--o{ Torneo : participan
 
     Clientes {
         int id PK
         string nombre
         string email
-        string contraseña
+        string password
         string telefono
         float mejor_tiempo
     }
@@ -30,7 +29,7 @@ erDiagram
         string provincia
         string codigo_postal
         string email
-        string contraseña
+        string password
         string telefono
     }
 
