@@ -23,6 +23,11 @@ través dunha interface amigable e personalizada.
 Os administradores poderán ter o control total da xestión do karting, desde a xestión dos empregados ata a dos clientes, 
 así como o envío de correos electrónicos.
 
+A aplicación estará desenvolvida utilizando Ruby on Rails como framework principal. Para a xestión da base de datos, empregará PostgreSQL, unha solución recoñecida pola súa fiabilidade e compatibilidade co framework.
+Ademais, contarase co soporte de SendGrid para o envío eficiente e seguro de correos electrónicos. Con Ruby on Rails o mais xeitoso e utilizar un modelo-vista-controlador (MVC),
+xa que o framework ofrece moita facilidade para traballar baixo esta arquitectura.
+
+
 ### Pasos a seguir durante o desarrollo
 
 |nº|Titulo|descripción|
@@ -37,19 +42,19 @@ así como o envío de correos electrónicos.
 |8|Implementación de api Google Calendar|Implementación de la api de google calendar para marcar el día de la visita del cliente|
 |9|Estilización de la aplicación|Aplicación de estilos a las distintas vistas|
 |10|Despliegue de la aplicación|Despliegue de la aplicación a la internet y prueba de la aplicación|
+
 ## Funcionalidades
 
 |nº|Titulo|descripción|
 |--|-------|-----------|
-|1|Dada de alta|Dada de alta de usuarios(Empregados e clientes) e karts|
-|2|Dada de baixa|Dada de baixa de usarios(empregados e clientes) e karts|
+|1|Gestión de usuarios|Rexistro, autenticación, Log in, edición y eliminación de perfil|
+|2|Gestión de karts|Creación, edición, eliminación y signación a reservas de karts|
 |3|Axendado de reserva|Sistema de reservas para todos os clientes(rexistrados ou anónimos)|
 |4|Envío de correos|Funcionalidad de envío de correos de recordatorios para os clientes e empregados|
 |5|Api Google Calendar|Asignación de recordatorio de reservas no google calendar do cliente|
 |6|Sistema de rexistro|Aplicación dun sistema de rexistro para novos cliente|
-|7|Sistema de login|Sistema de login para cliente e empregados|
-|8|Sistema de filtrado|As vistas de administración teran un sistema de filtrado|
-|9|Apuntamento a torneos|
+|7|Sistema de filtrado|As vistas de administración teran un sistema de filtrado|
+|8|Apuntamento a torneos|Los usuarios se podrán enlistar en un torneo, para ser aceptados como participantes|
 
 ## Tipos de usuarios
 
