@@ -1,0 +1,22 @@
+# Custom for Kartmania - Asegura que los finales de línea sean consistentes (LF)
+/kartmania/**/* text eol=lf
+
+# Marcar archivos que siempre deben ser tratados como texto
+/kartmania/Gemfile text
+/kartmania/Gemfile.lock text
+/kartmania/**/*.rb text
+/kartmania/**/*.erb text
+/kartmania/**/*.js text
+/kartmania/**/*.css text
+/kartmania/**/*.scss text
+/kartmania/**/*.yml text
+
+# Marcar archivos binarios (no se deben intentar mezclar o cambiar líneas)
+/kartmania/**/*.png binary
+/kartmania/**/*.jpg binary
+/kartmania/**/*.jpeg binary
+/kartmania/**/*.gif binary
+/kartmania/**/*.ico binary
+
+# El esquema de la base de datos es especial para Git
+/kartmania/db/schema.rb merge=ours

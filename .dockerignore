@@ -1,0 +1,37 @@
+
+
+# Ignore git directory (ahora está en la raíz).
+.git/
+
+# Ignore bundler config.
+/kartmania/.bundle
+
+# Ignore all environment files (except templates).
+/kartmania/.env*
+!/kartmania/.env*.erb
+
+# Ignore all default key files.
+/kartmania/config/master.key
+/kartmania/config/credentials/*.key
+
+# Ignore all logfiles and tempfiles.
+/kartmania/log/*
+/kartmania/tmp/*
+!/kartmania/log/.keep
+!/kartmania/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/kartmania/tmp/pids/*
+!/kartmania/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+/kartmania/storage/*
+!/kartmania/storage/.keep
+/kartmania/tmp/storage/*
+!/kartmania/tmp/storage/.keep
+
+# Ignore assets.
+/kartmania/node_modules/
+/kartmania/app/assets/builds/*
+!/kartmania/app/assets/builds/.keep
+/kartmania/public/assets
