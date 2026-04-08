@@ -22,9 +22,23 @@ Para os administradores tamén e moi importante facerlle chegar aos empregados a
 é o mais comun para comunicar novedades na actualidade, e tamén facilitara a descarga dos contratos dos empregados, e a xestión de calquer proceso
 que sexa manexable ca aplicación.
 
+A aplicación contara cun sistema de inicio de sesión, para controlar o acceso as distintas funcións por parte dos usuarios, dependendo do 
+rol e os permisos que teña asociado o seu rol.
+
 ## Sobre a autoría
 
-> _TODO_: Realiza unha breve descrición de quen es (perfil profesional), puntos fortes, tecnoloxías que máis dominas... e os motivos que te levaron a elaborar este proxecto. **Non máis de 200 palabras**.
+O meu nome é Ricardo Andrés Santos Ren, un xoven de 21 anos que soña con ser un bo programador, tanto de maneira profesional como personal,
+na miña vida non participei profecionalmente nun proxecto de desarollo de aplicacions, pero fixen periodo de practicas (FCT) en duas empresas,
+mmBuxan foi a primeira e traballaei con desarollo en Laravel en distintos proxectos da empresa, e a segunda foi en Televes Corporation traballando 
+en desarrollo de plugins de redmine, que esta basada en ruby on rails.
+
+Personalmente me considero unha persona muy activa, xa que sempre me gusta ter algo para facer. Son unha persona muy insistente, se algo non me
+funciona sempre trato de buscar unha maneira de arreglalo (no me rindo facilmente). Considerome unha persona responsable e con principio, para mi la base de 
+un buen equipo de trabajo se basa en el respeto.
+
+As miñas bases na programacíon comenzaron con java SE, pero a medida que fun avanzando funme decantando por linguaxes orientados ao desarrollo web,
+linguaxes como Ruby ou PHP co seu framework Laravel soen chamar moito a miña atención. Tamén son un gran aficionado de javaScript y Sql, e ainda que 
+chegui a usar Vue, nunca tivan moito contato con frameworks de front-end. 
 
 ## Licencia
 
