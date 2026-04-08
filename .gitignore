@@ -1,1 +1,34 @@
-kartmania/
+/kartmania/.bundle
+
+# Ignore all environment files (except templates).
+/kartmania/.env*
+!/kartmania/.env*.erb
+
+# Ignore all logfiles and tempfiles.
+/kartmania/log/*
+/kartmania/tmp/*
+!/kartmania/log/.keep
+!/kartmania/tmp/.keep
+
+# Ignore pidfiles, but keep the directory.
+/kartmania/tmp/pids/*
+!/kartmania/tmp/pids/
+!/kartmania/tmp/pids/.keep
+
+# Ignore storage (uploaded files in development and any SQLite databases).
+# (Recuerda: si quieres subir tus imágenes, comenta las líneas de abajo)
+/kartmania/storage/*
+!/kartmania/storage/.keep
+/kartmania/tmp/storage/*
+!/kartmania/tmp/storage/
+!/kartmania/tmp/storage/.keep
+
+/kartmania/public/assets
+
+# Ignore master key for decrypting credentials and more.
+/kartmania/config/master.key
+
+/kartmania/app/assets/builds/*
+!/kartmania/app/assets/builds/.keep
+
+/kartmania/node_modules

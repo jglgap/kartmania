@@ -1,0 +1,22 @@
+# Configuración de base de datos para Kartmania
+# Usa variables de entorno en producción para no exponer credenciales
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: maracas
+  password: maracuchu16.
+  host: localhost
+
+development:
+  <<: *default
+  database: kartmania_development
+
+test:
+  <<: *default
+  database: kartmania_test
+
+production:
+  <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
