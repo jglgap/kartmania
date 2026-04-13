@@ -25,7 +25,7 @@ Users {
         string provincia
         string codigo_postal
         string email
-        string contraseña
+        string contrasena
         string telefono
 }
 
@@ -33,7 +33,7 @@ Clientes {
         int id PK
         string nombre
         string email
-        string contraseña
+        string contrasena
         string telefono
         float mejor_tiempo
 }
