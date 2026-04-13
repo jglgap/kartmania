@@ -6,21 +6,17 @@
 ## Diagrama de Base de Datos
 ```mermaid
 erDiagram
-    
-    Clientes ||--o{ Reserva : realiza
-    Karts ||--o{ Reserva : tiene
-    Clientes ||--o{ Torneo : participan
 
-    Clientes {
-        int id PK
-        string nombre
-        string email
-        string password
-        string telefono
-        float mejor_tiempo
-    }
 
-    Users {
+
+
+Clientes ||--o{ Participantes : participa
+Torneos ||--|{ Participantes : tiene
+Clientes_reserva }|--o{ Reservas : tiene
+Planes ||--o{Reservas : pertenece
+
+
+Users { 
         int id PK
         int tipo
         string nombre
@@ -29,40 +25,75 @@ erDiagram
         string provincia
         string codigo_postal
         string email
-        string password
+        string contraseña
         string telefono
-    }
+}
 
-    Karts {
+Clientes {
+        int id PK
+        string nombre
+        string email
+        string contraseña
+        string telefono
+        float mejor_tiempo
+}
+Karts {
         int id PK
         int tipo
         int estado
-        int id_reserva FK
-    }
+}
 
-    Reserva {
+Participantes {
         int id PK
         int id_cliente FK
-        int karts_azules
-        int karts_rojos
-        date fecha
-    }
+        date fecha_solicitud
+        date fecha_confirmacion
+        int estado
+        int id_torneo FK
+}
 
-    Torneo {
+Torneos {
         int id PK
-        string nombre
-        string descripcion
-        date fecha_participacion
+        String nombre
+        String descripcion
+        date fecha_torneo
+        String primer_puesto
+        String segundo_puesto
+        String tercer_puesto
+        float primer_premio
+        float segundo_premio
+        float tercer_premio
         int numero_participantes
         int dificultad
-    }
+}
 
-    clientes_torneo_lista_previa {
+Planes {
         int id PK
-        int id_participante FK
-        int id_torneo FK
-        boolean estado
-    }
+        String nombre
+        String descripcion
+        String nivel
+        String tiempo
+        int numero_participantes
+}
+
+Clientes_reserva {
+        int id PK
+        int id_cliente 
+        String nombre
+        String email
+        String num_telefono
+        String dni
+        int id_reserva
+        boolean es_titular
+}
+
+Reservas {
+    int id PK
+    Date fecha_estipulada
+    int id_plan FK
+    
+    boolean estado
+}
 ```
 ## Deseño de interface de usuarios
 Los siguientes mock ups son para mostrar unha idea de como seria a estrutura base de aplicación
