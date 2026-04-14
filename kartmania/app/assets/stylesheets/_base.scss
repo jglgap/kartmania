@@ -6,6 +6,9 @@ background-size: 31px 31px;
 }
 
 .custom_navbar {
+    position: sticky;
+    top: 20px;
+    z-index: 9999 !important;
     border-radius: 20px;
     background-color: #265eba;
     margin: 20px auto 0 auto;
@@ -32,3 +35,112 @@ background-size: 31px 31px;
 .navbar .nav-link:hover {
   color: red;
 }
+
+
+// welcome page 
+.banner {
+  position: relative;
+  width: 100%;
+  height: 500px; 
+  overflow: hidden;
+  z-index: 1;
+
+
+
+  &__img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover; 
+    object-position: center; 
+    filter: brightness(0.5) contrast(1.1);
+    z-index: -1;
+  }
+
+&__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column; // Apila el h2 y el botón verticalmente
+    align-items: center;    // Centra horizontalmente en el eje flex
+    justify-content: center; // Centra verticalmente en el eje flex
+    text-align: center;      // Fuerza a las líneas de texto a centrarse
+    color: #fff;
+    z-index: 2;
+  }
+
+  &__title {
+    width: 100%;             // Asegura que el texto tenga espacio para centrarse
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(1.5rem, 6vw, 3rem);
+    font-weight: 800;
+    max-width: 900px;        // Controla que no se estire demasiado a los lados
+    line-height: 1.2;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+  }
+}
+
+// Ajuste para pantallas muy pequeñas (móviles)
+@media (max-width: 576px) {
+  .banner {
+    height: 250px; // Un poco más corta en móvil
+  }
+}
+
+
+.info-section {
+
+  margin-top: 100px !important;
+  
+  .custom-heading{
+    color: #265eba !important;
+
+  }
+
+}
+
+
+.circles-section {
+  .circle-wrapper {
+    width: 150px;       // Ajusta el tamaño del círculo aquí
+    height: 150px;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #265eba; // Color de tu navbar para consistencia
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  .circle-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  // Estilo de la barra divisora (|)
+  @media (min-width: 768px) {
+    .circle-item {
+      position: relative;
+
+      &:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 20%;
+        height: 60%;
+        width: 2px;
+        background-color: #265eba; // Color de la barra
+      }
+    }
+  }
+}
+
+

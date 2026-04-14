@@ -1,2 +1,89 @@
-<h1>Landing#welcome</h1>
-<p>This is the landing</p>
+<div class="banner">
+  <%= image_tag "banner.jpg", class: "banner__img" %>
+
+  <div class="banner__overlay">
+    <div class="container text-center">
+      <h2 class="banner__title">
+        Vive la emoción del karting al máximo
+      </h2>
+      <a href="#" class="btn btn-primary btn-lg mt-3">
+        Reservar ahora
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<section class="info-section mt-5 py-5">
+  <div class="container">
+    
+    <h1 class="text-center mb-5 custom-heading">No te pierdas la experiencia</h1>
+
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6 text-white mb-4 mb-md-0">
+        <h2 class="display-5 fw-bold ">Karts de último modelo</h2>
+        <p class="lead">
+          Ven a conducir nuestros karts de nueva generación, los más
+          neuvos y más rápidos en toda la península, ven a bibir la experiencia
+        </p>
+      </div>
+      <div class="col-md-6">
+        <%= image_tag "kart_ultimo_modelo", class: "img-fluid rounded-4 shadow-lg" %>
+      </div>
+    </div>
+
+    <div class="row align-items-center mb-5">
+      <div class="col-md-6 order-last order-md-first">
+        <%= image_tag "karts_peques.jpg", class: "img-fluid rounded-4 shadow-lg" %>
+      </div>
+      <div class="col-md-6 text-white mb-4 mb-md-0">
+        <h2 class="display-5 fw-bold ">Disfruta con la familia</h2>
+        <p class="lead">
+          En nuestro karting contamos con karts para los más pequeños, para que todos
+          puedan participar y liberar la adrenalina que nos genera la velocidad, siempre con protección
+          y seguridad, ven y comparte con tus peques y familia
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="circles-section py-5">
+  <div class="container text-center text-white">
+    
+    <h2 class="custom-heading mb-5">Nuestros Servicios</h2>
+
+    <div class="row justify-content-center align-items-top">
+      
+      <div class="col-6 col-md-3 mb-4 circle-item">
+        <div class="circle-wrapper mb-3">
+          <%= image_tag "shield.png", class: "circle-img" %>
+        </div>
+        <p class="fw-bold">Competición</p>
+      </div>
+
+      <div class="col-6 col-md-3 mb-4 circle-item">
+        <div class="circle-wrapper mb-3">
+          <%= image_tag "velocidad.png", class: "circle-img" %>
+        </div>
+        <p class="fw-bold">Eventos VIP</p>
+      </div>
+
+      <div class="col-6 col-md-3 mb-4 circle-item">
+        <div class="circle-wrapper mb-3">
+          <%= image_tag "logo_kartmania.png", class: "circle-img" %>
+        </div>
+        <p class="fw-bold">Cumpleaños</p>
+      </div>
+
+      <div class="col-6 col-md-3 mb-4 circle-item">
+        <div class="circle-wrapper mb-3">
+          <%= image_tag "logo_kartmania.png", class: "circle-img" %>
+        </div>
+        <p class="fw-bold">Cursos</p>
+      </div>
+
+    </div>
+  </div>
+</section>
