@@ -1,6 +1,6 @@
 class LandingController < ApplicationController
   def welcome
   end
-  def news
+  def our_karts
   end
 end
