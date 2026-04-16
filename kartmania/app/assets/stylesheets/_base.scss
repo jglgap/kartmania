@@ -37,5 +37,9 @@ background-size: 31px 31px;
 }
 
 
-
+.custom-heading {
+  background: -webkit-linear-gradient(red, purple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
