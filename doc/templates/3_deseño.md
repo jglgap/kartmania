@@ -5,12 +5,7 @@
 
 ## Diagrama de Base de Datos
 ```mermaid
----
-config:
-  theme: redux-color
-  look: neo
-  layout: elk
----
+
 erDiagram
 	direction TB
 	Clientes {
@@ -40,7 +35,7 @@ erDiagram
 		float tercer_premio    
 		int numero_participantes    
 		int dificultad
-                int id_circuito 
+        int id_circuito 
 	}
 
 	Clientes_reserva {
@@ -68,7 +63,7 @@ erDiagram
 		String nivel    
 		String tiempo    
 		int numero_participantes
-                int id_circuito  
+        int id_circuito  
   
 	}
 
@@ -94,19 +89,19 @@ erDiagram
 		int id PK   
 		int tipo    
 		int estado
-                int id_circuito FK    
+        int id_circuito FK    
 	}
 
         Circuito { 
-                int id PK
-                String nombre
-                String url
-                String descripcion
-                String kilometros
+        int id PK
+        String nombre
+        String url
+        String descripcion
+        String kilometros
         }
-        Circuito o|--o{ Planes : "tiene"
-        Circuito o|--o{Torneos : "realizado en"
-        Circuito o|--o{ Karts : "tiene"
+    Circuito o|--o{ Planes : "tiene"
+    Circuito o|--o{Torneos : "realizado en"
+    Circuito o|--o{ Karts : "tiene"
 	Clientes||--o{Participantes:"participa"
 	Torneos||--|{Participantes:"tiene"
 	Clientes_reserva}|--o{Reservas:"tiene"
