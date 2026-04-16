@@ -76,7 +76,7 @@ erDiagram
 		string provincia   
 		string codigo_postal   
 		string email   
-		string contraseña   
+		string contrasena   
 		string telefono   
 	}
 
