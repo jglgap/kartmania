@@ -7,7 +7,7 @@
 ```mermaid
 
 erDiagram
-	direction TB
+	
 	Clientes {
 		int id PK   
 		float mejor_tiempo    
