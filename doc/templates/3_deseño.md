@@ -8,12 +8,12 @@
 
 erDiagram
 	
-	Clientes {
+	Cliente {
 		int id PK   
 		float mejor_tiempo    
 	}
 
-	Participantes {
+	Participante {
 		int id PK   
 		int id_cliente FK   
 		date fecha_solicitud    
@@ -22,7 +22,7 @@ erDiagram
 		int id_torneo FK   
 	}
 
-	Torneos {
+	Torneo {
 		int id PK   
 		String nombre    
 		String descripcion    
@@ -38,7 +38,7 @@ erDiagram
         int id_circuito 
 	}
 
-	Clientes_reserva {
+	Cliente_reserva {
 		int id PK   
 		int id_cliente   
 		String nombre   
@@ -49,14 +49,14 @@ erDiagram
 		boolean es_titular   
 	}
 
-	Reservas {
+	Reserva {
 		int id PK  
 		Date fecha_estipulada   
 		int id_plan FK  
 		boolean estado   
 	}
 
-	Planes {
+	Plan {
 		int id PK   
 		String nombre    
 		String descripcion    
@@ -67,7 +67,7 @@ erDiagram
   
 	}
 
-	Users {
+	User {
 		int id PK  
 		int tipo   
 		string nombre   
@@ -85,7 +85,7 @@ erDiagram
 		int tipo   
 	}
 
-	Karts {
+	Kart {
 		int id PK   
 		int tipo    
 		int estado
@@ -99,15 +99,15 @@ erDiagram
         String descripcion
         String kilometros
         }
-    Circuito o|--o{ Planes : "tiene"
-    Circuito o|--o{Torneos : "realizado en"
-    Circuito o|--o{ Karts : "tiene"
-	Clientes||--o{Participantes:"participa"
-	Torneos||--|{Participantes:"tiene"
-	Clientes_reserva}|--o{Reservas:"tiene"
-	Planes||--o{Reservas:"pertenece"
-	Users||--||Personal:"es"
-	Users||--||Clientes:"es"
+    Circuito o|--o{ Plan : "tiene"
+    Circuito o|--o{Torneo : "realizado en"
+    Circuito o|--o{ Kart : "tiene"
+	Cliente||--o{Participante:"participa"
+	Torneo||--|{Participante:"tiene"
+	Cliente_reserva}|--o{Reserva:"tiene"
+	Plan||--o{Reserva:"pertenece"
+	User||--||Personal:"es"
+	User||--||Cliente:"es"
 
 ```
 ## Deseño de interface de usuarios
