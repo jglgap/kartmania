@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_04_21_154928) do
+ActiveRecord::Schema[7.1].define(version: 2026_04_22_143035) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,19 @@ ActiveRecord::Schema[7.1].define(version: 2026_04_21_154928) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "cliente_reservas", force: :cascade do |t|
+    t.string "nombre", null: false
+    t.string "email", null: false
+    t.string "telefono"
+    t.string "dni", null: false
+    t.bigint "cliente_id"
+    t.bigint "reserva_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_cliente_reservas_on_cliente_id"
+    t.index ["reserva_id"], name: "index_cliente_reservas_on_reserva_id"
+  end
+
   create_table "clientes", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -78,6 +91,56 @@ ActiveRecord::Schema[7.1].define(version: 2026_04_21_154928) do
     t.index ["circuito_id"], name: "index_karts_on_circuito_id"
   end
 
+  create_table "participantes", force: :cascade do |t|
+    t.integer "estado", default: 2, null: false
+    t.date "fecha_solicitud", null: false
+    t.date "fecha_confirmacion"
+    t.bigint "cliente_id", null: false
+    t.bigint "torneo_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cliente_id"], name: "index_participantes_on_cliente_id"
+    t.index ["torneo_id"], name: "index_participantes_on_torneo_id"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.string "nombre", null: false
+    t.text "descripcion"
+    t.decimal "precio", precision: 8, scale: 2, null: false
+    t.integer "max_participantes", null: false
+    t.bigint "circuito_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["circuito_id"], name: "index_plans_on_circuito_id"
+  end
+
+  create_table "reservas", force: :cascade do |t|
+    t.datetime "fecha", null: false
+    t.integer "estado", default: 2, null: false
+    t.bigint "plan_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_reservas_on_plan_id"
+  end
+
+  create_table "torneos", force: :cascade do |t|
+    t.string "nombre", null: false
+    t.text "descripcion"
+    t.datetime "fecha_torneo", null: false
+    t.string "primer_puesto"
+    t.string "segundo_puesto"
+    t.string "tercer_puesto"
+    t.decimal "primer_premio", precision: 8, scale: 2
+    t.decimal "segundo_premio", precision: 8, scale: 2
+    t.decimal "tercer_premio", precision: 8, scale: 2
+    t.integer "numero_participantes", null: false
+    t.integer "dificultad", default: 0, null: false
+    t.bigint "circuito_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["circuito_id"], name: "index_torneos_on_circuito_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -99,5 +162,12 @@ ActiveRecord::Schema[7.1].define(version: 2026_04_21_154928) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cliente_reservas", "clientes"
+  add_foreign_key "cliente_reservas", "reservas"
   add_foreign_key "karts", "circuitos"
+  add_foreign_key "participantes", "clientes"
+  add_foreign_key "participantes", "torneos"
+  add_foreign_key "plans", "circuitos"
+  add_foreign_key "reservas", "plans"
+  add_foreign_key "torneos", "circuitos"
 end
