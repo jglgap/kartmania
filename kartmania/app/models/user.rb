@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
 
-    
-   enum tipo: { admin: 0, trabajador: 1 }      
+  validates :nombre, presence: true
+  enum tipo: { admin: 0, trabajador: 1 }      
 end
