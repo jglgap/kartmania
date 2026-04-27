@@ -9,3 +9,45 @@
 .custom-cancel-button{
     background: #DF6945;
 }
+
+
+.custom-table {
+  background-color: #090056;
+  color: white;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+
+
+  thead tr th {
+    background-color: #090056;
+    color: white;
+    border-bottom: 2px solid white;
+    border-right: 1px solid white;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  tbody tr td {
+    background-color: #090056;
+    color: white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+
+    &:last-child {
+      border-right: none;
+    }
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+}
+
+.custom-card{
+  background-color: #090056; 
+  border-radius: 12px;
+}

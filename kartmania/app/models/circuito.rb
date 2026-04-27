@@ -2,7 +2,7 @@ class Circuito < ApplicationRecord
 
   # Gestión de imagen mediante Active Storage
   # Permite subir una imagen desde el explorador de archivos
-    has_one_attached :imagen
+  has_one_attached :imagen
 
 
   has_many :karts, dependent: :nullify

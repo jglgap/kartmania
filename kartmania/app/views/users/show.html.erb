@@ -1,2 +1,71 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="container-fluid container-md py-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+
+      <div class="card text-white border-0 custom-card" >
+        
+
+        <div class="card-header border-bottom border-white py-3">
+        <h2 class="fw-bold mb-0"><%= @user.nombre %></h2>
+        <span class="badge mt-1 <%= @user.admin? ? 'bg-success' : 'bg-warning' %>">
+            <%= @user.tipo.capitalize %>
+        </span>
+        </div>
+
+
+        <div class="card-body">
+          <div class="row g-4">
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Email</p>
+              <p class="mb-0"><%= @user.email %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Teléfono</p>
+              <p class="mb-0"><%= @user.telefono.presence || "No especificado" %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Dirección</p>
+              <p class="mb-0"><%= @user.direccion.presence || "No especificada" %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Ciudad</p>
+              <p class="mb-0"><%= @user.ciudad.presence || "No especificada" %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Provincia</p>
+              <p class="mb-0"><%= @user.provincia.presence || "No especificada" %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Código Postal</p>
+              <p class="mb-0"><%= @user.codigo_postal.presence || "No especificado" %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Miembro desde</p>
+              <p class="mb-0"><%= @user.created_at.strftime("%d/%m/%Y") %></p>
+            </div>
+
+          </div>
+        </div>
+
+
+        <div class="card-footer border-top border-white d-flex gap-2 justify-content-center py-3">
+        <%= link_to edit_user_path(@user), class: "btn btn-warning fw-bold" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
+        <%= link_to users_path, class: "btn btn-secondary fw-bold" do %>
+            <i class="fa-solid fa-arrow-left"></i> Volver
+        <% end %>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>

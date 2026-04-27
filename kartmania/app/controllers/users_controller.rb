@@ -3,13 +3,25 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @user = User.all
+    if params[:search].present?
+      search = "%#{params[:search].downcase}%"
+      @users = User.where(
+        "LOWER(nombre) LIKE ? OR LOWER(email) LIKE ? OR LOWER(telefono) LIKE ?",
+        search, search, search
+      )
+    else
+      @users = User.all.order(:nombre)
+    end
   end
 
+=begin
   def show
-    unless current_user == @user
+    unless current_user == @user || current_user.admin?
       redirect_to root_path, alert: "No tienes permisos para ver este perfil!."
     end
+  end
+=end
+  def show
   end
 
   def new
@@ -42,6 +54,7 @@ class UsersController < ApplicationController
     end
   end
 
+=begin 
   def destroy
     if @user == current_user
       redirect_to users_path, alert: "No puedes eliminar tu propia cuenta."
@@ -51,6 +64,13 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path, notice: "Usuario '#{@user.nombre}' eliminado correctamente."
   end
+=end
+
+  def destroy
+   @user.destroy
+    redirect_to users_path, notice: "Usuario '#{@user.nombre}' eliminado correctamente."
+  end
+
 
   def set_user
       @user = User.find(params[:id])
