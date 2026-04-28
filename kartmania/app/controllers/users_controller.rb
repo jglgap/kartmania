@@ -42,12 +42,13 @@ class UsersController < ApplicationController
   end
 
   def update
-    if params[:user][:password].blank?
-      params[:user].delete(:password)
-      params[:user].delete(:password_confirmation)
+    parametros = if params[:user][:password].blank?
+      user_params.except(:password,:password_confirmation)
+    else
+      user_params
     end
 
-    if @user.update(user_params)
+    if @user.update(parametros)
       redirect_to user_path(@user), notice: "Usuarios '#{@user.nombre}' actualizado correctamente."
     else
       render :edit, status: :unprocessable_entity

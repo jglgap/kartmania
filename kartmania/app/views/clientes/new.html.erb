@@ -1,0 +1,78 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Cliente</h1>
+        <div class="col-12 col-lg-8 col-xl-6"> 
+
+        <%= form_with model: @cliente, url: clientes_path, data: { turbo: false } do |f| %>
+            <% if @cliente.errors.any? %>
+                <div class="alert alert-danger">
+                    <% @cliente.errors.full_messages.each do |msg| %>
+                    <p class="mb-0"><%= msg %></p>
+                    <% end %>
+                </div>
+            <% end %>
+
+            <div class="row g-3 g-md-4">
+            
+            <div class="col-12 col-md-6">
+                <%= f.label :nombre, class: "form-label fw-bold text-white" %>
+                <%= f.text_field :nombre, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :email, class: "form-label fw-bold text-white" %>
+                <%= f.text_field :email, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :password, class: "form-label fw-bold text-white" %>
+                <%= f.password_field :password, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :password_confirmation, class: "form-label fw-bold text-white" %>
+                <%= f.password_field :password_confirmation, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :telefono, class: "form-label fw-bold text-white" %>
+                <%= f.text_field :telefono, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :direccion, class: "form-label fw-bold text-white" %>
+                <%= f.text_field :direccion, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :ciudad, class: "form-label fw-bold text-white" %>
+                <%= f.text_field :ciudad, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :provincia, class: "form-label fw-bold text-white" %>
+                <%= f.text_field :provincia, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :codigo_postal, class: "form-label fw-bold text-white" %>
+                <%= f.text_field :codigo_postal, class: "form-control" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+                <%= f.label :mejor_tiempo, class: "form-label fw-bold text-white" %>
+                <%= f.number_field :mejor_tiempo, class: "form-control" %>
+            </div>
+
+            <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+                <%= link_to "Cancelar", clientes_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+                <%= f.submit "Crear cliente", class: "btn btn-success custom-add-button fw-bold" %>
+            </div>
+            
+        </div>            
+
+
+      <% end %>
+    </div>
+  </div>
+</div>
