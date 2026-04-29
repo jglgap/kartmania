@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_04_22_143035) do
+ActiveRecord::Schema[7.1].define(version: 2026_04_29_095737) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -85,7 +85,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_04_22_143035) do
   create_table "karts", force: :cascade do |t|
     t.integer "tipo", default: 0, null: false
     t.integer "estado", default: 0, null: false
-    t.bigint "circuito_id", null: false
+    t.bigint "circuito_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["circuito_id"], name: "index_karts_on_circuito_id"
