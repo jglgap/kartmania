@@ -5,39 +5,39 @@
       <div class="card text-white border-0 custom-card">
 
         <div class="card-header border-bottom border-white py-3">
-          <h2 class="fw-bold mb-0">Kart #<%= @kart.id %></h2>
+          <h2 class="fw-bold mb-0"><%= @plan.nombre %></h2>
         </div>
 
         <div class="card-body">
           <div class="row g-4">
 
             <div class="col-12 col-md-6">
-              <p class="fw-bold mb-1">Tipo</p>
-              <p class="mb-0"><%= @kart.tipo.humanize %></p>
+              <p class="fw-bold mb-1">Precio</p>
+              <p class="mb-0"><%= @plan.precio %></p>
             </div>
 
             <div class="col-12 col-md-6">
-              <p class="fw-bold mb-1">Estado</p>
-              <span class="badge mt-1 <%= color_estado_kart(@kart) %>">
-                <p class="mb-0"><%= @kart.estado.humanize %></p>
-              </span>
+            <p class="fw-bold mb-1">Máximo de participante</p>
+            <p class="mb-0"><%= @plan.max_participantes %></p>
+            </div>
+            
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Descripción</p>
+              <p class="mb-0"><%= @plan.descripcion.presence || "Sin descripción" %></p>
             </div>
 
             <div class="col-12 col-md-6">
               <p class="fw-bold mb-1">Circuito</p>
-              <p class="mb-0"><%= @kart.circuito.present? ? @kart.circuito.nombre : "Sin circuito asignado" %></p>
+              <p class="mb-0"><%= @plan.circuito.present? ? @plan.circuito.nombre : "Sin circuito asignado" %></p>
             </div>
 
-            <div class="col-12 col-md-6">
-              <p class="fw-bold mb-1">Creado</p>
-              <p class="mb-0"><%= @kart.created_at.strftime("%d/%m/%Y") %></p>
-            </div>
+
 
           </div>
         </div>
 
         <div class="card-footer border-top border-white d-flex gap-2 justify-content-center py-3">
-          <%= link_to edit_kart_path(@kart), class: "btn btn-warning fw-bold" do %>
+          <%= link_to edit_plane_path(@plan), class: "btn btn-warning fw-bold" do %>
             <i class="fa-solid fa-pen-to-square"></i>
           <% end %>
           <%= link_to karts_path, class: "btn btn-secondary fw-bold" do %>

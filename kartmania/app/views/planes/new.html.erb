@@ -1,0 +1,56 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Kart</h1>
+    <div class="col-12 col-lg-8 col-xl-6">
+
+      <%= form_with model: @plan, url: planes_path , data: { turbo: false } do |f| %>
+
+        <% if @plan.errors.any? %>
+          <div class="alert alert-danger">
+            <% @plan.errors.full_messages.each do |msg| %>
+              <p class="mb-0"><%= msg %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="row g-3 g-md-4">
+
+          <div class="col-12 col-md-6">
+            <%= f.label :nombre, class: "form-label fw-bold text-white" %>
+            <%= f.text_field :nombre, class: "form-control" %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :precio, class: "form-label fw-bold text-white" %>
+            <%= f.number_field :precio, class: "form-control",step:0.01, min:0 %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :max_participantes, class: "form-label fw-bold text-white" %>
+            <%= f.number_field :max_participantes, class: "form-control", min:0 %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :circuito_id, "Circuito", class: "form-label fw-bold text-white" %>
+            <%= f.select :circuito_id,
+                @circuitos.map { |c| [c.nombre, c.id] },
+                { include_blank: "Sin circuito asignado" },
+                class: "form-select" %>
+          </div>
+
+          
+          <div class="col-12">
+            <%= f.label :descripcion, class: "form-label fw-bold text-white" %>
+            <%= f.text_area :descripcion, class: "form-control", rows: 4 %>
+          </div>
+
+          <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+            <%= link_to "Cancelar", planes_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+            <%= f.submit "Crear plan", class: "btn btn-success custom-add-button fw-bold" %>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>        
