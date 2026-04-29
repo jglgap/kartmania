@@ -1,0 +1,69 @@
+<div class="container py-4 px-3 px-lg-5">
+
+
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+
+    <%= form_with url: karts_path, method: :get, data: { turbo: false } do |f| %>
+      <div class="input-group">
+        <%= f.text_field :search,
+            value: params[:search],
+            placeholder: "Filtrar por tipo o estado",
+            class: "form-control" %>
+        <%= f.button type: :submit, class: "btn btn-outline-light" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= link_to new_kart_path, class: "btn btn-success custom-add-button fw-bold d-flex align-items-center gap-2" do %>
+      <span>Crear</span>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
+
+  </div>
+
+  <div class="table-responsive">
+    <table class="table custom-table text-center align-middle">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>Estado</th>
+          <th>Circuito</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @karts.each do |kart| %>
+          <tr>
+            <td>#<%= kart.id %></td>
+            <td><%= kart.tipo.humanize %></td>
+            <td><%= kart.estado.humanize %></td>
+            <td><%= kart.circuito.present? ? kart.circuito.nombre : "Sin asignar" %></td>
+            <td class="text-nowrap">
+              <div class="d-flex gap-2 justify-content-center">
+
+                <%= link_to kart_path(kart), class: "btn btn-sm btn-info fw-bold" do %>
+                  <i class="fa-solid fa-eye"></i>
+                <% end %>
+
+                <%= link_to edit_kart_path(kart), class: "btn btn-sm btn-warning fw-bold" do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+
+                <%= button_to kart_path(kart),
+                    method: :delete,
+                    data: { turbo: false },
+                    class: "btn btn-sm btn-danger fw-bold" do %>
+                  <i class="fa-solid fa-trash"></i>
+                <% end %>
+
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

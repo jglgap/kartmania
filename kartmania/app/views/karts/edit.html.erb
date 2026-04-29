@@ -1,0 +1,51 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Editar Kart</h1>
+    <div class="col-12 col-lg-8 col-xl-6">
+
+      <%= form_with model: @kart, url: kart_path(@kart), method: :patch, data: { turbo: false } do |f| %>
+
+        <% if @kart.errors.any? %>
+          <div class="alert alert-danger">
+            <% @kart.errors.full_messages.each do |msg| %>
+              <p class="mb-0"><%= msg %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="row g-3 g-md-4">
+
+          <div class="col-12 col-md-6">
+            <%= f.label :tipo, class: "form-label fw-bold text-white" %>
+            <%= f.select :tipo,
+                Kart.tipos.keys.map { |t| [t.humanize, t] },
+                { prompt: "Selecciona un tipo" },
+                class: "form-select" %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :estado, class: "form-label fw-bold text-white" %>
+            <%= f.select :estado,
+                Kart.estados.keys.map { |e| [e.humanize, e] },
+                { prompt: "Selecciona un estado" },
+                class: "form-select" %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :circuito_id, "Circuito", class: "form-label fw-bold text-white" %>
+            <%= f.select :circuito_id,
+                @circuitos.map { |c| [c.nombre, c.id] },
+                { include_blank: "Sin circuito asignado" },
+                class: "form-select" %>
+          </div>
+
+          <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+            <%= link_to "Cancelar", karts_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+            <%= f.submit "Actualizar kart", class: "btn btn-success custom-add-button fw-bold" %>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -5,5 +5,5 @@ class Kart < ApplicationRecord
   enum :estado, { disponible: 0, en_uso: 1, mantenimiento: 2, averiado: 3 }
 
   validates :tipo, presence: true
-  validates :stado, presence: true
+  validates :estado, presence: true
 end
