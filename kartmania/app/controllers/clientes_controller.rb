@@ -4,10 +4,10 @@ class ClientesController < ApplicationController
 
   def index
     if params[:search].present?
-      termino = "%#{params[:search]}%"
+      search = "%#{params[:search]}%"
       @clientes = Cliente.where(
         "nombre LIKE ? OR email LIKE ? OR telefono LIKE ?",
-        termino, termino, termino
+        search, search, search
       )
     else
       @clientes = Cliente.all

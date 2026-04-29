@@ -1,0 +1,53 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Editar Circuito</h1>
+    <div class="col-12 col-lg-8 col-xl-6">
+
+      <%= form_with model: @circuito, url: circuito_path(@circuito), method: :patch, data: { turbo: false }, multipart: true do |f| %>
+
+        <% if @circuito.errors.any? %>
+          <div class="alert alert-danger">
+            <% @circuito.errors.full_messages.each do |msg| %>
+              <p class="mb-0"><%= msg %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="row g-3 g-md-4">
+
+          <div class="col-12 col-md-6">
+            <%= f.label :nombre, class: "form-label fw-bold text-white" %>
+            <%= f.text_field :nombre, class: "form-control" %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :kilometros, class: "form-label fw-bold text-white" %>
+            <%= f.text_field :kilometros, class: "form-control" %>
+          </div>
+
+          <div class="col-12">
+            <%= f.label :descripcion, class: "form-label fw-bold text-white" %>
+            <%= f.text_area :descripcion, class: "form-control", rows: 4 %>
+          </div>
+
+          <div class="col-12">
+            <%= f.label :imagen, class: "form-label fw-bold text-white" %>
+            <% if @circuito.imagen.attached? %>
+              <div class="mb-2">
+                <%= image_tag @circuito.imagen, class: "img-fluid rounded", style: "max-height: 200px;" %>
+                <p class="text-white mt-1 small">Imagen actual — sube otra para reemplazarla</p>
+              </div>
+            <% end %>
+            <%= f.file_field :imagen, class: "form-control", accept: "image/*" %>
+          </div>
+
+          <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+            <%= link_to "Cancelar", circuitos_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+            <%= f.submit "Actualizar circuito", class: "btn btn-success custom-add-button fw-bold" %>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

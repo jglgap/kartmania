@@ -61,7 +61,7 @@
 
             <div class="col-12 col-md-6">
                 <%= f.label :mejor_tiempo, class: "form-label fw-bold text-white" %>
-                <%= f.number_field :mejor_tiempo, class: "form-control" %>
+                <%= f.number_field :mejor_tiempo, class: "form-control", step: 0.001, min: 0 %>
             </div>
 
             <div class="col-12 d-flex gap-2 justify-content-center mt-4">

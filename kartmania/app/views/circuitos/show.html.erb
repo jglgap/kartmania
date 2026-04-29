@@ -1,0 +1,60 @@
+<div class="container py-4 px-0 px-md-3 px-lg-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+
+      <div class="card text-white border-0 custom-card">
+
+        <div class="card-header border-bottom border-white py-3">
+          <h2 class="fw-bold mb-0"><%= @circuito.nombre %></h2>
+        </div>
+
+        <div class="card-body">
+
+
+          <div class="text-center mb-4">
+            <% if @circuito.imagen.attached? %>
+              <%= image_tag @circuito.imagen, class: "img-fluid rounded", style: "max-height: 250px;" %>
+            <% else %>
+              <p class="text-white-50 fst-italic">Sin imagen</p>
+            <% end %>
+          </div>
+
+
+          <div class="row g-4">
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Kilómetros</p>
+              <p class="mb-0"><%= @circuito.kilometros %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Descripción</p>
+              <p class="mb-0"><%= @circuito.descripcion.presence || "Sin descripción" %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Creado</p>
+              <p class="mb-0"><%= @circuito.created_at.strftime("%d/%m/%Y") %></p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Última actualización</p>
+              <p class="mb-0"><%= @circuito.updated_at.strftime("%d/%m/%Y") %></p>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="card-footer border-top border-white d-flex gap-2 justify-content-center py-3">
+          <%= link_to edit_circuito_path(@circuito), class: "btn btn-warning fw-bold" do %>
+            <i class="fa-solid fa-pen-to-square"></i>
+          <% end %>
+          <%= link_to circuitos_path, class: "btn btn-secondary fw-bold" do %>
+            <i class="fa-solid fa-arrow-left"></i> Volver
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
