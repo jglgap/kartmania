@@ -1,0 +1,95 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Kart</h1>
+    <div class="col-12 col-lg-8 col-xl-6">
+
+      <%= form_with model: @torneo, url: torneo_path(@torneo), method: :patch, data: { turbo: false } do |f| %>
+
+        <% if @torneo.errors.any? %>
+          <div class="alert alert-danger">
+            <% @torneo.errors.full_messages.each do |msg| %>
+              <p class="mb-0"><%= msg %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="row g-3 g-md-4">
+
+          <div class="col-12 col-md-6">
+            <%= f.label :nombre, class: "form-label fw-bold text-white" %>
+            <%= f.text_field :nombre, class: "form-control" %>
+          </div>
+
+            <div class="col-12 col-md-6">
+            <%= f.label :fecha_torneo, class: "form-label fw-bold text-white" %>
+            <%= f.datetime_field :fecha_torneo, class: "form-control" %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :numero_participantes, class: "form-label fw-bold text-white" %>
+            <%= f.number_field :numero_participantes, class: "form-control", min:0 %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :primer_premio, class: "form-label fw-bold text-white" %>
+            <%= f.number_field :primer_premio, class: "form-control",step:0.01 ,min:0 %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :segundo_premio, class: "form-label fw-bold text-white" %>
+            <%= f.number_field :segundo_premio, class: "form-control",step:0.01 ,min:0 %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :tercer_premio, class: "form-label fw-bold text-white" %>
+            <%= f.number_field :tercer_premio, class: "form-control",step:0.01 ,min:0 %>
+          </div>
+          
+          <div class="col-12 col-md-6">
+            <%= f.label :dificultad, class: "form-label fw-bold text-white" %>
+            <%= f.select :dificultad,
+                Torneo.dificultads.keys.map { |t| [t.humanize, t] },
+                { prompt: "Selecciona una dificultad" },
+                class: "form-select" %>
+          </div>          
+
+          <div class="col-12 col-md-6">
+            <%= f.label :circuito_id, "Circuito", class: "form-label fw-bold text-white" %>
+            <%= f.select :circuito_id,
+                @circuitos.map { |c| [c.nombre, c.id] },
+                { include_blank: "Sin circuito asignado" },
+                class: "form-select" %>
+          </div>
+
+          
+          <div class="col-12">
+            <%= f.label :descripcion, class: "form-label fw-bold text-white" %>
+            <%= f.text_area :descripcion, class: "form-control", rows: 4 %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :primer_puesto, class: "form-label fw-bold text-white" %>
+            <%= f.text_field :primer_puesto, class: "form-control" %>
+          </div>          
+          
+          <div class="col-12 col-md-6">
+            <%= f.label :segundo_puesto, class: "form-label fw-bold text-white" %>
+            <%= f.text_field :segundo_puesto, class: "form-control" %>
+          </div>
+          
+          <div class="col-12 col-md-6">
+            <%= f.label :tercer_puesto, class: "form-label fw-bold text-white" %>
+            <%= f.text_field :tercer_puesto, class: "form-control" %>
+          </div>  
+
+
+          <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+            <%= link_to "Cancelar", torneos_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+            <%= f.submit "Actualizar torneo", class: "btn btn-success custom-add-button fw-bold" %>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>        

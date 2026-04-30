@@ -1,0 +1,73 @@
+<div class="container py-4 px-3 px-lg-5">
+
+
+  <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+
+    <%= form_with url: torneos_path, method: :get, data: { turbo: false } do |f| %>
+      <div class="input-group">
+        <%= f.text_field :search,
+            value: params[:search],
+            placeholder: "Filtrar por nombre o participantes",
+            class: "form-control" %>
+        <%= f.button type: :submit, class: "btn btn-outline-light" do %>
+          <i class="fa-solid fa-magnifying-glass"></i>
+        <% end %>
+      </div>
+    <% end %>
+
+    <%= link_to new_torneo_path, class: "btn btn-success custom-add-button fw-bold d-flex align-items-center gap-2" do %>
+      <span>Crear</span>
+      <i class="fa-solid fa-plus"></i>
+    <% end %>
+
+  </div>
+
+  <div class="table-responsive">
+    <table class="table custom-table text-center align-middle">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Dificultad</th>
+          <th>Fecha</th>
+          <th>Circuito</th>
+          <th>Número de participantes</th>
+          <th>Ganador</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @torneos.each do |torneo| %>
+          <tr>
+            <td><%= torneo.nombre  %></td>
+            <td><%= torneo.dificultad.humanize %></td>
+            <td><%= torneo.fecha_torneo.strftime("%d/%m/%Y %H:%M") %></td>
+            <td><%= torneo.circuito.present? ? torneo.circuito.nombre : "Sin asignar" %></td>
+            <td><%= torneo.numero_participantes %></td>
+            <td><%= torneo.primer_puesto.present? ? torneo.primer_puesto : "Sin ganador" %></td>
+            <td class="text-nowrap">
+              <div class="d-flex gap-2 justify-content-center">
+
+                <%= link_to torneo_path(torneo), class: "btn btn-sm btn-info fw-bold" do %>
+                  <i class="fa-solid fa-eye"></i>
+                <% end %>
+
+                <%= link_to edit_torneo_path(torneo), class: "btn btn-sm btn-warning fw-bold" do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+
+                <%= button_to torneo_path(torneo),
+                    method: :delete,
+                    data: { turbo: false },
+                    class: "btn btn-sm btn-danger fw-bold" do %>
+                  <i class="fa-solid fa-trash"></i>
+                <% end %>
+
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+</div>

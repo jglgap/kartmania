@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
-  get 'planes/index'
-  get 'planes/show'
-  get 'planes/new'
-  get 'planes/edit'
 
   resources :clientes
   resources :users
   resources :circuitos
   resources :karts
   resources :planes
+  resources :torneos
   devise_for :clientes
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
