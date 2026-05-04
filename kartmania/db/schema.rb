@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_04_29_095737) do
+ActiveRecord::Schema[7.1].define(version: 2026_05_04_075601) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_04_29_095737) do
     t.bigint "reserva_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "es_titular", default: false, null: false
     t.index ["cliente_id"], name: "index_cliente_reservas_on_cliente_id"
     t.index ["reserva_id"], name: "index_cliente_reservas_on_reserva_id"
   end

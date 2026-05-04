@@ -1,0 +1,134 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Editar Clientes — Reserva #<%= @reserva.id %></h1>
+    <div class="col-12 col-lg-8 col-xl-6">
+
+      <%= form_with url: update_clientes_reserva_path(@reserva),
+          method: :patch,
+          data: { turbo: false } do |f| %>
+
+        <% @reserva.cliente_reservas.each_with_index do |cr, index| %>
+
+          <div class="card border-white mb-4 custom-card">
+            <div class="card-header border-bottom border-white py-3 d-flex justify-content-between align-items-center">
+              <h5 class="fw-bold mb-0 text-white">Participante <%= index + 1 %></h5>
+              <% if cr.es_titular? %>
+                <span class="badge bg-success fw-bold">Titular</span>
+                <input type="hidden"
+                       name="reserva[cliente_reservas_attributes][<%= index %>][es_titular]"
+                       value="1">
+              <% end %>
+            </div>
+
+            <div class="card-body">
+              <div class="row g-3">
+
+                <input type="hidden"
+                       name="reserva[cliente_reservas_attributes][<%= index %>][id]"
+                       value="<%= cr.id %>">
+
+                <div class="col-12">
+                  <label class="form-label fw-bold text-white">Cliente registrado</label>
+                  <select class="form-select cliente-select" data-index="<%= index %>">
+                    <option value="">Sin cliente registrado</option>
+                    <% @clientes.each do |cliente| %>
+                      <option value="<%= cliente.id %>"
+                              data-url="<%= datos_cliente_path(cliente) %>"
+                              <%= cr.cliente_id == cliente.id ? "selected" : "" %>>
+                        <%= cliente.nombre %> — <%= cliente.email %>
+                      </option>
+                    <% end %>
+                  </select>
+                </div>
+
+
+                <input type="hidden"
+                       name="reserva[cliente_reservas_attributes][<%= index %>][cliente_id]"
+                       id="cliente_id_<%= index %>"
+                       value="<%= cr.cliente_id %>">
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label fw-bold text-white">Nombre</label>
+                  <input type="text"
+                         name="reserva[cliente_reservas_attributes][<%= index %>][nombre]"
+                         id="nombre_<%= index %>"
+                         class="form-control"
+                         value="<%= cr.nombre %>">
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label fw-bold text-white">Email</label>
+                  <input type="email"
+                         name="reserva[cliente_reservas_attributes][<%= index %>][email]"
+                         id="email_<%= index %>"
+                         class="form-control"
+                         value="<%= cr.email %>">
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label fw-bold text-white">Teléfono</label>
+                  <input type="text"
+                         name="reserva[cliente_reservas_attributes][<%= index %>][telefono]"
+                         id="telefono_<%= index %>"
+                         class="form-control"
+                         value="<%= cr.telefono %>">
+                </div>
+
+                <div class="col-12 col-md-6">
+                  <label class="form-label fw-bold text-white">DNI</label>
+                  <input type="text"
+                         name="reserva[cliente_reservas_attributes][<%= index %>][dni]"
+                         id="dni_<%= index %>"
+                         class="form-control"
+                         value="<%= cr.dni %>">
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        <% end %>
+
+        <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+          <%= link_to "Cancelar", reservas_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+          <button type="submit" class="btn btn-success custom-add-button fw-bold">Guardar cambios</button>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll(".cliente-select").forEach(function(select) {
+      select.addEventListener("change", function() {
+        const index = this.dataset.index;
+        const selectedOption = this.options[this.selectedIndex];
+        const url = selectedOption.dataset.url;
+
+        if (!url) {
+          document.getElementById("cliente_id_" + index).value = "";
+          document.getElementById("nombre_" + index).value = "";
+          document.getElementById("email_" + index).value = "";
+          document.getElementById("telefono_" + index).value = "";
+          return;
+        }
+
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onload = function() {
+          if (xhr.status === 200) {
+            const data = JSON.parse(xhr.responseText);
+            document.getElementById("cliente_id_" + index).value = selectedOption.value;
+            document.getElementById("nombre_" + index).value = data.nombre || "";
+            document.getElementById("email_" + index).value = data.email || "";
+            document.getElementById("telefono_" + index).value = data.telefono || "";
+          }
+        };
+        xhr.send();
+      });
+    });
+  });
+</script>

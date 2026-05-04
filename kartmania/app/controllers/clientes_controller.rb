@@ -52,6 +52,15 @@ class ClientesController < ApplicationController
     redirect_to clientes_path, notice: "Cliente eliminado correctamente"
   end
 
+  def datos
+  @cliente = Cliente.find(params[:id])
+  render json: {
+    nombre: @cliente.nombre,
+    email: @cliente.email,
+    telefono: @cliente.telefono
+  }
+end
+
   private
 
   def set_client

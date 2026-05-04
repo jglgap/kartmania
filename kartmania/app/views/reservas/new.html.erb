@@ -1,0 +1,46 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nueva Reserva</h1>
+    <div class="col-12 col-lg-8 col-xl-6">
+
+
+      <div class="d-flex justify-content-center gap-3 mb-4">
+        <span class="btn btn-light fw-bold px-4">Primer paso</span>
+        <span class="btn btn-outline-light fw-bold px-4 disabled">Segundo paso</span>
+      </div>
+
+      <%= form_with model: @reserva, data: { turbo: false } do |f| %>
+
+        <% if @reserva.errors.any? %>
+          <div class="alert alert-danger">
+            <% @reserva.errors.full_messages.each do |msg| %>
+              <p class="mb-0"><%= msg %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="row g-3 g-md-4">
+
+          <div class="col-12 col-md-6">
+            <%= f.label :fecha, class: "form-label fw-bold text-white" %>
+            <%= f.datetime_field :fecha, class: "form-control" %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :plan_id, "Plan", class: "form-label fw-bold text-white" %>
+            <%= f.select :plan_id,
+                @planes.map { |p| [p.nombre, p.id] },
+                { prompt: "Selecciona un plan" },
+                class: "form-select" %>
+          </div>
+
+          <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+            <%= link_to "Cancelar", reservas_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+            <%= f.submit "Siguiente", class: "btn btn-success custom-add-button fw-bold" %>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
