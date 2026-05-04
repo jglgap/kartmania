@@ -11,7 +11,7 @@
 
         <h2 class="fw-bold text-white text-center mb-4">Iniciar sesión</h2>
 
-        <%= form_with url: cliente_session_path, data: { turbo: false } do |f| %>
+        <%= form_with url: cliente_session_path, scope: :cliente, data: { turbo: false } do |f| %>
 
           <% if flash[:alert].present? %>
             <div class="alert alert-danger">
