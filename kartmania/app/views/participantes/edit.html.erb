@@ -1,0 +1,52 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Participante</h1>
+    <div class="col-12 col-lg-8 col-xl-6">
+
+      <%= form_with model: @participante, url: participante_path(@participante), method: :patch , data: { turbo: false } do |f| %>
+
+        <% if @participante.errors.any? %>
+          <div class="alert alert-danger">
+            <% @participante.errors.full_messages.each do |msg| %>
+              <p class="mb-0"><%= msg %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="row g-3 g-md-4">
+
+          <div class="col-12 col-md-6">
+            <%= f.label :cliente_id, "Cliente", class: "form-label fw-bold text-white" %>
+            <%= f.select :cliente_id,
+                @clientes.map { |c| [c.nombre, c.id] },
+                { prompt: "Selecciona un cliente" },
+                class: "form-select" %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :torneo_id, "Torneo", class: "form-label fw-bold text-white" %>
+            <%= f.select :torneo_id,
+                @torneos.map { |t| [t.nombre, t.id] },
+                { prompt: "Selecciona un torneo" },
+                class: "form-select" %>
+          </div>
+
+          <div class="col-12 col-md-6">
+            <%= f.label :estado, class: "form-label fw-bold text-white" %>
+            <%= f.select :estado,
+                Participante.estados.keys.map { |t| [t.humanize, t] },
+                { prompt: "Selecciona un estado" },
+                class: "form-select" %>
+          </div>    
+
+
+          <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+            <%= link_to "Cancelar", participantes_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+            <%= f.submit "Crear Participante", class: "btn btn-success custom-add-button fw-bold" %>
+          </div>
+
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>        

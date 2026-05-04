@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
 
+
   resources :clientes
   resources :users
   resources :circuitos
   resources :karts
   resources :planes
   resources :torneos
+  resources :participantes
   devise_for :clientes
   devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
