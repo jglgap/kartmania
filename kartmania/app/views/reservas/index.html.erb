@@ -37,7 +37,7 @@
         <% @reservas.each do |reserva| %>
           <tr>
             <td><%= reserva.cliente_reservas.find(&:es_titular)&.nombre || "sin titular" %></td>
-            <td><%= reserva.plan.nombre %></td>
+            <td><%= reserva.plan.present? ? reserva.plan.nombre : "sin plan" %></td>
             <td><%= reserva.fecha.strftime("%d/%m/%Y %H:%M") %></td>
             <td><%= reserva.estado.humanize %></td>
             <td class="text-nowrap">

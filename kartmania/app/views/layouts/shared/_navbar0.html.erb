@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-dark custom_navbar">
+  <div class="container">
+
+
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "logo_kartmania.png", class: "logo_navbar" %>
+    <% end %>
+
+    <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarMain"
+            aria-controls="navbarMain"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <%# Links de navegación %>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= link_to "Inicio", root_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Nuestros karts", our_karts_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Nuevo usuario", new_user_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Usuarios", users_path, class: "nav-link" %>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</nav>

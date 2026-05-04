@@ -1,0 +1,105 @@
+<div class="min-vh-100 d-flex align-items-center justify-content-center py-4">
+  <div class="w-100" style="max-width: 560px; padding: 1.5rem;">
+
+    <div class="text-center mb-4">
+      <h1 class="fw-bold text-white">Kartmania</h1>
+      <p class="text-white-50">Crea tu cuenta</p>
+    </div>
+
+    <div class="card border-0 custom-card">
+      <div class="card-body p-4">
+
+        <h2 class="fw-bold text-white text-center mb-4">Registro</h2>
+
+        <%= form_with model: resource,
+            url: cliente_registration_path,
+            data: { turbo: false } do |f| %>
+
+          <%# Errores de validación %>
+          <% if resource.errors.any? %>
+            <div class="alert alert-danger">
+              <% resource.errors.full_messages.each do |msg| %>
+                <p class="mb-0"><%= msg %></p>
+              <% end %>
+            </div>
+          <% end %>
+
+          <div class="row g-3">
+
+            <div class="col-12">
+              <%= f.label :nombre, "Nombre completo", class: "form-label fw-bold text-white" %>
+              <%= f.text_field :nombre, class: "form-control", placeholder: "Juan García" %>
+            </div>
+
+            <div class="col-12">
+              <%= f.label :email, "Email", class: "form-label fw-bold text-white" %>
+              <%= f.email_field :email,
+                  autocomplete: "email",
+                  class: "form-control",
+                  placeholder: "tu@email.com" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <%= f.label :telefono, "Teléfono", class: "form-label fw-bold text-white" %>
+              <%= f.text_field :telefono, class: "form-control", placeholder: "600 000 000" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <%= f.label :ciudad, "Ciudad", class: "form-label fw-bold text-white" %>
+              <%= f.text_field :ciudad, class: "form-control", placeholder: "Madrid" %>
+            </div>
+
+            <div class="col-12 col-md-8">
+              <%= f.label :direccion, "Dirección", class: "form-label fw-bold text-white" %>
+              <%= f.text_field :direccion, class: "form-control", placeholder: "Calle Mayor, 1" %>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <%= f.label :codigo_postal, "Código postal", class: "form-label fw-bold text-white" %>
+              <%= f.text_field :codigo_postal, class: "form-control", placeholder: "28001" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <%= f.label :provincia, "Provincia", class: "form-label fw-bold text-white" %>
+              <%= f.text_field :provincia, class: "form-control", placeholder: "Madrid" %>
+            </div>
+
+            <hr class="border-white-50">
+
+            <div class="col-12 col-md-6">
+              <%= f.label :password, "Contraseña", class: "form-label fw-bold text-white" %>
+              <%= f.password_field :password,
+                  autocomplete: "new-password",
+                  class: "form-control",
+                  placeholder: "••••••••" %>
+              <div class="form-text text-white-50">Mínimo <%= @minimum_password_length %> caracteres</div>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <%= f.label :password_confirmation, "Confirmar contraseña", class: "form-label fw-bold text-white" %>
+              <%= f.password_field :password_confirmation,
+                  autocomplete: "new-password",
+                  class: "form-control",
+                  placeholder: "••••••••" %>
+            </div>
+
+            <div class="col-12 mt-2">
+              <%= f.submit "Crear cuenta", class: "btn btn-success custom-add-button fw-bold w-100" %>
+            </div>
+
+          </div>
+        <% end %>
+
+        <hr class="border-white-50 my-3">
+
+        <div class="text-center">
+          <%= link_to "¿Ya tienes cuenta? Inicia sesión",
+              new_cliente_session_path,
+              class: "text-white-50 small" %>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

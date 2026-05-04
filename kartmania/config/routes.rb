@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
-  get 'reservas/index'
-  get 'reservas/show'
-  get 'reservas/new'
-  get 'reservas/create'
 
-  resources :clientes do
+  devise_for :clientes
+  devise_for :users
+
+  resources :clientes, path: 'gestion_clientes' do
     member do
       get :datos
     end
   end
-  resources :users
+  resources :users, path: 'usuarios' 
+
   resources :circuitos
   resources :karts
   resources :planes
@@ -25,8 +25,6 @@ Rails.application.routes.draw do
       patch :update_clientes
     end
   end
-  devise_for :clientes
-  devise_for :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
