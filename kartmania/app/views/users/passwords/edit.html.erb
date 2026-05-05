@@ -13,10 +13,10 @@
 
         <%= form_with url: user_password_path, method: :put, data: { turbo: false } do |f| %>
 
-          <%# Token oculto que Devise necesita para validar el reset %>
-          <%= f.hidden_field :reset_password_token %>
 
-          <%# Errores de validación %>
+        <input type="hidden" name="user[reset_password_token]" value="<%= resource.reset_password_token %>">
+
+
           <% if resource.errors.any? %>
             <div class="alert alert-danger">
               <% resource.errors.full_messages.each do |msg| %>
@@ -28,6 +28,7 @@
           <div class="mb-3">
             <%= f.label :password, "Nueva contraseña", class: "form-label fw-bold text-white" %>
             <%= f.password_field :password,
+                name: "user[password]",
                 autofocus: true,
                 autocomplete: "new-password",
                 class: "form-control",
@@ -37,6 +38,7 @@
           <div class="mb-4">
             <%= f.label :password_confirmation, "Confirmar contraseña", class: "form-label fw-bold text-white" %>
             <%= f.password_field :password_confirmation,
+                name: "user[password_confirmation]",
                 autocomplete: "new-password",
                 class: "form-control",
                 placeholder: "••••••••" %>

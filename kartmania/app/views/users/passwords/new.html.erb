@@ -19,6 +19,7 @@
           <div class="mb-4">
             <%= f.label :email, "Email", class: "form-label fw-bold text-white" %>
             <%= f.email_field :email,
+                name: "user[email]",
                 autofocus: true,
                 autocomplete: "email",
                 class: "form-control",
