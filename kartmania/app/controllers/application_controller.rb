@@ -2,6 +2,21 @@ class ApplicationController < ActionController::Base
 
     before_action :configure_permitted_parameters, if: :devise_controller?
 
+    def current_ability
+      if current_user
+        @current_ability ||= Ability.new(current_user)
+      elsif current_cliente
+        @current_ability ||= Ability.new(current_cliente)
+      else
+        @current_ability ||= Ability.new(nil)
+      end
+    end
+
+
+    rescue_from CanCan::AccessDenied do |exception|
+      redirect_to root_path, alert: "No tienes permiso para realizar esta acción."
+    end
+
   layout :layout_por_controlador
 
   private

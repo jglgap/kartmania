@@ -1,6 +1,7 @@
 class TorneosController < ApplicationController
-
-  before_action :set_torneo, only: [:show,:edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index_cliente, :participar, :no_participar]
+  before_action :authenticate_cliente!, only: [:participar, :no_participar]
+  before_action :set_torneo, only: [:show,:edit, :update, :destroy, :participar, :no_participar]
 
   def index
     if params[:search].present?
@@ -47,6 +48,55 @@ class TorneosController < ApplicationController
     @torneo.destroy 
     redirect_to torneos_path, notice: "Torneo borrado correctamente."
   end
+
+
+  def index_cliente
+    redirect_to(root_path, alert: "Acceso no permitido") and return if current_user
+
+    @torneos = Torneo.where("fecha_torneo > ?", Date.today).order(:fecha_torneo)
+
+    if current_cliente
+      @participaciones = current_cliente.participantes.index_by(&:torneo_id)
+    else
+      @participaciones = {}
+    end
+  end
+
+  def participar
+    authorize! :participar, @torneo
+
+    if Participante.exists?(cliente_id: current_cliente.id, torneo_id: @torneo.id)
+      redirect_to index_cliente_torneos_path, alert: "Ya estas apuntado en este torneo"
+      return
+    end
+
+    @participante = Participante.new(
+      cliente_id: current_cliente.id,
+      torneo_id: @torneo.id,
+      estado: :en_espera,
+      fecha_solicitud: Date.today
+    )
+
+    if @participante.save
+      redirect_to index_cliente_torneos_path, notice: "Te has apuntado correctamente"
+    else
+      redirect_to index_cliente_torneos_path, alert: "Problemas para realizar su inscripcion"
+    end
+  end
+
+  def no_participar
+    authorize! :participar, @torneo
+
+    participante = Participante.find_by(cliente_id: current_cliente.id, torneo_id: @torneo)
+    if participante
+      participante.destroy
+      redirect_to index_cliente_torneos_path, notice: "Has eliminado tu participacion"
+    else
+      redirect_to index_cliente_torneos_path, notice: "No estas apuntado a este torneo"
+    end
+  end
+
+  private 
 
   def set_torneo
     @torneo = Torneo.find(params[:id])

@@ -12,8 +12,22 @@ Rails.application.routes.draw do
 
   resources :circuitos
   resources :karts
-  resources :planes
-  resources :torneos
+  resources :planes do
+    member do
+      get  :reservar , to: 'reservas#reservar'      # Formulario de reserva pública
+      post :crear_reserva , to: 'reservas#crear_reserva'  # Crea la reserva pública
+    end
+  end
+
+  resources :torneos do
+    collection do
+      get :index_cliente    # Vista de cards para clientes
+    end
+    member do
+      post   :participar    # Cliente se apunta al torneo
+      delete :no_participar # Cliente se da de baja del torneo
+    end
+  end
   resources :participantes
   resources :reservas do
     collection do

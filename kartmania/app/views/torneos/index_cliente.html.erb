@@ -1,0 +1,89 @@
+<div class="container py-4 px-3 px-lg-5">
+
+  <h1 class="fw-bold text-white mb-4">Torneos disponibles</h1>
+
+  <% if @torneos.empty? %>
+    <p class="text-white-50 text-center mt-5">No hay torneos disponibles próximamente.</p>
+  <% else %>
+    <div class="row g-4">
+      <% @torneos.each do |torneo| %>
+        <% participacion = @participaciones[torneo.id] %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 text-white border-0 custom-card">
+
+            <div class="card-header border-bottom border-white py-3 d-flex justify-content-between align-items-center">
+              <h5 class="fw-bold mb-0"><%= torneo.nombre %></h5>
+   
+
+              <span class="badge mt-1 <%= color_dificultad_torneo(torneo) %>">
+                <%= torneo.dificultad&.capitalize %>
+              </span>
+            </div>
+
+            <div class="card-body">
+              <p class="text-white-50 small mb-3"><%= torneo.descripcion.presence || "Sin descripción" %></p>
+
+              <div class="row g-2">
+                <div class="col-6">
+                  <p class="fw-bold mb-1 small">Fecha</p>
+                  <p class="mb-0 small"><%= torneo.fecha_torneo.strftime("%d/%m/%Y %H:%M") %></p>
+                </div>
+                <div class="col-6">
+                  <p class="fw-bold mb-1 small">Circuito</p>
+                  <p class="mb-0 small"><%= torneo.circuito&.nombre || "Sin asignar" %></p>
+                </div>
+                <div class="col-6">
+                  <p class="fw-bold mb-1 small">Plazas</p>
+                  <p class="mb-0 small">
+                    <%= torneo.participantes.count %> / <%= torneo.numero_participantes %>
+                  </p>
+                </div>
+                <% if participacion %>
+                  <div class="col-6">
+                    <p class="fw-bold mb-1 small">Mi estado</p>
+
+                    <span class="badge <%= color_estado_participacion(participacion) %> fw-bold">
+                      <%= participacion.estado&.capitalize %>
+                    </span>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="card-footer border-top border-white py-3 d-flex justify-content-center">
+
+
+              <% if current_cliente %>
+                <% if participacion %>
+
+                  <%= button_to no_participar_torneo_path(torneo),
+                      method: :delete,
+                      data: { turbo: false },
+                      class: "btn btn-danger fw-bold" do %>
+                    <i class="fa-solid fa-xmark me-1"></i> No participar
+                  <% end %>
+
+                <% else %>
+
+                  <%= button_to participar_torneo_path(torneo),
+                      method: :post,
+                      data: { turbo: false },
+                      class: "btn btn-success custom-add-button fw-bold" do %>
+                    <i class="fa-solid fa-flag-checkered me-1"></i> Participar
+                  <% end %>
+                <% end %>
+              <% else %>
+                <%# Invitado sin login %>
+                <%= link_to new_cliente_session_path, class: "btn btn-outline-light fw-bold" do %>
+                  <i class="fa-solid fa-right-to-bracket me-1"></i> Inicia sesión para participar
+                <% end %>
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

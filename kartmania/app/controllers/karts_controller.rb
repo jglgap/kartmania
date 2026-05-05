@@ -1,5 +1,5 @@
 class KartsController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :set_kart, only: [:show, :edit, :update, :destroy]
 
   def index

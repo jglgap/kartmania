@@ -9,4 +9,13 @@ module TorneosHelper
         colores[torneo.dificultad]
     end
 
+    def color_estado_participacion(participacion)
+        colores = {
+            "aceptado" => "bg-success",
+            "en_espera" => "bg-warning text-dark",
+            "rechazado" => "bg-danger"            
+        }
+        colores[participacion.estado]
+    end
+
 end
