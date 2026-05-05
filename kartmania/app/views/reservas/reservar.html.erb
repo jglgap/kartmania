@@ -1,0 +1,89 @@
+<div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
+  <div class="row justify-content-center">
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">
+      Reservar — <%= @plan.nombre %>
+    </h1>
+    <div class="col-12 col-lg-10">
+
+      <%= form_with model: @reserva, url: crear_reserva_plane_path(@plan), data: { turbo: false } do |f| %>
+
+
+        <% if @reserva.errors.any? %>
+          <div class="alert alert-danger">
+            <% @reserva.errors.full_messages.each do |msg| %>
+              <p class="mb-0"><%= msg %></p>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div class="row g-3 mb-4">
+          <div class="col-12 col-md-6">
+            <%= f.label :fecha, "Fecha de la reserva", class: "form-label fw-bold text-white" %>
+            <%= f.datetime_field :fecha,
+                class: "form-control"
+ %>
+          </div>
+        </div>
+
+        <hr class="border-white-50 my-4">
+
+
+        <% @reserva.cliente_reservas.each_with_index do |cliente_reserva, index| %>
+          <div class="card border-0 custom-card mb-3">
+            <div class="card-header border-bottom border-white py-3 d-flex align-items-center gap-2">
+              <% if index == 0 %>
+                <span class="badge bg-success fw-bold">Titular</span>
+              <% else %>
+                <span class="badge bg-secondary fw-bold">Participante <%= index + 1 %></span>
+              <% end %>
+            </div>
+            <div class="card-body">
+              <%= f.fields_for :cliente_reservas, cliente_reserva do |cf| %>
+
+
+                <% if index == 0 %>
+                  <input type="hidden"
+                         name="reserva[cliente_reservas_attributes][0][es_titular]"
+                         value="1">
+                <% end %>
+
+                <div class="row g-3">
+                  <div class="col-12 col-md-6">
+                    <%= cf.label :nombre, "Nombre completo", class: "form-label fw-bold text-white" %>
+                    <%= cf.text_field :nombre,
+                        value: (index == 0 && @cliente_actual) ? @cliente_actual.nombre : nil,
+                        class: "form-control" %>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <%= cf.label :email, "Email", class: "form-label fw-bold text-white" %>
+                    <%= cf.email_field :email,
+                        value: (index == 0 && @cliente_actual) ? @cliente_actual.email : nil,
+                        class: "form-control" %>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <%= cf.label :telefono, "Teléfono", class: "form-label fw-bold text-white" %>
+                    <%= cf.text_field :telefono,
+                        value: (index == 0 && @cliente_actual) ? @cliente_actual.telefono : nil,
+                        class: "form-control" %>
+                  </div>
+                  <div class="col-12 col-md-6">
+                    <%= cf.label :dni, "DNI", class: "form-label fw-bold text-white" %>
+                    <%= cf.text_field :dni, class: "form-control" %>
+                  </div>
+                </div>
+
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+
+
+        <div class="col-12 d-flex gap-2 justify-content-center mt-4">
+          <%= link_to "Cancelar", index_cliente_planes_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
+          <%= f.submit "Confirmar reserva", class: "btn btn-success custom-add-button fw-bold" %>
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

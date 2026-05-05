@@ -29,6 +29,7 @@ class Ability
     else
       can :read, Plan
       can :reservar , Plan
+
     end
     
   end

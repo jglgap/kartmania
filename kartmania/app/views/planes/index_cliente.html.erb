@@ -1,0 +1,47 @@
+<div class="container py-4 px-3 px-lg-5">
+
+  <h1 class="fw-bold text-white mb-4">Nuestros planes</h1>
+
+  <% if @planes.empty? %>
+    <p class="text-white-50 text-center mt-5">No hay planes disponibles actualmente.</p>
+  <% else %>
+    <div class="row g-4">
+      <% @planes.each do |plan| %>
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card h-100 text-white border-0 custom-card">
+
+            <div class="card-header border-bottom border-white py-3">
+              <h5 class="fw-bold mb-0"><%= plan.nombre %></h5>
+            </div>
+
+            <div class="card-body">
+              <p class="text-white-50 small mb-3"><%= plan.descripcion.presence || "Sin descripción" %></p>
+              <div class="row g-2">
+                <div class="col-6">
+                  <p class="fw-bold mb-1 small">Precio</p>
+                  <p class="mb-0 small"><%= number_to_currency(plan.precio, unit: "€", separator: ",", delimiter: ".") %></p>
+                </div>
+                <div class="col-6">
+                  <p class="fw-bold mb-1 small">Participantes</p>
+                  <p class="mb-0 small">Hasta <%= plan.max_participantes %> personas</p>
+                </div>
+                <div class="col-12">
+                  <p class="fw-bold mb-1 small">Circuito</p>
+                  <p class="mb-0 small"><%= plan.circuito&.nombre || "Sin asignar" %></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer border-top border-white py-3 d-flex justify-content-center">
+              <%= link_to reservar_plane_path(plan), class: "btn btn-success custom-add-button fw-bold" do %>
+                <i class="fa-solid fa-calendar-plus me-1"></i> Reservar
+              <% end %>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

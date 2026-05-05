@@ -13,6 +13,9 @@ Rails.application.routes.draw do
   resources :circuitos
   resources :karts
   resources :planes do
+    collection do
+      get :index_cliente
+    end
     member do
       get  :reservar , to: 'reservas#reservar'      # Formulario de reserva pública
       post :crear_reserva , to: 'reservas#crear_reserva'  # Crea la reserva pública

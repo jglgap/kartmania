@@ -1,5 +1,5 @@
 class PlanesController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index_cliente]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -47,6 +47,11 @@ class PlanesController < ApplicationController
     redirect_to planes_path, notice: "Plan borrado correctamente"
   end
 
+  def index_cliente
+    redirect_to(root_path, alert: "Acceso no permitido.") and return if current_user
+    @planes = Plan.all.order(:nombre)
+  end
+  private
   def set_plan
     @plan = Plan.find(params[:id])
   end
