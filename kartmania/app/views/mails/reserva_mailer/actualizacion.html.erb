@@ -1,0 +1,76 @@
+<% if @reserva.aceptado? %>
+<h2 style="color: #090056; margin-top: 0;">¡Su reserva ha sido aceptada!</h2>
+<% elsif @reserva.rechazado? %>
+<h2 style="color: #090056; margin-top: 0;">Tristemente su reserva ha sido rechazada</h2>
+<% end %>
+
+
+<p style="color: #333; font-size: 15px;">
+  Hola <strong><%= @cliente.nombre %></strong>, el estado de tu reserva es <%= @estado.humanize %> .
+  Aquí tienes el resumen:
+</p>
+
+
+<table width="100%" cellpadding="8" cellspacing="0"
+       style="border-collapse: collapse; margin: 24px 0; font-size: 14px;">
+  <tr style="background-color: #090056; color: #ffffff;">
+    <td style="padding: 10px 14px; border-radius: 4px 0 0 0;"><strong>Plan</strong></td>
+    <td style="padding: 10px 14px; border-radius: 0 4px 0 0;"><%= @plan.nombre %></td>
+  </tr>
+  <tr style="background-color: #f9f9f9;">
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;"><strong>Estado</strong></td>
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;"><%= @estado.humanize %></td>
+  </tr>
+  <tr style="background-color: #f9f9f9;">
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;"><strong>Fecha</strong></td>
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;">
+      <%= @reserva.fecha.strftime("%d/%m/%Y %H:%M") %>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px 14px;"><strong>Nº participantes</strong></td>
+    <td style="padding: 10px 14px;"><%= @participantes.count %></td>
+  </tr>
+</table>
+
+<h3 style="color: #090056;">Participantes</h3>
+
+<table width="100%" cellpadding="8" cellspacing="0"
+       style="border-collapse: collapse; font-size: 14px;">
+  <thead>
+    <tr style="background-color: #090056; color: #ffffff;">
+      <th style="padding: 10px 14px; text-align: left;">Nombre</th>
+      <th style="padding: 10px 14px; text-align: left;">Apellidos</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @participantes.each_with_index do |cr, i| %>
+      <tr style="background-color: <%= i.even? ? '#f9f9f9' : '#ffffff' %>;">
+        <td style="padding: 10px 14px; border-bottom: 1px solid #eee;">
+          <%= cr.nombre %>
+          <% if cr.es_titular? %>
+            <span style="background-color: #090056; color: white;
+                         font-size: 11px; padding: 2px 6px;
+                         border-radius: 4px; margin-left: 6px;">
+              Titular
+            </span>
+          <% end %>
+        </td>
+        <td style="padding: 10px 14px; border-bottom: 1px solid #eee;">
+          <%= cr.email %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if @reserva.aceptado? %>
+<p style="color: #666; font-size: 13px; margin-top: 24px;">
+  Si tienes alguna duda contáctanos. ¡Nos vemos en la pista!.
+</p>
+<% elsif @reserva.rechazado? %>
+<p style="color: #666; font-size: 13px; margin-top: 24px;">
+  Vuelve a intentar con otra reserva. ¡Esparamos verte en la pista!.
+</p>
+<% end %>

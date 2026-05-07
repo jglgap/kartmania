@@ -1,0 +1,17 @@
+¡Fecha cambiada exitosamente!
+
+Hola <%= @cliente.nombre %>, la fecha de tu reserva a sido cambiada exitosamente.
+
+DATOS DE LA RESERVA
+-------------------
+Plan:             <%= @plan.nombre %>
+Fecha:            <%= @reserva.fecha.strftime("%d/%m/%Y") %>
+Nº participantes: <%= @participantes.count %>
+
+PARTICIPANTES
+-------------
+<% @participantes.each do |cr| %>
+- <%= cr.nombre %><%= " (Titular)" if cr.es_titular? %>
+<% end %>
+
+Si tienes alguna duda contáctanos. ¡Nos vemos en la pista!

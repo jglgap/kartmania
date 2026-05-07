@@ -49,6 +49,7 @@ class ReservasController < ApplicationController
     @reserva = Reserva.find(params[:reserva_id])
 
     if @reserva.update(reserva_params_paso2)
+      ReservaMailer.confirmacion(@reserva).deliver_later
       redirect_to reserva_path(@reserva), notice: "Reserva creada correctamente"
     else
       @clientes = Cliente.all.order(:nombre)
@@ -61,6 +62,8 @@ class ReservasController < ApplicationController
 
   def update
     if @reserva.update(reserva_params_update)
+      ReservaMailer.actualizacion(@reserva).deliver_later if @reserva.saved_change_to_estado?
+      ReservaMailer.cambio_fecha(@reserva).deliver_later  if @reserva.saved_change_to_fecha?
       redirect_to reserva_path(@reserva), notice: "Reserva actualizada correctamente"
     else
       render :edit, status: :unprocessable_entity
@@ -115,6 +118,7 @@ class ReservasController < ApplicationController
     end
 
     if @reserva.save
+      ReservaMailer.confirmacion(@reserva).deliver_later
       redirect_to index_cliente_planes_path, notice: "Reserva creada correctamente. Nos pondremos en contacto"
     else
       render :reservar, status: :unprocessable_entity

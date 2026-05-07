@@ -1,0 +1,21 @@
+<% if @reserva.aceptado? %>
+  Su reserva ha sido aceptada
+<% elsif @reserva.rechazado? %>
+  Su reserva ha sido rechazada
+<% end %>
+
+Hola <%= @cliente.nombre %>, El estado de su resarva ha sido cambiado por nuestro personal.
+
+DATOS DE LA RESERVA
+-------------------
+Plan:             <%= @plan.nombre %>
+Fecha:            <%= @reserva.fecha.strftime("%d/%m/%Y") %>
+Nº participantes: <%= @participantes.count %>
+
+PARTICIPANTES
+-------------
+<% @participantes.each do |cr| %>
+- <%= cr.nombre %><%= " (Titular)" if cr.es_titular? %>
+<% end %>
+
+Si tienes alguna duda contáctanos. ¡Nos vemos en la pista!
