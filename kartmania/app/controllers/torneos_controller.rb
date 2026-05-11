@@ -37,6 +37,9 @@ class TorneosController < ApplicationController
   
   def update
     if @torneo.update(torneo_params)
+      @torneo.participantes.aceptado.each do |participante|
+        TorneosMailer.cambios_torneo(@torneo,participante).deliver_later
+      end
       redirect_to torneo_path(@torneo), notice: "El torneo '#{@torneo.nombre}' ha sido actualizado correctamente"
     else
       @circuitos = Circuito.all.order(:nombre)

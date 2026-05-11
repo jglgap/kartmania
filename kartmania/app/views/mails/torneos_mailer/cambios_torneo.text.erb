@@ -1,0 +1,15 @@
+¡Cambio de datos del torneo!
+
+Hola <%= @participante.cliente.nombre %>, los datos del torneo han cambiado.
+
+DATOS DEL TORNEO
+-------------------
+Plan:                 <%= @participante.cliente.nombre %>
+Fecha:                <%= @torneo.fecha_torneo.strftime("%d/%m/%Y") %>
+Dificultad:           <%= @torneo.dificultad.humanize %>
+Nº participantes:     <%= @torneo.numero_participantes %>
+Circuito:             <%= @torneo.circuito.nombre %>
+
+
+
+Si tienes alguna duda contáctanos. ¡Nos vemos en la pista!

@@ -1,0 +1,47 @@
+<h2 style="color: #090056; margin-top: 0;">¡Solicitud Resuelta!</h2>
+
+<% if @participante.aceptado? %>
+    <p style="color: #333; font-size: 15px;">
+    Hola <strong><%= @participante.cliente.nombre %></strong>, tu solictud de participación ha sido aceptada!
+    Aquí tienes el resumen:
+    </p>
+<% elsif @participante.rechazado? %>
+    <p style="color: #333; font-size: 15px;">
+    Hola <strong><%= @participante.cliente.nombre %></strong>, tu solictud de participación ha sido rechazada!
+    Aquí tienes el resumen:
+    </p>
+<% end %>
+
+
+
+
+<table width="100%" cellpadding="8" cellspacing="0"
+       style="border-collapse: collapse; margin: 24px 0; font-size: 14px;">
+  <tr style="background-color: #090056; color: #ffffff;">
+    <td style="padding: 10px 14px; border-radius: 4px 0 0 0;"><strong>Torneo</strong></td>
+    <td style="padding: 10px 14px; border-radius: 0 4px 0 0;"><%= @torneo %></td>
+  </tr> 
+  <tr style="background-color: #f9f9f9;">
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;"><strong>Fecha de solicitud</strong></td>
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;">
+      <%= @participante.fecha_solicitud.strftime("%d/%m/%Y") %>
+    </td>
+  </tr>
+  <tr style="background-color: #f9f9f9;">
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;"><strong>Fecha de confirmacion</strong></td>
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;">
+      <%= @participante.fecha_confirmacion.strftime("%d/%m/%Y") %>
+    </td>
+  </tr>
+  <tr style="background-color: #f9f9f9;">
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;"><strong>Estado</strong></td>
+    <td style="padding: 10px 14px; border-bottom: 1px solid #eee;"><%= @estado.humanize %></td>
+  </tr>
+</table>
+
+
+<p style="color: #666; font-size: 13px; margin-top: 24px;">
+  Si tienes alguna duda contáctanos. ¡Nos vemos en la pista!.
+  <br>
+  Recuerda que esta resolución no es definitiva, en caso de cambio se lo haremos saber
+</p>

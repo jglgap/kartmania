@@ -52,6 +52,9 @@ class ParticipantesController < ApplicationController
     end
 
     if @participante.update(participante_params_update)
+      if @participante.saved_change_to_estado? && !@participante.en_espera?
+        TorneosMailer.cambio_estado(@participante).deliver_later
+      end
       redirect_to participante_path(@participante), notice: "Participante '#{@participante.cliente.nombre}' actualizado correctamente."
     else
       @clientes = Cliente.all.order(:nombre)

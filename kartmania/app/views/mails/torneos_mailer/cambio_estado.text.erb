@@ -1,0 +1,15 @@
+¡Cambio de estado de solicitud!
+
+Hola <%= @participante.cliente.nombre %>,tu solicitud ha sido resuelta.
+
+DATOS DE LA RESOLUCIÓN
+-------------------
+Plan:             <%= @participante.cliente.nombre %>
+Fecha de solcitud: <%= @participante.fecha_solicitud.strftime("%d/%m/%Y") %>
+Estado:           <%= @estado.humanize %>
+Torneo:           <%= @torneo%>
+Fecha de confirmación: <%= @participante.fecha_confirmacion.strftime("%d/%m/%Y") %>
+
+
+Si tienes alguna duda contáctanos. ¡Nos vemos en la pista!
+Recuerda que esta resolución puede que cambie.
