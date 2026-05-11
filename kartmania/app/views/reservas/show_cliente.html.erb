@@ -1,0 +1,66 @@
+<div class="container py-4 px-3 px-lg-5">
+
+  <h1 class="fw-bold text-white mb-4">Mis reservas</h1>
+
+  <% if @reservas.empty? %>
+    <p class="text-white">No tienes ninguna reserva todavía.</p>
+  <% else %>
+    <div class="row g-4">
+      <% @reservas.each do |reserva| %>
+        <div class="col-12 col-md-6 col-xl-4">
+          <div class="card text-white border-0 custom-card h-100">
+
+
+            <div class="card-header border-bottom border-white py-3 d-flex justify-content-between align-items-center">
+              <h5 class="fw-bold mb-0"><%= reserva.plan.nombre %></h5>
+              <span class="badge fw-bold <%= color_estado_reserva(reserva) %>">
+                <%= reserva.estado.capitalize %>
+              </span>
+            </div>
+
+            <div class="card-body">
+              <div class="row g-3">
+
+                <div class="col-6">
+                  <p class="fw-bold mb-1">Fecha</p>
+                  <p class="mb-0"><%= reserva.fecha.strftime("%d/%m/%Y %H:%M") %></p>
+                </div>
+
+                <div class="col-6">
+                  <p class="fw-bold mb-1">Nº de participantes</p>
+                  <p class="mb-0"><%= reserva.cliente_reservas.count %></p>
+                </div>
+
+                <div class="col-12">
+                  <p class="fw-bold mb-2">Participantes</p>
+                  <ul class="list-unstyled mb-0">
+                    <% reserva.cliente_reservas.each do |cr| %>
+                      <li class="mb-1">
+                        <i class="fa-solid fa-user me-1"></i>
+                        <%= cr.nombre %>
+                        <%= cr.email %>
+                        <% if cr.es_titular? %>
+                          <span class="badge bg-secondary ms-1" style="font-size: 10px;">Titular</span>
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+
+              </div>
+            </div>
+
+
+            <div class="card-footer border-top border-white py-2">
+              <small class="text-white-50">
+                Reservado el <%= reserva.created_at.strftime("%d/%m/%Y") %>
+              </small>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>

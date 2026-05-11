@@ -1,5 +1,6 @@
 class ClientesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:edit_cliente, :update_cliente, :show_cliente]
+  before_action :authenticate_cliente!, only: [:edit_cliente, :update_cliente, :show_cliente]
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -59,7 +60,26 @@ class ClientesController < ApplicationController
     email: @cliente.email,
     telefono: @cliente.telefono
   }
-end
+  end
+
+  def show_cliente
+    @cliente = current_cliente
+    authorize! :show_cliente, @cliente
+  end
+
+  def edit_cliente
+    @cliente = current_cliente
+    authorize! :edit_cliente, @cliente
+  end
+
+  def update_cliente
+      @cliente = current_cliente
+      if @cliente.update(cliente_edit_params)
+        redirect_to root_path, notice: "Perfil actualizado correctamente"
+      else
+        render :edit_cliente, status: :unprocessable_entity
+      end
+  end
 
   private
 
@@ -79,6 +99,17 @@ end
       :codigo_postal,
       :telefono,
       :mejor_tiempo
+    )
+  end
+
+  def cliente_edit_params
+    params.require(:cliente).permit(
+      :nombre,
+      :direccion,
+      :ciudad,
+      :provincia,
+      :codigo_postal,
+      :telefono
     )
   end
 end

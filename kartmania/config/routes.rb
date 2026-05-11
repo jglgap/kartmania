@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :clientes, path: 'gestion_clientes' do
+
     member do
       get :datos
+      get :edit_cliente, to: 'clientes#edit_cliente'
+      patch :update_cliente, to: 'clientes#update_cliente'
+      get :show_cliente, to: 'clientes#show_cliente'
     end
   end
   resources :users, path: 'usuarios' 
@@ -36,6 +40,7 @@ Rails.application.routes.draw do
     collection do
       get  :new_segundopaso
       post :create_segundopaso
+      get  :show_cliente
     end
     member do
       get   :edit_clientes

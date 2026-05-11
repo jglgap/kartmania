@@ -25,6 +25,9 @@ class Ability
       can :no_participar, Torneo
       can :read, Plan
       can :reservar, Plan
+      can :edit_cliente, Cliente, id: usuario.id
+      can :show_cliente, Cliente, id: usuario.id
+      can :show_cliente, Reserva
 
     else
       can :read, Plan

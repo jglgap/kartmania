@@ -1,7 +1,8 @@
 class ReservasController < ApplicationController
-  before_action :authenticate_user!, except: [:reservar, :crear_reserva]
+  before_action :authenticate_user!, except: [:reservar, :crear_reserva, :show_cliente]
   before_action :set_reserva, only: [:show, :edit, :update, :destroy]
   before_action :set_plan_publico, only: [:reservar, :crear_reserva]
+  before_action :authenticate_cliente!, only: [:show_cliente]
 
   def index
     if params[:search].present?
@@ -125,6 +126,15 @@ class ReservasController < ApplicationController
     end
   end
 
+  def show_cliente
+    reserva_ids = ClienteReserva.where(cliente_id: current_cliente.id, es_titular: true)
+                                .pluck(:reserva_id)
+
+
+    @reservas = Reserva.where(id: reserva_ids)
+                      .includes(:plan, :cliente_reservas)
+                      .order(fecha: :desc)
+  end
 
   private
 
