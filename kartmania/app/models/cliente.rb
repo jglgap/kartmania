@@ -5,4 +5,5 @@ class Cliente < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :participantes, dependent: :destroy
+  has_many :cliente_reservas, dependent: :nullify
 end

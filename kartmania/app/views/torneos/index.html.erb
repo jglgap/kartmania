@@ -42,7 +42,7 @@
             <td><%= torneo.dificultad.humanize %></td>
             <td><%= torneo.fecha_torneo.strftime("%d/%m/%Y %H:%M") %></td>
             <td><%= torneo.circuito.present? ? torneo.circuito.nombre : "Sin asignar" %></td>
-            <td><%= torneo.numero_participantes %></td>
+            <td><%= torneo.participantes.aceptado.count %>/<%= torneo.numero_participantes %></td>
             <td><%= torneo.primer_puesto.present? ? torneo.primer_puesto : "Sin ganador" %></td>
             <td class="text-nowrap">
               <div class="d-flex gap-2 justify-content-center">

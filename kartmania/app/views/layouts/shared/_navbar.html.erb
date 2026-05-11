@@ -39,34 +39,116 @@
         <li class="nav-item">
           <%= link_to "Inicio", root_path, class: "nav-link" %>
         </li>
+
+
+
+
+      <% if user_signed_in?%>
+        <% if current_user.admin? %>
+          <li class="nav-item">
+            <%= link_to "Usuarios", users_path, class: "nav-link" %>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <%= link_to "Clientes", clientes_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Torneos", torneos_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Reservas", reservas_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Participantes", participantes_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Planes", planes_path, class: "nav-link" %>
+        </li>
+
+        <% if current_user.admin? %>
+          <li class="nav-item">
+            <%= link_to "Circuitos", circuitos_path, class: "nav-link" %>
+          </li>
+        <% end %>
+
+        <li class="nav-item">
+          <%= link_to "Karts", karts_path, class: "nav-link" %>
+        </li>
+        
+        <li class="nav-item">
+          <%= button_to "Cerrar sesión", destroy_user_session_path,
+              method: :delete,
+              form: { "data-turbo": "false" },
+              class: "btn btn-link nav-link text-danger fw-bold" %>
+        </li>
+      <% elsif cliente_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Planes", index_cliente_planes_path, class: "nav-link" %>
+        </li>
+        
+        <li class="nav-item">
+          <%= link_to "Torneos", index_cliente_torneos_path, class: "nav-link" %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to "Mis datos", show_cliente_cliente_path(current_cliente), class: "nav-link" %>
+        </li>
+
+
+        <li class="nav-item">
+          <%= button_to "Cerrar sesión", destroy_cliente_session_path,
+              method: :delete,
+              form: { "data-turbo": "false" },
+              class: "btn btn-link nav-link text-danger fw-bold" %>
+        </li>
+      <% else %>
         <li class="nav-item">
           <%= link_to "Nuestros karts", our_karts_path, class: "nav-link" %>
         </li>
+
         <li class="nav-item">
-          <%= link_to "Nuevo usuario", new_user_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Usuarios", users_path, class: "nav-link" %>
+          <%= link_to "Planes", index_cliente_planes_path, class: "nav-link" %>
         </li>
 
-<% if user_signed_in? %>
-  <li class="nav-item">
-    <%= button_to "Cerrar sesión", destroy_user_session_path,
-        method: :delete,
-        form: { "data-turbo": "false" },
-        class: "btn btn-link nav-link text-danger fw-bold" %>
-  </li>
-<% elsif cliente_signed_in? %>
-  <li class="nav-item">
-    <%= button_to "Cerrar sesión", destroy_cliente_session_path,
-        method: :delete,
-        form: { "data-turbo": "false" },
-        class: "btn btn-link nav-link text-danger fw-bold" %>
-  </li>
-<% end %>
+        <li class="nav-item">
+            <button class="nav-link btn btn-link" data-bs-toggle="modal" data-bs-target="#modalLogin">
+              Iniciar sesión
+            </button>
+        </li>       
+      <% end %>
 
       </ul>
     </div>
 
   </div>
 </nav>
+<div class="modal fade" id="modalLogin" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0" style="background-color: #090056;">
+
+      <div class="modal-header border-bottom border-white">
+        <h5 class="modal-title fw-bold text-white">¿Cómo quieres iniciar sesión?</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body py-4">
+        <div class="d-grid gap-3">
+
+          <%= link_to new_cliente_session_path, class: "btn btn-success custom-add-button fw-bold py-3" do %>
+            <i class="fa-solid fa-user me-2"></i> Soy cliente
+          <% end %>
+
+          <%= link_to new_user_session_path, class: "btn btn-outline-light fw-bold py-3" do %>
+            <i class="fa-solid fa-user-tie me-2"></i> Soy trabajador
+          <% end %>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
