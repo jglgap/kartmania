@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_05_04_075601) do
+ActiveRecord::Schema[7.1].define(version: 2026_05_12_085946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -83,6 +83,14 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_04_075601) do
     t.index ["reset_password_token"], name: "index_clientes_on_reset_password_token", unique: true
   end
 
+  create_table "google_tokens", force: :cascade do |t|
+    t.text "access_token"
+    t.text "refresh_token"
+    t.datetime "expires_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "karts", force: :cascade do |t|
     t.integer "tipo", default: 0, null: false
     t.integer "estado", default: 0, null: false
@@ -100,6 +108,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_04_075601) do
     t.bigint "torneo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "google_event_id"
     t.index ["cliente_id"], name: "index_participantes_on_cliente_id"
     t.index ["torneo_id"], name: "index_participantes_on_torneo_id"
   end

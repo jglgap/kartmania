@@ -37,8 +37,24 @@ class TorneosController < ApplicationController
   
   def update
     if @torneo.update(torneo_params)
+
+      calendar = GoogleCalendarService.new
+
       @torneo.participantes.aceptado.each do |participante|
+
         TorneosMailer.cambios_torneo(@torneo,participante).deliver_later
+        
+        if participante.google_event_id.present?
+          calendar.actualizar_evento(
+            event_id:       participante.google_event_id,
+            titulo:         "Torneo #{@torneo.nombre} — #{participante.cliente.nombre}",
+            descripcion:    "Participante confirmado: #{participante.cliente.nombre}",
+            inicio:         @torneo.fecha_torneo,
+            fin:            @torneo.fecha_torneo + 2.hours,
+            email_invitado: participante.cliente.email
+          )
+        end
+
       end
       redirect_to torneo_path(@torneo), notice: "El torneo '#{@torneo.nombre}' ha sido actualizado correctamente"
     else
@@ -48,6 +64,11 @@ class TorneosController < ApplicationController
   end
 
   def destroy
+    calendar = GoogleCalendarService.new
+
+    @torneo.participantes.aceptado.each do |participante|
+      calendar.eliminar_evento(participante.google_event_id)
+    end
     @torneo.destroy 
     redirect_to torneos_path, notice: "Torneo borrado correctamente."
   end

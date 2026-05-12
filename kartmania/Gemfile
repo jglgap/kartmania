@@ -32,6 +32,8 @@ gem "cancancan", "~> 3.5"
 
 # Google Calendar API
 gem "google-apis-calendar_v3"
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
 
 # Envío de emails
 gem "sendgrid-ruby"

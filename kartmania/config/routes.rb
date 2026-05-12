@@ -54,6 +54,8 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
   get "welcome", to: "landing#welcome"
   get "our_karts", to: "landing#our_karts"
+  get '/auth/google_oauth2/callback', to: 'google_calendar#callback'
+  get '/auth/failure', to: 'google_calendar#failure'
   root "landing#welcome"
   
 end
