@@ -49,6 +49,10 @@ class ClientesController < ApplicationController
   end
 
   def destroy
+    calendar = GoogleCalendarService.new
+    @cliente.participantes.aceptado.each do |participante|
+      calendar.eliminar_evento(participante.google_event_id)
+    end
     @cliente.destroy
     redirect_to clientes_path, notice: "Cliente eliminado correctamente"
   end
