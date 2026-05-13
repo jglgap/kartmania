@@ -65,6 +65,24 @@ class ReservasController < ApplicationController
     if @reserva.update(reserva_params_update)
       ReservaMailer.actualizacion(@reserva).deliver_later if @reserva.saved_change_to_estado?
       ReservaMailer.cambio_fecha(@reserva).deliver_later  if @reserva.saved_change_to_fecha?
+
+      calendar = GoogleCalendarService.new
+      titular = @reserva.cliente_reservas.find { |cr| cr.es_titular }
+      if @reserva.aceptado? && @reserva.saved_change_to_estado?
+        event_id = calendar.crear_evento(
+          titulo:       "Reserva #{@reserva.plan.nombre} - #{titular.nombre}",
+          descripcion:   "Reserva confirmada: #{titular.nombre}",
+          inicio:        @reserva.fecha,
+          fin:           @reserva.fecha + 2.hours,
+          email_invitado: titular.email 
+        )
+        titular.update_column(:google_event_id, event_id)
+
+      elsif @reserva.rechazado? && @reserva.saved_change_to_estado?
+        calendar.eliminar_evento(titular.google_event_id)
+        titular.update_column(:google_event_id,nil)
+      end
+
       redirect_to reserva_path(@reserva), notice: "Reserva actualizada correctamente"
     else
       render :edit, status: :unprocessable_entity
@@ -120,6 +138,7 @@ class ReservasController < ApplicationController
 
     if @reserva.save
       ReservaMailer.confirmacion(@reserva).deliver_later
+
       redirect_to index_cliente_planes_path, notice: "Reserva creada correctamente. Nos pondremos en contacto"
     else
       render :reservar, status: :unprocessable_entity
