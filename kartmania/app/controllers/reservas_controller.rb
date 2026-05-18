@@ -108,6 +108,12 @@ class ReservasController < ApplicationController
   end
 
   def destroy
+    calendar = GoogleCalendarService.new
+    titular = @reserva.cliente_reservas.find { |cr| cr.es_titular }
+    if titular.present?
+      calendar.eliminar_evento(titular.google_event_id)
+      titular.update_column(:google_event_id,nil)
+    end
     @reserva.destroy
     redirect_to reservas_path , notice: "Reserva eliminada correctamente"
   end
@@ -125,7 +131,7 @@ class ReservasController < ApplicationController
 
     @reserva = Reserva.new(
       plan: @plan,
-      estado: :pendiente
+      
     )
 
     @reserva.assign_attributes(reserva_params_publico)
