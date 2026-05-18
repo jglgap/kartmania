@@ -1,6 +1,6 @@
 <div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
   <div class="row justify-content-center">
-    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Kart</h1>
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Actualizar Plan</h1>
     <div class="col-12 col-lg-8 col-xl-6">
 
       <%= form_with model: @plan, url: plane_path(@plan), method: :patch , data: { turbo: false } do |f| %>
@@ -38,6 +38,25 @@
                 class: "form-select" %>
           </div>
 
+          <div class="col-12 col-md-6">
+            <%= f.label :estado, class: "form-label fw-bold text-white" %>
+            <%= f.select :estado,
+                Plan.estados.keys.map { |e| [e.humanize, e] },
+                { prompt: "Selecciona un estado" },
+                class: "form-select" %>
+          </div>
+
+          <div class="col-12">
+            <%= f.label :imagen, class: "form-label fw-bold text-white" %>
+            <% if @plan.imagen.attached? %>
+              <div class="mb-2">
+                <%= image_tag @plan.imagen, class: "img-fluid rounded", style: "max-height: 200px;" %>
+                <p class="text-white mt-1 small">Imagen actual — sube otra para reemplazarla</p>
+              </div>
+            <% end %>
+            <%= f.file_field :imagen, class: "form-control", accept: "image/*" %>
+          </div>
+
           
           <div class="col-12">
             <%= f.label :descripcion, class: "form-label fw-bold text-white" %>
@@ -46,7 +65,7 @@
 
           <div class="col-12 d-flex gap-2 justify-content-center mt-4">
             <%= link_to "Cancelar", planes_path, class: "btn btn-danger custom-cancel-button fw-bold" %>
-            <%= f.submit "Crear plan", class: "btn btn-success custom-add-button fw-bold" %>
+            <%= f.submit "Actualizar plan", class: "btn btn-success custom-add-button fw-bold" %>
           </div>
 
         </div>

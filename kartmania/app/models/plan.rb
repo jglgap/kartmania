@@ -1,8 +1,9 @@
 class Plan < ApplicationRecord
   belongs_to :circuito, optional: true
 
+  has_one_attached :imagen
   has_many :reservas , dependent: :nullify
-
+  enum :estado, { normal: 0, oferta: 1, mega_oferta: 2}
   # Antes de eliminar el plan, marca todas sus reservas como rechazadas
   before_destroy :rechazar_reservas_asociadas
 

@@ -51,7 +51,9 @@ class PlanesController < ApplicationController
     redirect_to(root_path, alert: "Acceso no permitido.") and return if current_user
     @planes = Plan.all.order(:nombre)
   end
+  
   private
+  
   def set_plan
     @plan = Plan.find(params[:id])
   end
@@ -62,7 +64,10 @@ class PlanesController < ApplicationController
       :descripcion,
       :precio,
       :max_participantes,
-      :circuito_id
+      :circuito_id,
+      :estado,
+      :imagen
     )
   end
+
 end
