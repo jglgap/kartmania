@@ -1,63 +1,103 @@
-// welcome page 
+// ============================================================
+// Welcome page — Banner con slider de crossfade
+// ============================================================
+
 .banner {
   position: relative;
   width: 100%;
-  height: 500px; 
+  height: 500px;
   overflow: hidden;
   z-index: 1;
 
+  // Contenedor de las imágenes apiladas
+  &__slider {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 
-
+  // Cada imagen ocupa todo el espacio y está invisible por defecto
   &__img {
     position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-
-    object-fit: cover; 
-    object-position: center; 
+    object-fit: cover;
+    object-position: center;
     filter: brightness(0.5) contrast(1.1);
-    z-index: -1;
+
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out; // Duración del crossfade
   }
 
-&__overlay {
+  // Solo la imagen activa es visible
+  &__img--active {
+    opacity: 1;
+  }
+
+  // Overlay con el texto encima de todo
+  &__overlay {
     position: absolute;
     inset: 0;
     display: flex;
-    flex-direction: column; // Apila el h2 y el botón verticalmente
-    align-items: center;    // Centra horizontalmente en el eje flex
-    justify-content: center; // Centra verticalmente en el eje flex
-    text-align: center;      // Fuerza a las líneas de texto a centrarse
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     color: #fff;
     z-index: 2;
   }
 
   &__title {
-    width: 100%;             // Asegura que el texto tenga espacio para centrarse
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     font-size: clamp(1.5rem, 6vw, 3rem);
     font-weight: 800;
-    max-width: 900px;        // Controla que no se estire demasiado a los lados
+    max-width: 900px;
     line-height: 1.2;
     text-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
   }
 }
 
-// Ajuste para pantallas muy pequeñas (móviles)
+// Ajuste para móviles
 @media (max-width: 576px) {
   .banner {
-    height: 250px; // Un poco más corta en móvil
+    height: 250px;
   }
 }
 
+.btn-customized {
+  background-color: #fa2500;
+  color: white;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #c41d00;
+    color: white;
+  }
+}
 
 .info-section {
 
   margin-top: 100px !important;
 
 }
+.custom-section{
+  background-color: #c2fff7 !important;
+  border-radius: 1.5rem;
+  margin-left: 5%;
+  margin-right: 5%;
 
+  @media (max-width: 576px) {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+.custom-heading2{
+  color: #265eba !important;
+}
 
 
 .circles-section {
@@ -84,6 +124,19 @@
     }
   }
 
+  .circle-item {
+
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+    // Estado visible: se activa con JS al entrar en el viewport
+    &--visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
   // Estilo de la barra divisora (|)
   @media (min-width: 768px) {
     .circle-item {
@@ -99,6 +152,54 @@
         background-color: #265eba; // Color de la barra
       }
     }
+  }
+}
+
+.scroll-row {
+  opacity: 0;
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+
+  // Estado inicial según dirección asignada por JS
+  &--from-left {
+    transform: translateX(-80px);
+  }
+
+  &--from-right {
+    transform: translateX(80px);
+  }
+
+  // Estado final cuando entra en pantalla
+  &--visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.circuito-img-wrapper {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+
+  .us-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  // Al pasar el ratón sobre el WRAPPER, escala la imagen interior
+  &:hover .us-img {
+    transform: scale(1.08);
+  }
+}
+
+@media (max-width: 768px) {
+  .circuito-img-wrapper {
+    height: 220px;
   }
 }
 

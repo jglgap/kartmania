@@ -1,11 +1,11 @@
 <section class="py-5">
   <div class="container">
     
-    <h1 class="display-4 fw-bold text-center mb-5 custom-heading">Nuestros Karts</h1>
+    <h1 class="display-2 fw-bold text-center mb-5 custom-heading stagger-text">Nuestros Karts</h1>
 
-    <div class="row align-items-center mb-5">
+    <div class="row align-items-center mb-5 scroll-row">
       <div class="col-md-6 text-white mb-4 mb-md-0">
-        <h2 class="display-5 mb-4 fw-normal fst-italic">El pimiento picante</h2>
+        <h2 class="display-5 mb-4 fw-bolder fst-italic ">El pimiento picante</h2>
           <p class="lead ">
             Este kart está hecho para los amantes de la velocidad, no cualquiera esté preparado para
             controlar esta méquina cuya velocidad máxima es de 130km/h, es un kart para expertos, con 
@@ -14,16 +14,20 @@
           </p>
       </div>
       <div class="col-md-6">
-        <%= image_tag "red_kart", class: "img-fluid rounded-4 shadow-lg" %>
+        <div class="circuito-img-wrapper">
+          <%= image_tag "red_kart", class: "img-fluid rounded-4 shadow-lg us-img" %>
+        </div>
       </div>
     </div>
 
-    <div class="row align-items-center mb-5">
+    <div class="row align-items-center mb-5 scroll-row">
       <div class="col-md-6 order-last order-md-first">
-        <%= image_tag "blue_kart", class: "img-fluid rounded-4 shadow-lg" %>
+        <div class="circuito-img-wrapper">
+          <%= image_tag "blue_kart", class: "img-fluid rounded-4 shadow-lg us-img" %>
+        </div>  
       </div>
       <div class="col-md-6 text-white mb-4 mb-md-0">
-        <h2 class="display-5 mb-4 fw-normal fst-italic ">La nube azul</h2>
+        <h2 class="display-5 mb-4 fw-bolder fst-italic ">La nube azul</h2>
           <p class="lead ">
             Nuestro kart para ya experimentados, que desean tener una tarde llena de adrenalina, sin sobrepasarse de los límites,
             para aquellos que aman la diversión, este kart cuenta con una velocidad máxima de 80km/h y un asiento acolchado de fibra,
@@ -33,9 +37,9 @@
       </div>
     </div>
 
-    <div class="row align-items-center mb-5">
+    <div class="row align-items-center mb-5 scroll-row">
       <div class="col-md-6 text-white mb-4 mb-md-0">
-        <h2 class="display-5 mb-4 fw-normal fst-italic">El dúo dinámico</h2>
+        <h2 class="display-5 mb-4 fw-bolder fst-italic ">El dúo dinámico</h2>
           <p class="lead">
             El siempre querido biplaza, una kart para ir acompañado por tu copiloto/a favorito,
             un kart para compartir una experiencia en compañia, un kart veloz y al mismo tiempo
@@ -43,16 +47,20 @@
           </p>
       </div>
       <div class="col-md-6">
-        <%= image_tag "biplaza", class: "img-fluid rounded-4 shadow-lg" %>
+        <div class="circuito-img-wrapper">
+          <%= image_tag "biplaza", class: "img-fluid rounded-4 shadow-lg us-img" %>
+        </div>
       </div>
     </div>
 
-    <div class="row align-items-center mb-5">
+    <div class="row align-items-center mb-5 scroll-row">
       <div class="col-md-6 order-last order-md-first">
-        <%= image_tag "El_grillito", class: "img-fluid rounded-4 shadow-lg" %>
+        <div class="circuito-img-wrapper">
+          <%= image_tag "El_grillito", class: "img-fluid rounded-4 shadow-lg us-img" %>
+        </div>
       </div>
       <div class="col-md-6 text-white mb-4 mb-md-0">
-        <h2 class="display-5 mb-4 fw-normal fst-italic ">El Grillito</h2>
+        <h2 class="display-5 mb-4 fw-bolder fst-italic ">El Grillito</h2>
           <p class="lead">
             Para nuestros principiante y peques tenemos a "El Grillito", con su recococible color verde,
             y una velocidad máxima de 40km/h, es el kart apropiado para todos aquellos sin experiencia y que 
@@ -63,3 +71,85 @@
     </div>
   </div>
 </section>
+
+<section class="py-5 custom-section">
+  <div class="container">
+
+    <h1 class="display-2 fw-bold text-center mb-5 custom-heading stagger-text">Nuestros Circuitos</h1>
+
+    <% @circuitos.each.with_index do |circuito, index| %>
+
+      <% if index % 2 == 0 %>
+        <div class="row align-items-center mb-5 scroll-row">
+          <div class="col-md-6 text-black mb-4 mb-md-0">
+            <h2 class="display-5 mb-4 fw-bolder fst-italic"><%= circuito.nombre %></h2>
+            <p class="lead">Kilómetros: <%= circuito.kilometros %></p>
+            <p class="lead"><%= circuito.descripcion %></p>
+          </div>
+          <div class="col-md-6">
+            <div class="circuito-img-wrapper">
+              <%= image_tag circuito.imagen, class: "img-fluid rounded-4 shadow-lg us-img" %>
+            </div>         
+          </div>
+        </div>
+
+      <% else %>
+        <div class="row align-items-center mb-5 scroll-row">
+          <div class="col-md-6 order-last order-md-first">
+            <div class="circuito-img-wrapper">
+              <%= image_tag circuito.imagen, class: "img-fluid rounded-4 shadow-lg us-img" %>
+            </div>
+          </div>
+          <div class="col-md-6 text-black mb-4 mb-md-0 ">
+            <h2 class="display-5 mb-4 fw-bolder fst-italic"><%= circuito.nombre %></h2>
+            <p class="lead">Kilómetros: <%= circuito.kilometros %></p>
+            <p class="lead"><%= circuito.descripcion %></p>
+          </div>
+        </div>
+
+      <% end %>
+
+    <% end %>
+
+  </div>
+</section>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  const filas = document.querySelectorAll(".scroll-row");
+
+  if (filas.length > 0) {
+
+
+    filas.forEach((fila, index) => {
+      if (index % 2 === 0) {
+        fila.classList.add("scroll-row--from-left");
+      } else {
+        fila.classList.add("scroll-row--from-right");
+      }
+    });
+
+
+    setTimeout(() => {
+
+      const observerFilas = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("scroll-row--visible");
+              observerFilas.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.15 }
+      );
+
+      filas.forEach((fila) => observerFilas.observe(fila));
+
+    }, 300); 
+  }
+
+});
+</script>

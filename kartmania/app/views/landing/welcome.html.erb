@@ -1,31 +1,38 @@
 <div class="banner">
-  <%= image_tag "banner.jpg", class: "banner__img" %>
+
+  <div class="banner__slider">
+    <%= image_tag "banner.jpg", class: "banner__img banner__img--active", aria: { hidden: true } %>
+    <%= image_tag "biplaza.png", class: "banner__img", aria: { hidden: true } %>
+    <%= image_tag "trofeo.png", class: "banner__img", aria: { hidden: true } %>
+  </div>
+
 
   <div class="banner__overlay">
     <div class="container text-center">
-      <h2 class="banner__title">
+      <h2 class="banner__title stagger-text">
         Vive la emoción del karting al máximo
       </h2>
-      <%= link_to "Reservar Ahora", index_cliente_planes_path, class:"btn btn-primary btn-lg mt-3" %>
+      <%= link_to "Reservar Ahora", index_cliente_planes_path, class: "btn btn-customized fw-bolder btn-lg mt-3" %>
     </div>
   </div>
+
 </div>
 
-<section class="info-section mt-5 py-5">
+<section class="info-section mt-5 py-5 custom-section">
   <div class="container">
     
-    <h1 class="display-4 text-center fw-bold mb-5 custom-heading">No te pierdas la experiencia</h1>
+    <h1 class="display-2 text-center fw-bold mb-5 custom-heading stagger-text">No te pierdas la experiencia</h1>
 
     <div class="row align-items-center mb-5">
-      <div class="col-md-6 text-white mb-4 mb-md-0">
-        <h2 class="display-5 fw-normal fst-italic">Karts de último modelo</h2>
+      <div class="col-md-6 text-black mb-4 mb-md-0">
+        <h2 class="display-5 fw-bolder fst-italic custom-heading2">Karts de último modelo</h2>
         <p class="lead">
           Ven a conducir nuestros karts de nueva generación, los más
           neuvos y más rápidos en toda la península, ven a bibir la experiencia
         </p>
       </div>
       <div class="col-md-6">
-        <%= image_tag "kart_ultimo_modelo", class: "img-fluid rounded-4 shadow-lg" %>
+          <%= image_tag "kart_ultimo_modelo", class: "img-fluid rounded-4 shadow-lg" %>
       </div>
     </div>
 
@@ -33,8 +40,8 @@
       <div class="col-md-6 order-last order-md-first">
         <%= image_tag "karts_peques.jpg", class: "img-fluid rounded-4 shadow-lg" %>
       </div>
-      <div class="col-md-6 text-white mb-4 mb-md-0">
-        <h2 class="display-5 fw-normal fst-italic ">Disfruta con la familia</h2>
+      <div class="col-md-6 text-black mb-4 mb-md-0">
+        <h2 class="display-5 fw-bolder fst-italic ">Disfruta con la familia</h2>
         <p class="lead">
           En nuestro karting contamos con karts para los más pequeños, para que todos
           puedan participar y liberar la adrenalina que nos genera la velocidad, siempre con protección
@@ -84,3 +91,62 @@
     </div>
   </div>
 </section>
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const imagenes = document.querySelectorAll(".banner__img");
+
+  if (imagenes.length < 2) return;
+
+  let indiceActual = 0;
+
+
+  setInterval(() => {
+
+    imagenes[indiceActual].classList.remove("banner__img--active");
+
+
+    indiceActual = (indiceActual + 1) % imagenes.length;
+
+    imagenes[indiceActual].classList.add("banner__img--active");
+  }, 4000); // 4000ms = 4 segundos entre cambios
+
+
+  const items = document.querySelectorAll(".circle-item");
+
+  // Si no hay elementos no hacemos nada
+  if (items.length === 0) return;
+
+  // Asignamos un retardo incremental a cada elemento para el efecto escalonado
+  // El primero aparece al instante, el segundo 150ms después, etc.
+  items.forEach((item, index) => {
+    item.style.transitionDelay = `${index * 150}ms`;
+  });
+
+  // Intersection Observer: ejecuta el callback cuando el elemento entra en pantalla
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // El elemento ya es visible — añadimos la clase que activa la animación
+          entry.target.classList.add("circle-item--visible");
+
+          // Dejamos de observarlo para que la animación no se repita
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.2, // Se activa cuando el 20% del elemento es visible
+    }
+  );
+
+  // Registramos cada circle-item para ser observado
+  items.forEach((item) => observer.observe(item));
+
+
+
+  
+});
+</script>

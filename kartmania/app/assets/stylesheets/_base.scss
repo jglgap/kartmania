@@ -1,8 +1,12 @@
+html, body {
+  overflow-x: hidden;
+}
 body {
 background-color: #060027;
 opacity: 1;
 background-image: radial-gradient(#05006c 1.55px, #060027 1.55px);
 background-size: 31px 31px;
+
 }
 
 .custom_navbar {
