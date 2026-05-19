@@ -3,6 +3,19 @@
     <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nueva Reserva</h1>
     <div class="col-12 col-lg-8 col-xl-6">
 
+      <% if @reserva.cliente_reservas.any? { |cr| cr.errors.any? } %>
+        <div class="alert alert-danger">
+          <% @reserva.cliente_reservas.each_with_index do |cr, index| %>
+            <% if cr.errors.any? %>
+              <p class="fw-bold mb-1">Participante <%= index + 1 %>:</p>
+              <% cr.errors.full_messages.each do |msg| %>
+                <p class="mb-0 ms-2"><%= msg %></p>
+              <% end %>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+
       <div class="d-flex justify-content-center gap-3 mb-4">
         <span class="btn btn-outline-light fw-bold px-4 disabled">Primer paso</span>
         <span class="btn btn-light fw-bold px-4">Segundo paso</span>

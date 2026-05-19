@@ -8,13 +8,29 @@
       <%= form_with model: @reserva, url: crear_reserva_plane_path(@plan), data: { turbo: false } do |f| %>
 
 
-        <% if @reserva.errors.any? %>
+
+
+        <% errores_participantes = @reserva.cliente_reservas.any? { |cr| cr.errors.any? } %>
+        <% errores_reserva = @reserva.errors.full_messages.reject { |msg| msg.start_with?("Cliente reservas") } %>
+
+        <% if errores_participantes || errores_reserva.any? %>
           <div class="alert alert-danger">
-            <% @reserva.errors.full_messages.each do |msg| %>
+            <% errores_reserva.each do |msg| %>
               <p class="mb-0"><%= msg %></p>
             <% end %>
+
+            <% @reserva.cliente_reservas.each_with_index do |cr, index| %>
+              <% if cr.errors.any? %>
+                <p class="fw-bold mb-1">Participante <%= index + 1 %>:</p>
+                <% cr.errors.full_messages.each do |msg| %>
+                  <p class="mb-0 ms-2"><%= msg %></p>
+                <% end %>
+              <% end %>
+            <% end %>
+
           </div>
         <% end %>
+
 
         <div class="row g-3 mb-4">
           <div class="col-12 col-md-6">
