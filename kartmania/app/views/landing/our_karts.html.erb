@@ -88,7 +88,13 @@
           </div>
           <div class="col-md-6">
             <div class="circuito-img-wrapper">
-              <%= image_tag circuito.imagen, class: "img-fluid rounded-4 shadow-lg us-img" %>
+              <% if circuito.imagen.attached? %>
+                <%= image_tag circuito.imagen, class: "img-fluid rounded-4 shadow-lg us-img" %>
+              <% else %>
+                <div class="img-fluid rounded-4 shadow-lg us-img bg-secondary d-flex align-items-center justify-content-center">
+                  <span class="text-white">Sin imagen</span>
+                </div>
+              <% end %>
             </div>         
           </div>
         </div>
@@ -97,7 +103,13 @@
         <div class="row align-items-center mb-5 scroll-row">
           <div class="col-md-6 order-last order-md-first">
             <div class="circuito-img-wrapper">
-              <%= image_tag circuito.imagen, class: "img-fluid rounded-4 shadow-lg us-img" %>
+              <% if circuito.imagen.attached? %>
+                <%= image_tag circuito.imagen, class: "img-fluid rounded-4 shadow-lg us-img" %>
+              <% else %>
+                <div class="img-fluid rounded-4 shadow-lg us-img bg-secondary d-flex align-items-center justify-content-center">
+                  <span class="text-white">Sin imagen</span>
+                </div>
+              <% end %>
             </div>
           </div>
           <div class="col-md-6 text-black mb-4 mb-md-0 ">
