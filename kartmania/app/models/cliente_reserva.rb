@@ -6,10 +6,13 @@ class ClienteReserva < ApplicationRecord
   belongs_to :cliente, optional: true
 
 
-  validates :nombre, presence: true
+  validates :nombre, presence: {message: "tiene que estar presente"}
 
-  validates :dni, presence: true
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: false
+  validates :dni, presence: {message: "tiene que estar presente"}
+  validates :email, 
+  format: { with: URI::MailTo::EMAIL_REGEXP,
+            message: "no tiene el formato adecuado" },
+  presence: {message: "tiene que estar presente"}
   validate  :verificacion_telefono
   validate  :verificacion_dni
 

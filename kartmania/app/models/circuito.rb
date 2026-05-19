@@ -12,6 +12,6 @@ class Circuito < ApplicationRecord
 
   has_many :torneos, dependent: :nullify
 
-  validates :nombre, presence: true
-  validates :kilometros, presence: true
+  validates :nombre, presence: {message: "tiene que estar presente"}
+  validates :kilometros, presence: {message: "tiene que tener un valor"}
 end

@@ -8,8 +8,8 @@ class Reserva < ApplicationRecord
 
   enum estado: { rechazado: 0, aceptado: 1, pendiente: 2 }
   
-  validates :fecha, presence: true
-  validates :estado, presence: true
+  validates :fecha, presence: {message: "tiene que estar elegida"}
+  validates :estado, presence: {message: "tiene que estar elegido uno de los posibles"}
 
   validate :un_solo_titular, if: -> { cliente_reservas.any? }
   validate :hora_en_rango
