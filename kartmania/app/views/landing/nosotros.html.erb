@@ -127,41 +127,91 @@
 </section>
 
 
-<script>
-document.addEventListener("DOMContentLoaded", () => {
+<div class="container my-5">
+  <h1 class="display-2 fw-bold text-center mb-5 custom-heading stagger-text">Nuestro personal</h1>
+  
+  <div class="row g-4">  
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="flip-card" role="button" tabindex="0" aria-label="Girar tarjeta">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__avatar-wrapper">
+              <%= image_tag "jefe.png", class: "flip-card__avatar" %>
+            </div>
+            <h5 class="flip-card__name">Roberto García</h5>
+            <p class="flip-card__role">CEO / Dueño</p>
+            <p class="flip-card__desc">El fundador de la empresa y encargado del correcto funcionamiento desde el primer día.</p>
+          </div>
+          <div class="flip-card__back">
+            <p class="flip-card__back-text text-black">"La adrenalina que corre por mis venas, se que corre en la de los aficionados del karting.
+            Quiero ofrecerles la mejor experiencia posible, para eso me encargado de crear el mejor espacio posible para ello."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  const filas = document.querySelectorAll(".scroll-row");
+    
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="flip-card" role="button" tabindex="0" aria-label="Girar tarjeta">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__avatar-wrapper">
+              <%= image_tag "recepcionista.png", class: "flip-card__avatar" %>
+            </div>
+            <h5 class="flip-card__name">Equipo de administración</h5>
+            <p class="flip-card__role">Atención al cliente</p>
+            <p class="flip-card__desc">En este equipo encontraras toda la ayuda que precises durante tu visita o en línea. No dudes en preguntar.</p>
+          </div>
+          <div class="flip-card__back">
+            <p class="flip-card__back-text text-black">Maria Duarte (Encargada): "Los clientes forman parte de nuestra familia, tienen que ser
+            tratados con el mayor cariño y respeto, porque aunque sean de la familia no significa que un día se puedan ir."</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  if (filas.length > 0) {
+    
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="flip-card" role="button" tabindex="0" aria-label="Girar tarjeta">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__avatar-wrapper">
+              <%= image_tag "trabajadores.png", class: "flip-card__avatar" %>
+            </div>
+            <h5 class="flip-card__name">Equipo de pista</h5>
+            <p class="flip-card__role">Vigiglancia y preparación</p>
+            <p class="flip-card__desc">A la hora de correr nuestros empleados se encargaran de supervisar y gestionar tu participación y tu seguridad.</p>
+          </div>
+          <div class="flip-card__back">
+            <p class="flip-card__back-text text-black">Ivan Quiñoz (empleado): "Cada milisegundo en la pista es diferencial, en nuestras manos esta que la experiencia
+            y la seguridad del cliente en la pista sea la mejor. Mientras nosotros tengamos el control de la pista el cliente es libre de disfrutar."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="col-12 col-sm-6 col-lg-3">
+      <div class="flip-card" role="button" tabindex="0" aria-label="Girar tarjeta">
+        <div class="flip-card__inner">
+          <div class="flip-card__front">
+            <div class="flip-card__avatar-wrapper">
+              <%= image_tag "mecanicos.png", class: "flip-card__avatar" %>
+            </div>
+            <h5 class="flip-card__name">Mecánicos</h5>
+            <p class="flip-card__role">Ingenieros en mecnica y técnicos</p>
+            <p class="flip-card__desc">Grupo encaragdo de asegurar que el estado del kart es el adecuado para salir a pista.</p>
+          </div>
+          <div class="flip-card__back">
+            <p class="flip-card__back-text text-black">Vincezo Delipietro (jefe de mecánica): "En nuestras manos no habra posibilidades de correr con un kart
+            averiado, nos encargaremos de reparar y preparar cualquier kart, para que los clientes puedan disfrutar sin ningún peligro a la vista."</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
-    filas.forEach((fila, index) => {
-      if (index % 2 === 0) {
-        fila.classList.add("scroll-row--from-left");
-      } else {
-        fila.classList.add("scroll-row--from-right");
-      }
-    });
-
-
-    setTimeout(() => {
-
-      const observerFilas = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add("scroll-row--visible");
-              observerFilas.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.15 }
-      );
-
-      filas.forEach((fila) => observerFilas.observe(fila));
-
-    }, 300); 
-  }
-
-});
-</script>

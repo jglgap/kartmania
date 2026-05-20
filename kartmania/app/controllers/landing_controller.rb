@@ -1,7 +1,7 @@
 class LandingController < ApplicationController
   def welcome
   end
-  def our_karts
+  def nosotros
     @circuitos = Circuito.all.order(:nombre)
   end
 end
