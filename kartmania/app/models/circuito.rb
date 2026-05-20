@@ -7,7 +7,7 @@ class Circuito < ApplicationRecord
 
   has_many :karts, dependent: :nullify
 
-  has_many :planes, dependent: :nullify
+  has_many :plans, dependent: :nullify
 
 
   has_many :torneos, dependent: :nullify

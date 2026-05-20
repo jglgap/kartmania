@@ -35,6 +35,9 @@ gem "google-apis-calendar_v3"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 
+gem "cloudinary"
+gem "activestorage-cloudinary-service"
+
 # Envío de emails
 gem "sendgrid-ruby"
 

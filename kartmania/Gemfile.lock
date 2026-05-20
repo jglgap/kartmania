@@ -67,6 +67,7 @@ GEM
       activerecord (= 7.1.6)
       activesupport (= 7.1.6)
       marcel (~> 1.0)
+    activestorage-cloudinary-service (0.2.3)
     activesupport (7.1.6)
       base64
       benchmark (>= 0.3)
@@ -92,6 +93,11 @@ GEM
     builder (3.3.0)
     cancancan (3.6.1)
     cgi (0.5.1)
+    cloudinary (2.4.5)
+      faraday (>= 2.0.1, < 3.0.0)
+      faraday-follow_redirects (~> 0.5)
+      faraday-multipart (~> 1.0, >= 1.0.4)
+      ostruct
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
     crass (1.0.6)
@@ -132,6 +138,8 @@ GEM
       logger
     faraday-follow_redirects (0.5.0)
       faraday (>= 1, < 3)
+    faraday-multipart (1.2.0)
+      multipart-post (~> 2.0)
     faraday-net_http (3.4.2)
       net-http (~> 0.5)
     globalid (1.3.0)
@@ -192,6 +200,7 @@ GEM
     multi_json (1.19.1)
     multi_xml (0.9.1)
       bigdecimal (>= 3.1, < 5)
+    multipart-post (2.4.1)
     mutex_m (0.3.0)
     net-http (0.9.1)
       uri (>= 0.11.1)
@@ -233,6 +242,7 @@ GEM
       omniauth (~> 2.0)
     orm_adapter (0.5.0)
     os (1.1.4)
+    ostruct (0.6.3)
     pagy (6.5.0)
     pg (1.6.3-x86_64-linux)
     pp (0.6.3)
@@ -376,8 +386,10 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activestorage-cloudinary-service
   bootsnap
   cancancan (~> 3.5)
+  cloudinary
   cssbundling-rails
   debug
   devise (~> 4.9)
