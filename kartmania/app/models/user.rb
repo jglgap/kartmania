@@ -11,6 +11,7 @@ class User < ApplicationRecord
   private 
 
   def verificacion_telefono
+    return if telefono.blank?
     telefono_limpio = telefono.gsub(/[\s\-\.]/, '')
 
     if telefono_limpio.start_with?('+34', '0034')
