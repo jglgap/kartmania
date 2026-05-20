@@ -12,7 +12,8 @@ User.create!(
   email:    "a23ricardosr@iessanclemente.net",
   password: "abc123",
   nombre:   "admin",
-  tipo:     :admin
+  tipo:     :admin,
+  telefono: "600111222"
 )
 
 # --- Trabajadores ---
