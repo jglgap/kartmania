@@ -17,7 +17,10 @@
   </div>
 
 </div>
-
+<%= button_to "Conectar con Google Calendar", "/auth/google_oauth2",
+    method: :post,
+    data: { turbo: false },
+    class: "btn btn-primary fw-bold" %>
 <section class="info-section mt-5 py-5 custom-section">
   <div class="container">
     
