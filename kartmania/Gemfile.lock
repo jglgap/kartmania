@@ -336,6 +336,9 @@ GEM
     rspec-support (3.13.7)
     ruby_http_client (3.6.0)
     securerandom (0.4.1)
+    sendgrid-actionmailer (3.2.0)
+      mail (~> 2.7)
+      sendgrid-ruby (~> 6.4)
     sendgrid-ruby (6.7.0)
       ruby_http_client (~> 3.4)
     signet (0.21.0)
@@ -406,6 +409,7 @@ DEPENDENCIES
   puma (>= 5.0)
   rails (~> 7.1.6)
   rspec-rails (~> 6.0)
+  sendgrid-actionmailer
   sendgrid-ruby
   sprockets-rails
   stimulus-rails

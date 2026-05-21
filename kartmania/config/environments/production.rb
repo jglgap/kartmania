@@ -72,9 +72,8 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "kartmania_production"
 
   config.action_mailer.perform_caching = false
-
   # -------------------------
-  # Configuración del mailer para producción con SendGrid
+  # Configuración del mailer con API HTTP de SendGrid (Railway bloquea SMTP)
   # -------------------------
 
   # URL base para los links de los emails en producción
@@ -84,20 +83,14 @@ Rails.application.configure do
   }
 
   config.action_mailer.perform_caching = false
-
-  # Envío real de emails via SendGrid
-  config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
 
-  config.action_mailer.smtp_settings = {
-    user_name: 'apikey',               # Siempre la cadena literal 'apikey' con SendGrid
-    password: ENV['SENDGRID_API_KEY'], # Variable de entorno en Railway
-    domain: 'kartmania-production.up.railway.app',
-    address: 'smtp.sendgrid.net',
-    port: 2525,
-    authentication: :plain,
-    enable_starttls_auto: true
+  # Usa la Web API de SendGrid en lugar de SMTP
+  config.action_mailer.delivery_method = :sendgrid_actionmailer
+  config.action_mailer.sendgrid_actionmailer_settings = {
+    api_key: ENV['SENDGRID_API_KEY'],
+    raise_delivery_errors: true
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
