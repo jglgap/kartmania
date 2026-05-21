@@ -42,10 +42,10 @@
           <tr>
             <td><%= user.nombre %></td>
             <td><%= user.email %></td>
-            <td><%= user.telefono %></td>
-            <td><%= user.tipo.capitalize %></td>
-            <td><%= user.ciudad %></td>
-            <td><%= user.provincia %></td>
+            <td><%= user.telefono || "No especificad" %></td>
+            <td><%= user.tipo.capitalize%></td>
+            <td><%= user.ciudad || "No especificada" %></td>
+            <td><%= user.provincia&.nombre || "No especificada" %></td>
             <td class="text-nowrap">
             <div class="d-flex gap-2 justify-content-center">
                 <%= link_to user_path(user), class: "btn btn-sm btn-info fw-bold" do %>

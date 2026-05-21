@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, 
          :recoverable, :rememberable, :validatable
 
+  belongs_to :provincia, optional: true       
   validates :nombre, presence: {message: "tiene que estar presente"}
   validate  :verificacion_telefono
   enum tipo: { admin: 0, trabajador: 1 }     

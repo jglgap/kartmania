@@ -50,6 +50,14 @@
       </div>
 
       <div class="col-12 col-md-6">
+          <%= f.label :provincia_id, "Provincia", class: "form-label fw-bold text-white" %>
+          <%= f.select :provincia_id,
+              @provincias.map { |p| [p.nombre, p.id] },
+              { include_blank: "Sin provincia" },
+              class: "form-select" %>
+      </div>
+
+      <div class="col-12 col-md-6">
         <%= f.label :direccion, class: "form-label fw-bold text-white" %>
         <%= f.text_field :direccion, class: "form-control" %>
       </div>
@@ -57,11 +65,6 @@
       <div class="col-12 col-md-6">
         <%= f.label :ciudad, class: "form-label fw-bold text-white" %>
         <%= f.text_field :ciudad, class: "form-control" %>
-      </div>
-
-      <div class="col-12 col-md-6">
-        <%= f.label :provincia, class: "form-label fw-bold text-white" %>
-        <%= f.text_field :provincia, class: "form-control" %>
       </div>
 
       <div class="col-12 col-md-6">

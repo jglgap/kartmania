@@ -14,23 +14,17 @@ class UsersController < ApplicationController
     end
   end
 
-=begin
-  def show
-    unless current_user == @user || current_user.admin?
-      redirect_to root_path, alert: "No tienes permisos para ver este perfil!."
-    end
-  end
-=end
   def show
   end
 
   def new
+    @provincias = Provincia.order(:nombre)
     @user = User.new
   end
 
   def create
     @user = User.new(user_params)
-
+    @provincias = Provincia.order(:nombre)
     if @user.save
       redirect_to user_path(@user), notice: "Usuarios '#{@user.nombre}' creado correctamente."
     else
@@ -39,9 +33,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @provincias = Provincia.order(:nombre)
   end
 
   def update
+    @provincias = Provincia.order(:nombre)
     parametros = if params[:user][:password].blank?
       user_params.except(:password,:password_confirmation)
     else
@@ -54,18 +50,6 @@ class UsersController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
-
-=begin 
-  def destroy
-    if @user == current_user
-      redirect_to users_path, alert: "No puedes eliminar tu propia cuenta."
-      return
-    end
-
-    @user.destroy
-    redirect_to users_path, notice: "Usuario '#{@user.nombre}' eliminado correctamente."
-  end
-=end
 
   def destroy
    @user.destroy
@@ -86,7 +70,7 @@ class UsersController < ApplicationController
       :tipo,
       :direccion,
       :ciudad,
-      :provincia,
+      :provincia_id,
       :codigo_postal,
       :telefono
     )
