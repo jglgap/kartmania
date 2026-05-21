@@ -20,11 +20,12 @@ class ClientesController < ApplicationController
 
   def new
     @cliente = Cliente.new
+    @provincias = Provincia.order(:nombre)
   end
 
   def create
     @cliente = Cliente.new(cliente_params)
-    
+    @provincias = Provincia.order(:nombre)
     if @cliente.save
       redirect_to cliente_path(@cliente), notice: "Cliente '#{@cliente.nombre}' creado correctamente."
     else
@@ -33,9 +34,11 @@ class ClientesController < ApplicationController
   end
 
   def edit
+    @provincias = Provincia.order(:nombre)
   end
   
   def update
+    @provincias = Provincia.order(:nombre)
     parametros = if cliente_params[:password].blank?
                   cliente_params.except(:password,:password_confirmation)
                 else
@@ -74,9 +77,11 @@ class ClientesController < ApplicationController
   def edit_cliente
     @cliente = current_cliente
     authorize! :edit_cliente, @cliente
+    @provincias = Provincia.order(:nombre)
   end
 
   def update_cliente
+    @provincias = Provincia.order(:nombre)
       @cliente = current_cliente
       if @cliente.update(cliente_edit_params)
         redirect_to root_path, notice: "Perfil actualizado correctamente"
@@ -99,7 +104,7 @@ class ClientesController < ApplicationController
       :password_confirmation,
       :direccion,
       :ciudad,
-      :provincia,
+      :provincia_id,
       :codigo_postal,
       :telefono,
       :mejor_tiempo
@@ -111,7 +116,7 @@ class ClientesController < ApplicationController
       :nombre,
       :direccion,
       :ciudad,
-      :provincia,
+      :provincia_id,
       :codigo_postal,
       :telefono
     )

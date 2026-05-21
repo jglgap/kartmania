@@ -7,12 +7,13 @@ class Cliente < ApplicationRecord
   has_many :participantes, dependent: :destroy
   has_many :cliente_reservas, dependent: :nullify
   validate :verificacion_telefono
-
+  belongs_to :provincia, optional: true
   validates :nombre, presence: {message: "tiene que estar presente"}
 
   private
 
   def verificacion_telefono
+    return if telefono.blank?
     telefono_limpio = telefono.gsub(/[\s\-\.]/, '')
 
     if telefono_limpio.start_with?('+34', '0034')

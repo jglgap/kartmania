@@ -34,7 +34,7 @@
             
             <div class="col-12 col-md-6">
               <p class="fw-bold mb-1">Provincia</p>
-              <p class="mb-0"><%= @cliente.provincia.presence || "No especificada" %></p>
+              <p class="mb-0"><%= @cliente.provincia&.nombre || "No especificada" %></p>
             </div>
 
             <div class="col-12 col-md-6">

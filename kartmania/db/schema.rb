@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2026_05_21_112226) do
+ActiveRecord::Schema[7.1].define(version: 2026_05_21_122130) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,13 +74,14 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_21_112226) do
     t.string "nombre"
     t.string "direccion"
     t.string "ciudad"
-    t.string "provincia"
     t.string "codigo_postal"
     t.string "telefono"
     t.float "mejor_tiempo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "provincia_id"
     t.index ["email"], name: "index_clientes_on_email", unique: true
+    t.index ["provincia_id"], name: "index_clientes_on_provincia_id"
     t.index ["reset_password_token"], name: "index_clientes_on_reset_password_token", unique: true
   end
 
@@ -188,6 +189,7 @@ ActiveRecord::Schema[7.1].define(version: 2026_05_21_112226) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "cliente_reservas", "clientes"
   add_foreign_key "cliente_reservas", "reservas"
+  add_foreign_key "clientes", "provincia", column: "provincia_id"
   add_foreign_key "karts", "circuitos"
   add_foreign_key "participantes", "clientes"
   add_foreign_key "participantes", "torneos"

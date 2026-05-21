@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
-  devise_for :clientes
+  devise_for :clientes, controllers: {
+    registrations: 'clientes/registrations'
+  }
   devise_for :users
 
   resources :clientes, path: 'gestion_clientes' do

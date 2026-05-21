@@ -45,7 +45,7 @@
             <td><%= cliente.telefono %></td>
             <td><%= cliente.mejor_tiempo %></td>
             <td><%= cliente.ciudad %></td>
-            <td><%= cliente.provincia %></td>
+            <td><%= cliente.provincia&.nombre || "No especificada"%></td>
             <td class="text-nowrap">
             <div class="d-flex gap-2 justify-content-center">
                 <%= link_to cliente_path(cliente), class: "btn btn-sm btn-info fw-bold" do %>

@@ -28,7 +28,7 @@
 
             <div class="col-12">
               <%= f.label :nombre, "Nombre completo", class: "form-label fw-bold text-white" %>
-              <%= f.text_field :nombre, class: "form-control", placeholder: "Juan García" %>
+              <%= f.text_field :nombre, class: "form-control", placeholder: "Nombre" %>
             </div>
 
             <div class="col-12">
@@ -41,27 +41,30 @@
 
             <div class="col-12 col-md-6">
               <%= f.label :telefono, "Teléfono", class: "form-label fw-bold text-white" %>
-              <%= f.text_field :telefono, class: "form-control", placeholder: "600 000 000" %>
+              <%= f.text_field :telefono, class: "form-control", placeholder: "numero telefonico" %>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <%= f.label :provincia_id, "Provincia", class: "form-label fw-bold text-white" %>
+              <%= f.select :provincia_id,
+                  @provincias.map { |p| [p.nombre, p.id] },
+                  { include_blank: "Sin provincia" },
+                  class: "form-select" %>
             </div>
 
             <div class="col-12 col-md-6">
               <%= f.label :ciudad, "Ciudad", class: "form-label fw-bold text-white" %>
-              <%= f.text_field :ciudad, class: "form-control", placeholder: "Madrid" %>
+              <%= f.text_field :ciudad, class: "form-control", placeholder: "tu ciudad" %>
             </div>
 
             <div class="col-12 col-md-8">
               <%= f.label :direccion, "Dirección", class: "form-label fw-bold text-white" %>
-              <%= f.text_field :direccion, class: "form-control", placeholder: "Calle Mayor, 1" %>
+              <%= f.text_field :direccion, class: "form-control", placeholder: "Tu direccion" %>
             </div>
 
             <div class="col-12 col-md-4">
               <%= f.label :codigo_postal, "Código postal", class: "form-label fw-bold text-white" %>
-              <%= f.text_field :codigo_postal, class: "form-control", placeholder: "28001" %>
-            </div>
-
-            <div class="col-12 col-md-6">
-              <%= f.label :provincia, "Provincia", class: "form-label fw-bold text-white" %>
-              <%= f.text_field :provincia, class: "form-control", placeholder: "Madrid" %>
+              <%= f.text_field :codigo_postal, class: "form-control", placeholder: "tu codigo postal" %>
             </div>
 
             <hr class="border-white-50">
@@ -71,7 +74,7 @@
               <%= f.password_field :password,
                   autocomplete: "new-password",
                   class: "form-control",
-                  placeholder: "••••••••" %>
+                  placeholder: "contraseña" %>
               <div class="form-text text-white-50">Mínimo <%= @minimum_password_length %> caracteres</div>
             </div>
 
@@ -80,7 +83,7 @@
               <%= f.password_field :password_confirmation,
                   autocomplete: "new-password",
                   class: "form-control",
-                  placeholder: "••••••••" %>
+                  placeholder: "confirmar contraseña" %>
             </div>
 
             <div class="col-12 mt-2">
