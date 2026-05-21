@@ -95,7 +95,7 @@ Rails.application.configure do
     password: ENV['SENDGRID_API_KEY'], # Variable de entorno en Railway
     domain: 'kartmania-production.up.railway.app',
     address: 'smtp.sendgrid.net',
-    port: 587,
+    port: 2525,
     authentication: :plain,
     enable_starttls_auto: true
   }
