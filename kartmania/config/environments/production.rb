@@ -73,6 +73,33 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # -------------------------
+  # Configuración del mailer para producción con SendGrid
+  # -------------------------
+
+  # URL base para los links de los emails en producción
+  config.action_mailer.default_url_options = {
+    host: 'kartmania-production.up.railway.app',
+    protocol: 'https'
+  }
+
+  config.action_mailer.perform_caching = false
+
+  # Envío real de emails via SendGrid
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.smtp_settings = {
+    user_name: 'apikey',               # Siempre la cadena literal 'apikey' con SendGrid
+    password: ENV['SENDGRID_API_KEY'], # Variable de entorno en Railway
+    domain: 'kartmania-production.up.railway.app',
+    address: 'smtp.sendgrid.net',
+    port: 587,
+    authentication: :plain,
+    enable_starttls_auto: true
+  }
+
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
