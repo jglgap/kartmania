@@ -139,3 +139,34 @@ document.addEventListener("DOMContentLoaded", () => {
   );
   items.forEach((item) => observer.observe(item));
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const planItems = document.querySelectorAll(".plan-item");
+// Si no hay elementos no hacemos nada
+if (planItems.length === 0) return;
+
+// Retraso escalonado para que las cards aparezcan una tras otra
+planItems.forEach((item, index) => {
+  item.style.transitionDelay = `${index * 150}ms`;
+});
+
+const planObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // El elemento es visible — activamos la animación
+        entry.target.classList.add("plan-item--visible");
+
+        // Dejamos de observarlo para que no se repita
+        planObserver.unobserve(entry.target);
+      }
+    });
+  },
+  {
+    threshold: 0.1, // 10% visible es suficiente para cards más grandes
+  }
+);
+
+planItems.forEach((item) => planObserver.observe(item));
+})

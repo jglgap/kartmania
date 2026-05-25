@@ -31,6 +31,13 @@
               <p class="mb-0"><%= @plan.circuito.present? ? @plan.circuito.nombre : "Sin circuito asignado" %></p>
             </div>
 
+            <div class="col-12 col-md-6">
+              <p class="fw-bold mb-1">Estado</p>
+              <span class="badge mt-1 <%= color_estado_plan(@plan) %>">
+                <p class="mb-0"><%= @plan.estado.humanize %></p>
+              </span>
+            </div>
+
 
 
           </div>

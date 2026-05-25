@@ -62,6 +62,14 @@
             <%= f.label :descripcion, class: "form-label fw-bold text-white" %>
             <%= f.text_area :descripcion, class: "form-control", rows: 4 %>
           </div>
+          
+          <div class="col-12 col-md-6">
+            <%= f.label :estado, class: "form-label fw-bold text-white" %>
+            <%= f.select :estado,
+                Plan.estados.keys.map { |p| [p.humanize, p] },
+                { prompt: "Selecciona un estado" },
+                class: "form-select" %>
+          </div>
 
           <div class="col-12 d-flex gap-2 justify-content-center mt-4">
             <%= link_to "Cancelar", planes_path, class: "btn btn-danger custom-cancel-button fw-bold" %>

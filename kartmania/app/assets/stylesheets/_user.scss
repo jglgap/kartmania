@@ -51,3 +51,33 @@
   background-color: #090056; 
   border-radius: 12px;
 }
+
+// Estado inicial: oculto y desplazado hacia abajo
+.plan-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+
+  // Cuando el observer añade esta clase, la card aparece
+  &.plan-item--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.planes-card{
+  background-color: #ffffff; 
+  border-radius: 50px;
+}
+
+.oferta-card{
+  background-color: #FF0041;
+}
+
+.normal-card{
+  background-color: #007CFF;
+}
+
+.mega-oferta-card{
+  background-color: #F96900;
+}
