@@ -2,14 +2,14 @@
   <div class="row justify-content-center">
     <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
     
-        <div class="card text-white border-0 custom-card" >
+        <div class="card text-white border-0 planes-card" >
 
-        <div class="card-header border-bottom border-white py-3">
+        <div class="card-header border-bottom border-white py-3 normal-card">
         <h2 class="fw-bold mb-0"><%= @cliente.nombre %></h2>
         </div>
 
 
-        <div class="card-body">
+        <div class="card-body text-black">
           <div class="row g-4">
           
             <div class="col-12 col-md-6">
@@ -56,7 +56,7 @@
           </div>
         </div>
 
-        <div class="card-footer border-top border-white d-flex gap-2 justify-content-center py-3">
+        <div class="card-footer border-top border-white d-flex gap-2 justify-content-center py-3 normal-card">
         <%= link_to edit_cliente_cliente_path(current_cliente), class: "btn btn-warning fw-bold" do %>
             <i class="fa-solid fa-pen-to-square"></i>
         <% end %>

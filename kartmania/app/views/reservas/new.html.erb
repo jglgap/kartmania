@@ -22,12 +22,16 @@
         <div class="row g-3 g-md-4">
 
           <div class="col-12 col-md-6">
-            <%= f.label :fecha, class: "form-label fw-bold text-white" %>
+            <%= f.label :fecha, class: "form-label fw-bold text-white" do%>
+              Fecha <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.datetime_field :fecha, class: "form-control" %>
           </div>
 
           <div class="col-12 col-md-6">
-            <%= f.label :plan_id, "Plan", class: "form-label fw-bold text-white" %>
+            <%= f.label :plan_id, "Plan", class: "form-label fw-bold text-white" do%>
+              Plan <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.select :plan_id,
                 @planes.map { |p| [p.nombre, p.id] },
                 { prompt: "Selecciona un plan" },

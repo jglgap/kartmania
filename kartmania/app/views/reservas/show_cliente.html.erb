@@ -8,17 +8,17 @@
     <div class="row g-4">
       <% @reservas.each do |reserva| %>
         <div class="col-12 col-md-6 col-xl-4">
-          <div class="card text-white border-0 custom-card h-100">
+          <div class="card text-white border-0 planes-card h-100">
 
 
-            <div class="card-header border-bottom border-white py-3 d-flex justify-content-between align-items-center">
+            <div class="card-header border-bottom border-white py-3 d-flex justify-content-between align-items-center normal-card">
               <h5 class="fw-bold mb-0"><%= reserva.plan.nombre %></h5>
               <span class="badge fw-bold <%= color_estado_reserva(reserva) %>">
                 <%= reserva.estado.capitalize %>
               </span>
             </div>
 
-            <div class="card-body">
+            <div class="card-body text-black">
               <div class="row g-3">
 
                 <div class="col-6">
@@ -51,8 +51,8 @@
             </div>
 
 
-            <div class="card-footer border-top border-white py-2">
-              <small class="text-white-50">
+            <div class="card-footer border-top border-primary py-2">
+              <small class="text-black-50">
                 Reservado el <%= reserva.created_at.strftime("%d/%m/%Y") %>
               </small>
             </div>

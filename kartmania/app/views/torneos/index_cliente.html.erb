@@ -1,6 +1,6 @@
 <div class="container py-4 px-3 px-lg-5">
 
-  <h1 class="fw-bold text-white mb-4">Torneos disponibles</h1>
+  <h1 class="display-2 fw-bold text-center mb-5 custom-heading stagger-text">Torneos Disponibles</h1>
 
   <% if @torneos.empty? %>
     <p class="text-white-50 text-center mt-5">No hay torneos disponibles próximamente.</p>
@@ -8,10 +8,10 @@
     <div class="row g-4">
       <% @torneos.each do |torneo| %>
         <% participacion = @participaciones[torneo.id] %>
-        <div class="col-12 col-md-6 col-lg-4">
-          <div class="card h-100 text-white border-0 custom-card">
+        <div class="col-12 col-md-6 col-lg-4 plan-item">
+          <div class="card h-100 text-white border-0 planes-card">
 
-            <div class="card-header border-bottom border-white py-3 d-flex justify-content-between align-items-center">
+            <div class="card-header border-bottom border-white py-3 d-flex justify-content-between align-items-center normal-card">
               <h5 class="fw-bold mb-0"><%= torneo.nombre %></h5>
    
 
@@ -21,26 +21,26 @@
             </div>
 
             <div class="card-body">
-              <p class="text-white-50 small mb-3"><%= torneo.descripcion.presence || "Sin descripción" %></p>
+              <p class="text-black-50 small mb-3"><%= torneo.descripcion.presence || "Sin descripción" %></p>
 
               <div class="row g-2">
                 <div class="col-6">
-                  <p class="fw-bold mb-1 small">Fecha</p>
-                  <p class="mb-0 small"><%= torneo.fecha_torneo.strftime("%d/%m/%Y %H:%M") %></p>
+                  <p class="fw-bold mb-1 small text-black">Fecha</p>
+                  <p class="mb-0 small text-black"><%= torneo.fecha_torneo.strftime("%d/%m/%Y %H:%M") %></p>
                 </div>
                 <div class="col-6">
-                  <p class="fw-bold mb-1 small">Circuito</p>
-                  <p class="mb-0 small"><%= torneo.circuito&.nombre || "Sin asignar" %></p>
+                  <p class="fw-bold mb-1 small text-black">Circuito</p>
+                  <p class="mb-0 small text-black"><%= torneo.circuito&.nombre || "Sin asignar" %></p>
                 </div>
                 <div class="col-6">
-                  <p class="fw-bold mb-1 small">Plazas</p>
-                  <p class="mb-0 small">
+                  <p class="fw-bold mb-1 small text-black">Plazas</p>
+                  <p class="mb-0 small text-black">
                     <%= torneo.participantes.count %> / <%= torneo.numero_participantes %>
                   </p>
                 </div>
                 <% if participacion %>
                   <div class="col-6">
-                    <p class="fw-bold mb-1 small">Mi estado</p>
+                    <p class="fw-bold mb-1 smal text-blackl">Mi estado</p>
 
                     <span class="badge <%= color_estado_participacion(participacion) %> fw-bold">
                       <%= participacion.estado&.capitalize %>
@@ -68,7 +68,7 @@
                   <%= button_to participar_torneo_path(torneo),
                       method: :post,
                       data: { turbo: false },
-                      class: "btn btn-success custom-add-button fw-bold" do %>
+                      class: "btn btn-primary fw-bold" do %>
                     <i class="fa-solid fa-flag-checkered me-1"></i> Participar
                   <% end %>
                 <% end %>

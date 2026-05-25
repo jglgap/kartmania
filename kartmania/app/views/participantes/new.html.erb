@@ -16,7 +16,9 @@
         <div class="row g-3 g-md-4">
 
           <div class="col-12 col-md-6">
-            <%= f.label :cliente_id, "Cliente", class: "form-label fw-bold text-white" %>
+            <%= f.label :cliente_id, "Cliente", class: "form-label fw-bold text-white" do%>
+              Cliente <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.select :cliente_id,
                 @clientes.map { |c| [c.nombre, c.id] },
                 { prompt: "Selecciona un cliente" },
@@ -24,7 +26,9 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <%= f.label :torneo_id, "Torneo", class: "form-label fw-bold text-white" %>
+            <%= f.label :torneo_id, "Torneo", class: "form-label fw-bold text-white" do%>
+              Torneo <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.select :torneo_id,
                 @torneos.map { |t| [t.nombre, t.id] },
                 { prompt: "Selecciona un torneo" },
@@ -32,7 +36,9 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <%= f.label :estado, class: "form-label fw-bold text-white" %>
+            <%= f.label :estado, class: "form-label fw-bold text-white" do%>
+              Estado <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.select :estado,
                 Participante.estados.keys.map { |t| [t.humanize, t] },
                 { prompt: "Selecciona un estado" },

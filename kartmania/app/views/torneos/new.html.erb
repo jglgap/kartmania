@@ -1,6 +1,6 @@
 <div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
   <div class="row justify-content-center">
-    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Kart</h1>
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Torneo</h1>
     <div class="col-12 col-lg-8 col-xl-6">
 
       <%= form_with model: @torneo, url: torneos_path , data: { turbo: false } do |f| %>
@@ -16,17 +16,23 @@
         <div class="row g-3 g-md-4">
 
           <div class="col-12 col-md-6">
-            <%= f.label :nombre, class: "form-label fw-bold text-white" %>
+            <%= f.label :nombre, class: "form-label fw-bold text-white" do %>
+              Nombre <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.text_field :nombre, class: "form-control" %>
           </div>
 
             <div class="col-12 col-md-6">
-            <%= f.label :fecha_torneo, class: "form-label fw-bold text-white" %>
+            <%= f.label :fecha_torneo, class: "form-label fw-bold text-white" do %>
+              Fecha del torneo <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.datetime_field :fecha_torneo, class: "form-control" %>
           </div>
 
           <div class="col-12 col-md-6">
-            <%= f.label :numero_participantes, class: "form-label fw-bold text-white" %>
+            <%= f.label :numero_participantes, class: "form-label fw-bold text-white" do%>
+              Número de participantes <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.number_field :numero_participantes, class: "form-control", min:0 %>
           </div>
 

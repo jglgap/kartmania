@@ -16,7 +16,9 @@
         <div class="row g-3 g-md-4">
 
           <div class="col-12 col-md-6">
-            <%= f.label :tipo, class: "form-label fw-bold text-white" %>
+            <%= f.label :tipo, class: "form-label fw-bold text-white" do%>
+              Tipo <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.select :tipo,
                 Kart.tipos.keys.map { |t| [t.humanize, t] },
                 { prompt: "Selecciona un tipo" },
@@ -24,7 +26,9 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <%= f.label :estado, class: "form-label fw-bold text-white" %>
+            <%= f.label :estado, class: "form-label fw-bold text-white" do%>
+              Estado <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.select :estado,
                 Kart.estados.keys.map { |e| [e.humanize, e] },
                 { prompt: "Selecciona un estado" },
@@ -32,7 +36,9 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <%= f.label :circuito_id, "Circuito", class: "form-label fw-bold text-white" %>
+            <%= f.label :circuito_id, "Circuito", class: "form-label fw-bold text-white" do%>
+              Circuito <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.select :circuito_id,
                 @circuitos.map { |c| [c.nombre, c.id] },
                 { include_blank: "Sin circuito asignado" },

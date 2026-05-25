@@ -1,6 +1,6 @@
 <div class="container py-4 custom-user-form mb-4 px-3 px-lg-5">
   <div class="row justify-content-center">
-    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Kart</h1>
+    <h1 class="mb-4 fw-bold text-white text-center text-md-start">Nuevo Plan</h1>
     <div class="col-12 col-lg-8 col-xl-6">
 
       <%= form_with model: @plan, url: planes_path , data: { turbo: false } do |f| %>
@@ -16,17 +16,23 @@
         <div class="row g-3 g-md-4">
 
           <div class="col-12 col-md-6">
-            <%= f.label :nombre, class: "form-label fw-bold text-white" %>
+            <%= f.label :nombre, class: "form-label fw-bold text-white" do%>
+              Nombre <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.text_field :nombre, class: "form-control" %>
           </div>
 
           <div class="col-12 col-md-6">
-            <%= f.label :precio, class: "form-label fw-bold text-white" %>
+            <%= f.label :precio, class: "form-label fw-bold text-white" do%>
+              Precio <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.number_field :precio, class: "form-control",step:0.01, min:0 %>
           </div>
 
           <div class="col-12 col-md-6">
-            <%= f.label :max_participantes, class: "form-label fw-bold text-white" %>
+            <%= f.label :max_participantes, class: "form-label fw-bold text-white" do%>
+              Máximo de participantes <i class="fa-solid fa-circle-exclamation ms-1 text-danger "></i>
+            <% end %>
             <%= f.number_field :max_participantes, class: "form-control", min:0 %>
           </div>
 
