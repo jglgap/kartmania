@@ -170,3 +170,56 @@ const planObserver = new IntersectionObserver(
 
 planItems.forEach((item) => planObserver.observe(item));
 })
+
+
+
+
+// Función genérica reutilizable para cualquier tabla del proyecto
+
+function getColumnIndex(table, headerText) {
+  let index = -1;
+  $(table).find("thead th").each(function (i) {
+    if ($(this).text().trim().toLowerCase() === headerText.toLowerCase()) {
+      index = i;
+      return false; // break
+    }
+  });
+  return index;
+}
+
+function initDataTable() {
+  const tabla = document.getElementById("tabla-user");
+  if (!tabla) return;
+
+  if ($.fn.DataTable.isDataTable(tabla)) {
+    $(tabla).DataTable().destroy();
+  }
+
+  // Inicializamos con nuestra configuración
+  $(tabla).DataTable({
+    searching:    false,        
+    pageLength:   15,           
+    lengthChange: false,        
+    order:        [[0, "asc"]],
+    columnDefs: [
+      { orderable: false, targets: -1 } 
+    ],
+    language: {
+      paginate: {
+        first:    "«",
+        last:     "»",
+        next:     "›",
+        previous: "‹"
+      },
+      info:         "Mostrando _START_ – _END_ de _TOTAL_ usuarios",
+      infoEmpty:    "No hay usuarios",
+      infoFiltered: "(filtrado de _MAX_ usuarios)",
+      zeroRecords:  "No se encontraron resultados"
+    }
+  });
+}
+
+// Registramos aquí todas las tablas del proyecto
+document.addEventListener("turbo:load", initDataTable);
+
+document.addEventListener("DOMContentLoaded", initDataTable);

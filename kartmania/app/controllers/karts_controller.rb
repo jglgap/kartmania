@@ -5,7 +5,7 @@ class KartsController < ApplicationController
   def index
     if params[:search].present?
       search = "%#{params[:search]}%"
-      @karts = Kart.where("tipo Like ? OR estado Like ?", search, search)
+      @karts = Kart.where("tipo LIKE ? OR estado LIKE ?", search, search)
     else
       @karts = Kart.all
     end

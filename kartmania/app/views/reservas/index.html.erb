@@ -23,7 +23,7 @@
   </div>
 
   <div class="table-responsive">
-    <table class="table custom-table text-center align-middle">
+    <table  id="tabla-user" class="table custom-table text-center align-middle">
       <thead>
         <tr>
           <th>Titular</th>
@@ -39,7 +39,7 @@
             <td><%= reserva.cliente_reservas.find(&:es_titular)&.nombre || "sin titular" %></td>
             <td><%= reserva.plan.present? ? reserva.plan.nombre : "sin plan" %></td>
             <td><%= reserva.fecha.strftime("%d/%m/%Y %H:%M") %></td>
-            <td><%= reserva.estado.humanize %></td>
+            <td data-order="<%= estado_orden(reserva.estado) %>"><%= reserva.estado.humanize %></td>
             <td class="text-nowrap">
               <div class="d-flex gap-2 justify-content-center">
 

@@ -19,4 +19,5 @@ module PlanesHelper
         colores[plan.estado]
     
     end
+
 end

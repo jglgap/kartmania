@@ -82,3 +82,47 @@
   background-color: #F96900;
 }
 
+
+
+/* ── DataTables — paginación tema oscuro ───────────────── */
+
+/* Contenedor inferior con info + paginación */
+.dataTables_wrapper .dataTables_info {
+  color: #ffffff;
+  padding-top: 0.75rem;
+}
+
+/* Botones de paginación */
+.dataTables_wrapper .pagination .page-link {
+  background-color: #090056;
+  border-color: #ffffff44;
+  color: #ffffff;
+}
+
+.dataTables_wrapper .pagination .page-link:hover {
+  background-color: #1a0080;
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+/* Página activa */
+.dataTables_wrapper .pagination .page-item.active .page-link {
+  background-color: #ffffff;
+  border-color: #ffffff;
+  color: #090056;
+  font-weight: bold;
+}
+
+/* Página deshabilitada */
+.dataTables_wrapper .pagination .page-item.disabled .page-link {
+  background-color: #090056;
+  border-color: #ffffff22;
+  color: #ffffff55;
+}
+
+/* Flecha de ordenación en cabeceras */
+table.dataTable thead .sorting::after,
+table.dataTable thead .sorting_asc::after,
+table.dataTable thead .sorting_desc::after {
+  color: #ffffffaa;
+}

@@ -8,6 +8,7 @@
     <%= favicon_link_tag "logo_kartmania.png", type: "image/png" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
   </head>
 
   <body class="d-flex flex-column min-vh-100">
@@ -33,6 +34,12 @@
       <%= yield %>
     </main>
     <%= render "layouts/shared/footer"%>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
   </body>
 
 </html>
