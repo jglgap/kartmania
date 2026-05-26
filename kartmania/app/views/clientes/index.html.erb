@@ -3,19 +3,7 @@
 
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
 
-
-    <%= form_with url: clientes_path, method: :get, data: { turbo: false } do |f| %>
-      <div class="input-group">
-        <%= f.text_field :search,
-            value: params[:search],
-            placeholder: "Filtrar",
-            class: "form-control" %>
-        <%= f.button type: :submit, class: "btn btn-outline-light" do %>
-            <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
-      </div>
-    <% end %>
-
+    <div id="filtro"></div>
     
     <%= link_to new_cliente_path, class: "btn btn-success custom-add-button fw-bold d-flex align-items-center gap-2" do %>
         <span>Crear</span>
@@ -25,15 +13,15 @@
 
 
   <div class="table-responsive">
-    <table id="tabla-user" class="table custom-table text-center align-middle">
+    <table id="tabla-searchable" class="table custom-table text-center align-middle">
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Email</th>
-          <th>Teléfono</th>
-          <th>Tipo</th>
-          <th>Ciudad</th>
-          <th>Provincia</th>
+          <th data-orderable="false">Teléfono</th>
+          <th data-searchable="false">Mejor tiempo</th>
+          <th data-orderable="false">Ciudad</th>
+          <th data-orderable="false"x>Provincia</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -42,9 +30,9 @@
           <tr>
             <td><%= cliente.nombre %></td>
             <td><%= cliente.email %></td>
-            <td><%= cliente.telefono %></td>
-            <td><%= cliente.mejor_tiempo %></td>
-            <td><%= cliente.ciudad %></td>
+            <td><%= cliente.telefono.present? ? cliente.telefono : "no especificado" %></td>
+            <td><%= cliente.mejor_tiempo.present? ? cliente.mejor_tiempo : "0" %></td>
+            <td><%= cliente.ciudad.present? ? cliente.ciudad : "no especificado" %></td>
             <td><%= cliente.provincia&.nombre || "No especificada"%></td>
             <td class="text-nowrap">
             <div class="d-flex gap-2 justify-content-center">

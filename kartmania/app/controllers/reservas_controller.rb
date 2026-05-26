@@ -5,16 +5,7 @@ class ReservasController < ApplicationController
   before_action :authenticate_cliente!, only: [:show_cliente]
 
   def index
-    if params[:search].present?
-      search = "%#{params[:search]}%"
-      @reservas = Reserva
-        .joins(:plan)
-        .joins("INNER JOIN cliente_reservas ON cliente_reservas.reserva_id = reservas.id AND cliente_reservas.es_titular = true")
-        .where("plans.nombre LIKE ? OR cliente_reservas.nombre LIKE ?", search, search)
-    else
       @reservas = Reserva.all
-    end
-
   end
 
   def show

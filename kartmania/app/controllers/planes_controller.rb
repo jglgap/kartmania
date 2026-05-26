@@ -3,12 +3,7 @@ class PlanesController < ApplicationController
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].present?
-      search = "%#{params[:search]}%"
-      @planes = Plan.where("nombre like ?", search)
-    else
       @planes = Plan.all
-    end
   end
 
   def show

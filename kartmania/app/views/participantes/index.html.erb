@@ -3,17 +3,7 @@
 
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
 
-    <%= form_with url: participantes_path, method: :get, data: { turbo: false } do |f| %>
-      <div class="input-group">
-        <%= f.text_field :search,
-            value: params[:search],
-            placeholder: "Filtrar por nombre o torneo o estado",
-            class: "form-control" %>
-        <%= f.button type: :submit, class: "btn btn-outline-light" do %>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="filtro"></div>
 
     <%= link_to new_participante_path, class: "btn btn-success custom-add-button fw-bold d-flex align-items-center gap-2" do %>
       <span>Crear</span>
@@ -23,13 +13,13 @@
   </div>
 
   <div class="table-responsive">
-    <table id="tabla-user" class="table custom-table text-center align-middle">
+    <table id="tabla-searchable" class="table custom-table text-center align-middle">
       <thead>
         <tr>
           <th>Solicitante</th>
           <th>Torneo</th>
           <th>Fecha solicitud</th>
-          <th>Estado</th>
+          <th data-orderable="false">Estado</th>
           <th>Fecha confirmacion</th>
           <th>Acciones</th>
         </tr>

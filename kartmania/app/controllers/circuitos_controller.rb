@@ -3,12 +3,7 @@ class CircuitosController < ApplicationController
   before_action :set_circuito, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].present?
-      search = "%#{params[:search]}%"
-      @circuitos = Circuito.where("nombre LIKE ?",search)
-    else
       @circuitos = Circuito.all
-    end
   end
 
   def show

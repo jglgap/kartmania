@@ -3,17 +3,7 @@
 
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
 
-    <%= form_with url: planes_path, method: :get, data: { turbo: false } do |f| %>
-      <div class="input-group">
-        <%= f.text_field :search,
-            value: params[:search],
-            placeholder: "Filtrar por nombre",
-            class: "form-control" %>
-        <%= f.button type: :submit, class: "btn btn-outline-light" do %>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="filtro"></div>
 
     <%= link_to new_plane_path, class: "btn btn-success custom-add-button fw-bold d-flex align-items-center gap-2" do %>
       <span>Crear</span>
@@ -23,14 +13,14 @@
   </div>
 
   <div class="table-responsive">
-    <table id="tabla-user" class="table custom-table text-center align-middle">
+    <table id="tabla-searchable" class="table custom-table text-center align-middle">
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Precio</th>
           <th>Maximo de participantes</th>
           <th>Circuito</th>
-          <th>Descripción</th>
+          <th data-searchable="false" data-orderable="false" >Descripción</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -41,7 +31,7 @@
             <td><%= plan.precio %></td>
             <td><%= plan.max_participantes %></td>
             <td><%= plan.circuito_id.present? ? plan.circuito.nombre : "Sin circuito asignado" %></td>
-            <td><%= plan.descripcion.presence || "Sin descripción" %></td>
+            <td><%= plan.descripcion.presence || "No especificada" %></td>
             <td class="text-nowrap">
               <div class="d-flex gap-2 justify-content-center">
 
@@ -54,16 +44,6 @@
                 <%= link_to edit_plane_path(plan), class: "btn btn-sm btn-warning fw-bold" do %>
                   <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
-
-
-                <button class="btn btn-sm btn-primary fw-bold" disabled>
-                  <i class="fa-solid fa-flag"></i>
-                </button>
-
-                <button class="btn btn-sm btn-secondary fw-bold" disabled>
-                  <i class="fa-solid fa-gear"></i>
-                </button>
-
 
                 <%= button_to plane_path(plan),
                     method: :delete,

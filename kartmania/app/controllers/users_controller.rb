@@ -3,15 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].present?
-      search = "%#{params[:search].downcase}%"
-      @users = User.where(
-        "LOWER(nombre) LIKE ? OR LOWER(email) LIKE ? OR LOWER(telefono) LIKE ?",
-        search, search, search
-      )
-    else
       @users = User.all.order(:nombre)
-    end
   end
 
   def show

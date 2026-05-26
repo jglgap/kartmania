@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       filas.forEach((fila) => observerFilas.observe(fila));
 
-    }, 300); 
+    }, 300);
   }
 
 });
@@ -143,83 +143,161 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const planItems = document.querySelectorAll(".plan-item");
-// Si no hay elementos no hacemos nada
-if (planItems.length === 0) return;
+  // Si no hay elementos no hacemos nada
+  if (planItems.length === 0) return;
 
-// Retraso escalonado para que las cards aparezcan una tras otra
-planItems.forEach((item, index) => {
-  item.style.transitionDelay = `${index * 150}ms`;
-});
+  // Retraso escalonado para que las cards aparezcan una tras otra
+  planItems.forEach((item, index) => {
+    item.style.transitionDelay = `${index * 150}ms`;
+  });
 
-const planObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        // El elemento es visible — activamos la animación
-        entry.target.classList.add("plan-item--visible");
+  const planObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // El elemento es visible — activamos la animación
+          entry.target.classList.add("plan-item--visible");
 
-        // Dejamos de observarlo para que no se repita
-        planObserver.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.1, // 10% visible es suficiente para cards más grandes
-  }
-);
+          // Dejamos de observarlo para que no se repita
+          planObserver.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1, // 10% visible es suficiente para cards más grandes
+    }
+  );
 
-planItems.forEach((item) => planObserver.observe(item));
+  planItems.forEach((item) => planObserver.observe(item));
 })
 
+//===============Data tables======================
+
+//function initDataTable() {
+//  const tabla = document.getElementById("tabla-user");
+//  if (!tabla) return;
+//
+//  if ($.fn.DataTable.isDataTable(tabla)) {
+//    $(tabla).DataTable().destroy();
+//  }
+//
+//
+//  $(tabla).DataTable({
+//    searching: false,
+//    pageLength: 15,
+//    lengthChange: false,
+//    order: [[0, "asc"]],
+//    columnDefs: [
+//      { orderable: false, targets: -1 }
+//    ],
+//    language: {
+//      paginate: {
+//        first: "«",
+//        last: "»",
+//        next: "›",
+//        previous: "‹"
+//      },
+//      info: "Mostrando _START_ – _END_ de _TOTAL_ registros",
+//      infoEmpty: "No hay registros",
+//      infoFiltered: "(filtrado de _MAX_ registros)",
+//      zeroRecords: "No se encontraron resultados"
+//    }
+//  });
+//}
+//
+//
+//document.addEventListener("turbo:load", initDataTable);
+//document.addEventListener("DOMContentLoaded", initDataTable);
 
 
+//==============tabla con buscador=========================
 
-// Función genérica reutilizable para cualquier tabla del proyecto
-
-function getColumnIndex(table, headerText) {
-  let index = -1;
-  $(table).find("thead th").each(function (i) {
-    if ($(this).text().trim().toLowerCase() === headerText.toLowerCase()) {
-      index = i;
-      return false; // break
-    }
-  });
-  return index;
-}
-
-function initDataTable() {
-  const tabla = document.getElementById("tabla-user");
+function initSearchableDataTable() {
+  const tabla = document.getElementById("tabla-searchable");
   if (!tabla) return;
 
   if ($.fn.DataTable.isDataTable(tabla)) {
     $(tabla).DataTable().destroy();
   }
 
-  // Inicializamos con nuestra configuración
-  $(tabla).DataTable({
-    searching:    false,        
-    pageLength:   15,           
-    lengthChange: false,        
-    order:        [[0, "asc"]],
+  const placeholder = tabla.dataset.placeholder || "Filtrar...";
+
+
+  const dt = $(tabla).DataTable({
+    dom: "tip",
+    pageLength: 15,
+    lengthChange: false,
+    order: [[0, "asc"]],
     columnDefs: [
-      { orderable: false, targets: -1 } 
+      { orderable: false, targets: -1 }
     ],
     language: {
       paginate: {
-        first:    "«",
-        last:     "»",
-        next:     "›",
+        first: "«",
+        last: "»",
+        next: "›",
         previous: "‹"
       },
-      info:         "Mostrando _START_ – _END_ de _TOTAL_ usuarios",
-      infoEmpty:    "No hay usuarios",
-      infoFiltered: "(filtrado de _MAX_ usuarios)",
-      zeroRecords:  "No se encontraron resultados"
+      info: "Mostrando _START_ – _END_ de _TOTAL_ registros",
+      infoEmpty: "No hay registros",
+      infoFiltered: "(filtrado de _MAX_ registros)",
+      zeroRecords: "No se encontraron resultados"
+    },
+
+    initComplete: function () {
+      // Flag que indica si hay una búsqueda activa
+      let buscando = false;
+
+      const input = $("<input>")
+        .attr("type", "text")
+        .attr("placeholder", placeholder)
+        .addClass("form-control")
+        .on("keypress", function (e) {
+          if (e.key === "Enter") ejecutarBusqueda();
+        });
+
+      const botonLupa = $("<span>")
+        .addClass("btn btn-outline-light")
+        .html('<i class="fa-solid fa-magnifying-glass"></i>')
+        .on("click", function () {
+          // Decidimos qué hacer según el estado, no según el valor del input
+          if (buscando) {
+            limpiarBusqueda();
+          } else {
+            ejecutarBusqueda();
+          }
+        });
+
+      function ejecutarBusqueda() {
+        if (input.val() === "") return; // Sin texto no hacemos nada
+        dt.search(input.val()).draw();
+        buscando = true;
+        botonLupa.html('<i class="fa-regular fa-circle-xmark"></i>');
+      }
+
+      function limpiarBusqueda() {
+        input.val("");
+        dt.search("").draw();
+        buscando = false;
+        botonLupa.html('<i class="fa-solid fa-magnifying-glass"></i>');
+      }
+
+      // Si el usuario borra el input a mano resetea el estado
+      input.on("input", function () {
+        if ($(this).val() === "") {
+          buscando = false;
+          botonLupa.html('<i class="fa-solid fa-magnifying-glass"></i>');
+        }
+      });
+
+      const inputGroup = $("<div>")
+        .addClass("input-group")
+        .append(input, botonLupa);
+
+      $("#filtro").html(inputGroup);
     }
   });
 }
 
-// Registramos aquí todas las tablas del proyecto
-document.addEventListener("turbo:load", initDataTable);
-
-document.addEventListener("DOMContentLoaded", initDataTable);
+document.addEventListener("turbo:load", initSearchableDataTable);
+document.addEventListener("DOMContentLoaded", initSearchableDataTable);

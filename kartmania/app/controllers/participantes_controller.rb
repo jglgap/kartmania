@@ -3,19 +3,7 @@ class ParticipantesController < ApplicationController
   before_action :set_participante, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].present?
-      termino = "%#{params[:search]}%"
-      
-
-      estados_coincidentes = Participante.estados.select { |k, v| k.include?(params[:search].downcase) }.values
-
-      @participantes = Participante.joins(:cliente, :torneo).where(
-        "clientes.nombre LIKE ? OR torneos.nombre LIKE ? OR estado IN (?)",
-        termino, termino, estados_coincidentes
-      )
-    else
       @participantes = Participante.all
-    end
   end
 
   def show

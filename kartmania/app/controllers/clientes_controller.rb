@@ -4,15 +4,7 @@ class ClientesController < ApplicationController
   before_action :set_client, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].present?
-      search = "%#{params[:search]}%"
-      @clientes = Cliente.where(
-        "nombre LIKE ? OR email LIKE ? OR telefono LIKE ?",
-        search, search, search
-      )
-    else
       @clientes = Cliente.all
-    end
   end
 
   def show

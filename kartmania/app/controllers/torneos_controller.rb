@@ -4,12 +4,7 @@ class TorneosController < ApplicationController
   before_action :set_torneo, only: [:show,:edit, :update, :destroy, :participar, :no_participar]
 
   def index
-    if params[:search].present?
-      search = "%#{params[:search]}%"
-      @torneos = Torneo.where("nombre LIKE ? OR CAST(numero_participantes AS CHAR) LIKE ?", search, search)
-    else
       @torneos = Torneo.all
-    end
   end
 
   def show

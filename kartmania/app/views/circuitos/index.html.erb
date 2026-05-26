@@ -3,17 +3,7 @@
 
   <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
 
-    <%= form_with url: circuitos_path, method: :get, data: { turbo: false } do |f| %>
-      <div class="input-group">
-        <%= f.text_field :search,
-            value: params[:search],
-            placeholder: "Filtrar por nombre",
-            class: "form-control" %>
-        <%= f.button type: :submit, class: "btn btn-outline-light" do %>
-          <i class="fa-solid fa-magnifying-glass"></i>
-        <% end %>
-      </div>
-    <% end %>
+    <div id="filtro"></div>
 
     <%= link_to new_circuito_path, class: "btn btn-success custom-add-button fw-bold d-flex align-items-center gap-2" do %>
       <span>Crear</span>
@@ -23,12 +13,12 @@
   </div>
 
   <div class="table-responsive">
-    <table id="tabla-user" class="table custom-table text-center align-middle">
+    <table id="tabla-searchable" class="table custom-table text-center align-middle">
       <thead>
         <tr>
           <th>Nombre</th>
           <th>Kilómetros</th>
-          <th data-orderable="false">Descripción</th>
+          <th data-searchable="false" data-orderable="false">Descripción</th>
           <th>Acciones</th>
         </tr>
       </thead>
@@ -37,7 +27,7 @@
           <tr>
             <td><%= circuito.nombre %></td>
             <td><%= circuito.kilometros %></td>
-            <td><%= circuito.descripcion.presence || "Sin descripción" %></td>
+            <td><%= circuito.descripcion.presence || "No especificada" %></td>
             <td class="text-nowrap">
               <div class="d-flex gap-2 justify-content-center">
 
@@ -50,16 +40,6 @@
                 <%= link_to edit_circuito_path(circuito), class: "btn btn-sm btn-warning fw-bold" do %>
                   <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
-
-
-                <button class="btn btn-sm btn-primary fw-bold" disabled>
-                  <i class="fa-solid fa-flag"></i>
-                </button>
-
-                <button class="btn btn-sm btn-secondary fw-bold" disabled>
-                  <i class="fa-solid fa-gear"></i>
-                </button>
-
 
                 <%= button_to circuito_path(circuito),
                     method: :delete,

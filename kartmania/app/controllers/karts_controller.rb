@@ -3,12 +3,7 @@ class KartsController < ApplicationController
   before_action :set_kart, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].present?
-      search = "%#{params[:search]}%"
-      @karts = Kart.where("tipo LIKE ? OR estado LIKE ?", search, search)
-    else
       @karts = Kart.all
-    end
   end
 
   def show
