@@ -21,13 +21,21 @@
             </div>
 
             <div class="card-body">
-              <p class="text-black-50 small mb-3"><%= torneo.descripcion.presence || "Sin descripción" %></p>
+              <p class="text-black small mb-3"><%= torneo.descripcion.presence || "Sin descripción" %></p>
 
               <div class="row g-2">
                 <div class="col-6">
                   <p class="fw-bold mb-1 small text-black">Fecha</p>
                   <p class="mb-0 small text-black"><%= torneo.fecha_torneo.strftime("%d/%m/%Y %H:%M") %></p>
                 </div>
+                <% if participacion %>
+                  <div class="col-6">
+                    <p class="fw-bold mb-1 smal text-black">Mi estado</p>
+                    <span class="badge <%= color_estado_participacion(participacion) %> fw-bold">
+                      <%= participacion.estado&.capitalize %>
+                    </span>
+                  </div>
+                <% end %>
                 <div class="col-6">
                   <p class="fw-bold mb-1 small text-black">Circuito</p>
                   <p class="mb-0 small text-black"><%= torneo.circuito&.nombre || "Sin asignar" %></p>
@@ -38,15 +46,25 @@
                     <%= torneo.participantes.count %> / <%= torneo.numero_participantes %>
                   </p>
                 </div>
-                <% if participacion %>
-                  <div class="col-6">
-                    <p class="fw-bold mb-1 smal text-blackl">Mi estado</p>
+                <div class="col-6">
+                  <p class="fw-bold mb-1 small text-black">Primer premio</p>
+                  <p class="mb-0 small text-black">
+                    <%= torneo.primer_premio.present? ? torneo.primer_premio : "Sin especificar" %>
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p class="fw-bold mb-1 small text-black">Segundo premio</p>
+                  <p class="mb-0 small text-black">
+                    <%= torneo.segundo_premio.present? ? torneo.segundo_premio : "Sin especificar" %>
+                  </p>
+                </div>
+                <div class="col-6">
+                  <p class="fw-bold mb-1 small text-black">Tercer premio</p>
+                  <p class="mb-0 small text-black">
+                    <%= torneo.tercer_premio.present? ? torneo.tercer_premio : "Sin especificar" %>
+                  </p>
+                </div>
 
-                    <span class="badge <%= color_estado_participacion(participacion) %> fw-bold">
-                      <%= participacion.estado&.capitalize %>
-                    </span>
-                  </div>
-                <% end %>
               </div>
             </div>
 

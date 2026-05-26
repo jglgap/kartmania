@@ -60,8 +60,7 @@ class PlanesController < ApplicationController
       :precio,
       :max_participantes,
       :circuito_id,
-      :estado,
-      :imagen
+      :estado
     )
   end
 

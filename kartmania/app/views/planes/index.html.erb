@@ -20,6 +20,7 @@
           <th>Precio</th>
           <th>Maximo de participantes</th>
           <th>Circuito</th>
+          <th data-orderable="false">Estado</th>
           <th data-searchable="false" data-orderable="false" >Descripción</th>
           <th>Acciones</th>
         </tr>
@@ -31,7 +32,8 @@
             <td><%= plan.precio %></td>
             <td><%= plan.max_participantes %></td>
             <td><%= plan.circuito_id.present? ? plan.circuito.nombre : "Sin circuito asignado" %></td>
-            <td><%= plan.descripcion.presence || "No especificada" %></td>
+            <td><%= plan.estado.humanize %></td>
+            <td><%= (plan.descripcion.presence || "No especificada").truncate(50) %></td>
             <td class="text-nowrap">
               <div class="d-flex gap-2 justify-content-center">
 

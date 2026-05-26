@@ -27,7 +27,7 @@
           <tr>
             <td><%= circuito.nombre %></td>
             <td><%= circuito.kilometros %></td>
-            <td><%= circuito.descripcion.presence || "No especificada" %></td>
+            <td><%= (circuito.descripcion.presence || "No especificada").truncate(50) %></td>
             <td class="text-nowrap">
               <div class="d-flex gap-2 justify-content-center">
 
