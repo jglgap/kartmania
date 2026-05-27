@@ -3,7 +3,7 @@
   <h1 class="display-2 fw-bold text-center mb-5 custom-heading stagger-text">Torneos Disponibles</h1>
 
   <% if @torneos.empty? %>
-    <p class="text-white-50 text-center mt-5">No hay torneos disponibles próximamente.</p>
+    <p class="text-black text-center mt-5">No hay torneos disponibles próximamente.</p>
   <% else %>
     <div class="row g-4">
       <% @torneos.each do |torneo| %>

@@ -1,7 +1,80 @@
-<footer class="footer mt-5 py-3 custom_footer">
-  <div class="container text-center">
-    <span >
-      &copy; <%= Time.current.year %> Kartmania. Todos los derechos reservados.
-    </span>
+<footer class="custom_footer mt-5">
+
+  <div class="container py-5">
+    <div class="row g-4">
+
+      <div class="col-12 col-md-3">
+        <h5 class="fw-bold text-white footer-heading">Kartmania</h5>
+        <hr class="footer-divider">
+        <p class="text-white-50 small">
+          Somos el circuito de karts más emocionante de la región. Velocidad, adrenalina y diversión para todos los niveles.
+        </p>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <button class="footer-toggle w-100 d-flex justify-content-between align-items-center d-md-none"
+                data-bs-toggle="collapse" data-bs-target="#col-enlaces" aria-expanded="false">
+          <h5 class="fw-bold text-white footer-heading mb-0">Enlaces</h5>
+          <i class="fa-solid fa-chevron-down footer-icon text-white"></i>
+        </button>
+        <h5 class="fw-bold text-white footer-heading d-none d-md-block">Enlaces</h5>
+        <hr class="footer-divider">
+        <div class="collapse footer-collapse" id="col-enlaces">
+          <ul class="list-unstyled footer-links">
+            <li><%= link_to "Inicio", root_path %></li>
+            <li><%= link_to "Nosotros", nosotros_path %></li>
+            <li><%= link_to "Planes", planes_path %></li>
+            <li><%= link_to "Circuitos", circuitos_path %></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <button class="footer-toggle w-100 d-flex justify-content-between align-items-center d-md-none"
+                data-bs-toggle="collapse" data-bs-target="#col-info" aria-expanded="false">
+          <h5 class="fw-bold text-white footer-heading mb-0">Información</h5>
+          <i class="fa-solid fa-chevron-down footer-icon text-white"></i>
+        </button>
+        <h5 class="fw-bold text-white footer-heading d-none d-md-block">Información</h5>
+        <hr class="footer-divider">
+        <div class="collapse footer-collapse" id="col-info">
+          <ul class="list-unstyled footer-links">
+            <li><a href="#">Política de privacidad</a></li>
+            <li><a href="#">Términos y condiciones</a></li>
+            <li><a href="#">Aviso legal</a></li>
+            <li><a href="#">Cookies</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-3">
+        <button class="footer-toggle w-100 d-flex justify-content-between align-items-center d-md-none"
+                data-bs-toggle="collapse" data-bs-target="#col-contacto" aria-expanded="false">
+          <h5 class="fw-bold text-white footer-heading mb-0">Contacto</h5>
+          <i class="fa-solid fa-chevron-down footer-icon text-white"></i>
+        </button>
+        <h5 class="fw-bold text-white footer-heading d-none d-md-block">Contacto</h5>
+        <hr class="footer-divider">
+        <div class="collapse footer-collapse" id="col-contacto">
+          <ul class="list-unstyled footer-links">
+            <li><i class="fa-solid fa-location-dot me-2"></i>Calle Circuito, 1 — A Coruña</li>
+            <li><i class="fa-solid fa-phone me-2"></i>+34 981 000 000</li>
+            <li><i class="fa-solid fa-envelope me-2"></i>info@kartmania.es</li>
+            <li><i class="fa-solid fa-clock me-2"></i>Lun–Dom: 10:00 – 22:00</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
   </div>
+
+
+  <div class="footer-bottom py-3">
+    <div class="container text-center">
+      <span class="text-white small">
+        &copy; <%= Time.current.year %> Kartmania. Todos los derechos reservados.
+      </span>
+    </div>
+  </div>
+
 </footer>

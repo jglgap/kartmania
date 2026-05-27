@@ -1,4 +1,7 @@
 class LandingController < ApplicationController
+
+  layout "landing"
+
   def welcome
   end
   def nosotros

@@ -2,7 +2,7 @@ class TorneosController < ApplicationController
   before_action :authenticate_user!, except: [:index_cliente, :participar, :no_participar]
   before_action :authenticate_cliente!, only: [:participar, :no_participar]
   before_action :set_torneo, only: [:show,:edit, :update, :destroy, :participar, :no_participar]
-
+  layout "landing", only: [:index_cliente]
   def index
       @torneos = Torneo.all
   end

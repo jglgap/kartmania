@@ -29,10 +29,7 @@ background-size: 31px 31px;
     margin: 0;
 
 }
-.custom_footer{
-    background-color: #265eba;
-    color: white;
-}
+
 
 .navbar .nav-link {
   color: #ffffff;
@@ -50,3 +47,80 @@ background-size: 31px 31px;
   -webkit-text-fill-color: transparent;
 }
 
+//=========================Footer====================
+
+.custom_footer {
+  background-image: url("footer_image.png"); // ← pon tu imagen aquí
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  // Overlay oscuro sobre la imagen
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 0;
+  }
+
+  // Todo el contenido por encima del overlay
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.footer-divider {
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.footer-links {
+  li {
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+
+    a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+
+    i { color: rgba(255, 255, 255, 0.5); }
+  }
+}
+
+// Botón del desplegable en móvil
+.footer-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  .footer-icon {
+    transition: transform 0.3s;
+  }
+
+  &[aria-expanded="true"] .footer-icon {
+    transform: rotate(180deg);
+  }
+}
+
+// En desktop: siempre visible, ignorar el collapse de Bootstrap
+@media (min-width: 768px) {
+  .footer-collapse {
+    display: block !important;
+  }
+}
+
+.footer-bottom {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+}

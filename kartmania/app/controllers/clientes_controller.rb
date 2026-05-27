@@ -2,7 +2,7 @@ class ClientesController < ApplicationController
   before_action :authenticate_user!, except: [:edit_cliente, :update_cliente, :show_cliente]
   before_action :authenticate_cliente!, only: [:edit_cliente, :update_cliente, :show_cliente]
   before_action :set_client, only: [:show, :edit, :update, :destroy]
-
+  layout "landing", only: [:show_cliente]
   def index
       @clientes = Cliente.all
   end

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kartmania</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= favicon_link_tag "logo_kartmania.png", type: "image/png" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload" %>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap5.min.css">
+  </head>
+
+  <body class="d-flex flex-column min-vh-100 landing-body">
+    <%= render "layouts/shared/navbar" %>
+
+    <div class="container">
+    <% flash.each do |tipo, mensaje| %>
+      <% css_class = case tipo
+        when "notice"  then "alert-success"
+        when "alert"   then "alert-danger"
+        when "warning" then "alert-warning"
+        when "info"    then "alert-info"
+        else "alert-secondary"
+      end %>
+      <div class="alert <%= css_class %> alert-dismissible fade show mt-3 " role="alert">
+        <%= mensaje %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    <% end %>
+    </div>
+
+    <main class="flex-grow-1 mt-4">
+      <%= yield %>
+    </main>
+    <%= render "layouts/shared/footer"%>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap5.min.js"></script>
+  </body>
+
+</html>

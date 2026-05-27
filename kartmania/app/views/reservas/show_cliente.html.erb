@@ -1,9 +1,9 @@
 <div class="container py-4 px-3 px-lg-5">
 
-  <h1 class="fw-bold text-white mb-4">Mis reservas</h1>
+  <h1 class="display-2 fw-bold mb-4 custom-heading">Mis reservas</h1>
 
   <% if @reservas.empty? %>
-    <p class="text-white">No tienes ninguna reserva todavía.</p>
+    <p class="text-black">No tienes ninguna reserva todavía.</p>
   <% else %>
     <div class="row g-4">
       <% @reservas.each do |reserva| %>

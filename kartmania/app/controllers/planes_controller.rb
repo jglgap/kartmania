@@ -1,4 +1,7 @@
 class PlanesController < ApplicationController
+
+  layout "landing", only: [:index_cliente]
+
   before_action :authenticate_user!, except: [:index_cliente]
   before_action :set_plan, only: [:show, :edit, :update, :destroy]
 
