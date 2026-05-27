@@ -1,4 +1,13 @@
 /* ── Flip Card ─────────────────────────────────────── */
+.cards-container{
+  margin-bottom: 150px !important;
+}
+@media (max-width: 767px) {
+  .cards-container{
+    margin-bottom: 50px !important;
+  }
+}
+
 .flip-card {
   perspective: 1000px;
   cursor: pointer;
