@@ -301,3 +301,45 @@ function initSearchableDataTable() {
 
 document.addEventListener("turbo:load", initSearchableDataTable);
 document.addEventListener("DOMContentLoaded", initSearchableDataTable);
+
+
+
+//======================== barras de progreso ==========================
+
+document.addEventListener("DOMContentLoaded", () => {
+  const skillsSection = document.querySelector(".skills-section");
+
+  // Si la sección no existe en esta página, no hacemos nada
+  if (!skillsSection) return;
+
+  // IntersectionObserver — observa cuándo la sección es visible
+  const observer = new IntersectionObserver(
+    (entries, observerInstance) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Seleccionamos todas las barras dentro de la sección
+          const bars = skillsSection.querySelectorAll(".skill-item__bar");
+
+          bars.forEach((bar) => {
+            // Leemos el porcentaje del atributo data-percentage
+            const targetPercent = bar.dataset.percentage;
+
+            // Pequeño delay para que la animación se vea escalonada
+            setTimeout(() => {
+              bar.style.width = `${targetPercent}%`;
+            }, 1000);
+          });
+
+          // Dejamos de observar — la animación solo ocurre una vez
+          observerInstance.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      // threshold: 0.3 = la animación arranca cuando el 30% de la sección es visible
+      threshold: 0.4,
+    }
+  );
+
+  observer.observe(skillsSection);
+});

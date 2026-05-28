@@ -25,6 +25,7 @@ body.landing-body {
 
 .circles-section {
 
+  margin-top: 50px;
 
   .circle-wrapper {
     width: 150px;       // Ajusta el tamaño del círculo aquí
@@ -61,7 +62,11 @@ body.landing-body {
   }
 
   // Estilo de la barra divisora (|)
-  @media (min-width: 768px) {
+  @media (min-width: 767px) {
+
+
+      margin-top: 150px;
+
     .circle-item {
       position: relative;
 
@@ -152,5 +157,93 @@ body.landing-body {
   .custom-carrousel{
     margin-bottom: 50px;
 
+  }
+}
+
+
+
+//================ Barras de progreso =================
+
+.skills-section {
+  /* Cambia "pista.jpg" por la imagen que quieras usar de fondo */
+  background-image: url('karts_peques.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efecto parallax suave */
+  width: 100%;
+  margin-top: 150px;
+  margin-bottom: 75px;
+
+  /* Overlay oscuro semitransparente sobre la imagen */
+  &__overlay {
+    background-color: rgba(0, 0, 30, 0.80);
+    width: 100%;
+    padding: 60px 0;
+  }
+
+  &__title {
+    color: #ffffff;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); /* Responsive sin media queries */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+  }
+
+  &__subtitle {
+    color: rgba(255, 255, 255, 0.80);
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .skills-section{
+    margin-top: 50px;
+  }
+}
+
+
+.skill-item {
+  margin-bottom: 1.8rem;
+
+  /* Fila con nombre a la izquierda y porcentaje a la derecha */
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+  }
+
+  &__name {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  &__percent {
+    color: #30cfd0; /* Rojo kartmania */
+    font-weight: 700;
+    font-size: 0.95rem;
+  }
+
+  /* Fondo gris de la barra (track) */
+  &__bar-bg {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 4px;
+    height: 10px;
+    overflow: hidden;
+  }
+
+  /* Barra roja animada — arranca en 0%, JS le pone el width final */
+  &__bar {
+    height: 100%;
+    width: 0%;
+    background-color: #30cfd0;
+    border-radius: 4px;
+    transition: width 2.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 }
