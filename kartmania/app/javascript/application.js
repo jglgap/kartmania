@@ -225,7 +225,7 @@ function initSearchableDataTable() {
 
   const dt = $(tabla).DataTable({
     dom: "tip",
-    pageLength: 15,
+    pageLength: 10,
     lengthChange: false,
     order: [[0, "asc"]],
     columnDefs: [

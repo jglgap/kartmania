@@ -3,7 +3,7 @@ class ReservasController < ApplicationController
   before_action :set_reserva, only: [:show, :edit, :update, :destroy]
   before_action :set_plan_publico, only: [:reservar, :crear_reserva]
   before_action :authenticate_cliente!, only: [:show_cliente]
-  layout "landing", only: [:reservar, :show_cliente]
+  layout "landing", only: [:reservar, :crear_reserva, :show_cliente]
   def index
       @reservas = Reserva.all
   end

@@ -105,9 +105,10 @@ class TorneosController < ApplicationController
 
   def no_participar
     authorize! :participar, @torneo
-
+    calendar = GoogleCalendarService.new
     participante = Participante.find_by(cliente_id: current_cliente.id, torneo_id: @torneo)
     if participante
+      calendar.eliminar_evento(participante.google_event_id)
       participante.destroy
       redirect_to index_cliente_torneos_path, notice: "Has eliminado tu participacion"
     else
